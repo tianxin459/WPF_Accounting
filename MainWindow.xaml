@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Accounting"
+        xmlns:md="Accounting.Model"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -27,7 +28,7 @@
 
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Vertical">
-            <DataGrid Name="dgStaff"  ItemsSource="{Binding}" AutoGenerateColumns="False" Height="200" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Margin="10,10,10,10" Grid.ColumnSpan="2">
+            <DataGrid Name="dgStaff"  ItemsSource="{Binding}" AutoGenerateColumns="False" Height="200" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Margin="10,10,10,10" Grid.ColumnSpan="2" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
                 <DataGrid.Columns>
                     <!--<DataGridTextColumn  Header="ID" Width="80" Binding="{Binding ID}" ClipboardContentBinding="{x:Null}"/>-->
                     <DataGridTextColumn  Header="Name" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
@@ -42,7 +43,18 @@
                     <DataGridTextColumn  Header="Subordinate2" Width="80" Binding="{Binding Subordinate[1].Name}" ClipboardContentBinding="{x:Null}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            
+            <TreeView Name="tvRelation">
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded" Value="True"/>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate   ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Name}" />
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
             
         </StackPanel>
     </StackPanel>

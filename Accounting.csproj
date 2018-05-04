@@ -74,7 +74,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Module\Member.cs" />
+    <Compile Include="Model\Member.cs" />
+    <Compile Include="Model\MemberNote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
