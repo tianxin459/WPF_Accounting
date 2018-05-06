@@ -1,8 +1,8 @@
 ﻿using Accounting.Model;
 using Accounting.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,18 +15,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Newtonsoft.Json;
 
 namespace Accounting
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Page_Main.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Page_Main : BasePage
     {
         DataStorage data;
-        private List<Member> Members = new List<Model.Member>();
-        public MainWindow()
+        //private List<Member> Members = new List<Model.Member>();
+        public Page_Main():base()
         {
             data = new DataStorage();
             InitializeComponent();
@@ -35,49 +34,15 @@ namespace Accounting
 
         public List<Member> readData()
         {
-
-            //var members = new List<Member>();
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    members.Add(new Member()
-            //    {
-            //        ID = i.ToString(),
-            //        Name = "Name" + i,
-            //        Gender = Gender.Male,
-            //        Account = "xxxx-xxxx-xxxx-xxxx".Replace("x", i.ToString()),
-            //        Age = (i * 9).ToString(),
-            //        Phone = "xxxxxxxxxxxxxxxx".Replace("x", i.ToString()),
-            //        Fee = i,
-            //        Bonus = i
-            //    });
-            //}
-
-
-            //members[2].Supervisor = members[1].Ref;
-            //members[2].Subordinate.Add(members[3].Ref);
-            //members[2].Subordinate.Add(members[4].Ref);
-
             var jsonData = data.ReadData();
-
+            
             Members = JsonConvert.DeserializeObject<List<Member>>(jsonData);
 
             //ds.SaveData(JsonConvert.SerializeObject(Members));
             return Members;
         }
 
-
-        public void GenerateTree()
-        {
-            MemberNote root = new MemberNote() { Name = "Menu" };
-            MemberNote childItem1 = new MemberNote() { Name = "Child item #1" };
-            childItem1.Children.Add(new MemberNote() { Name = "Child item #1.1" });
-            childItem1.Children.Add(new MemberNote() { Name = "Child item #1.2" });
-            root.Children.Add(childItem1);
-            root.Children.Add(new MemberNote() { Name = "Child item #2" });
-            this.tvRelation.Items.Add(root);
-        }
-
+        
         public MemberNote GenerateTree(Member m)
         {
 
@@ -88,7 +53,7 @@ namespace Accounting
         }
 
 
-        public MemberNote BuildParentNodes(Member m,MemberNote note)
+        public MemberNote BuildParentNodes(Member m, MemberNote note)
         {
 
             if (m.Supervisor == null)
@@ -123,7 +88,7 @@ namespace Accounting
                 Name = m.Name,
             };
 
-            foreach(var child in m.Subordinate)
+            foreach (var child in m.Subordinate)
             {
                 var childNote = Members.Where(x => x.ID == child.ID && x.Name == child.Name).FirstOrDefault<Member>();
                 note.Children.Add(BuildChildNodes(childNote));
@@ -132,7 +97,7 @@ namespace Accounting
             return note;
         }
 
-        private void Window_Initialized(object sender, EventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var members = readData();
             this.dgStaff.DataContext = members;
@@ -144,7 +109,12 @@ namespace Accounting
 
         private void dgStaff_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
+            DataGrid dataGrid = sender as DataGrid;
+            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            if (row == null) return;
+
+            this.SelectedMember = row.Item as Member;
+            this.NavigationService.Navigate(new Uri("pack://application:,,,/Page_MemberDetail.xaml"));
         }
 
         private void dgStaff_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -162,6 +132,16 @@ namespace Accounting
         {
             MemberDetail popup = new MemberDetail();
             popup.ShowDialog();
+        }
+
+        private void btnBackup_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("pack://application:,,,/Page_MemberDetail.xaml"));
+        }
+
+        private void AddMember_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("pack://application:,,,/Page_MemberDetail.xaml"));
         }
     }
 }

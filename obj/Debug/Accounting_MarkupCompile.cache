@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Git\Accounting\Accounting\obj\Debug\
+D:\Git\WPF_Accounting\obj\Debug\
 Accounting
 none
 false
 DEBUG;TRACE
-C:\Git\Accounting\Accounting\App.xaml
-11151548125
+D:\Git\WPF_Accounting\App.xaml
+5-1604914551
 
-71058418911
-15-1850981966
-MainWindow.xaml;
+13203559258
+171205853749
+MainWindow.xaml;MemberDetail.xaml;Page_Main.xaml;Page_MemberDetail.xaml;Window1.xaml;
 
 False
 

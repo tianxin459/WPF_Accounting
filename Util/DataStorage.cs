@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Security.Permissions;
+using System.Windows;
+using System.Security;
+
+namespace Accounting.Util
+{
+    public class DataStorage
+    {
+        public string FolderName = "Data";
+        public string FileName = "Data";
+        public string DataFile { get { return FolderName + "\\" + FileName; } }
+
+        public DataStorage() {
+            //log4net.Config.XmlConfigurator.Configure();
+            //log4net.ILog log = log4net.LogManager.GetLogger("AppLogger2");
+            //log.Error("test");
+        }
+
+        public void EnsureDataPath()
+        {
+            if (!Directory.Exists(FolderName))
+            {
+                Directory.CreateDirectory(FolderName);
+            }
+            if (!File.Exists(DataFile))
+            {
+                File.Create(DataFile);
+            }
+        }
+
+        public void SaveData(string text)
+        {
+            try
+            {
+                EnsureDataPath();
+                //var file = new FileInfo(DataFile);
+                var fs = File.OpenWrite(DataFile);
+                byte[] buffer = Encoding.Default.GetBytes(text);
+                fs.Write(buffer, 0, buffer.Length);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public string ReadData()
+        {
+            try
+            {
+                EnsureDataPath();
+                var text = File.ReadAllText(DataFile);
+                return text;
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+    }
+}
