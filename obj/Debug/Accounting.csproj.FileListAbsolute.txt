@@ -33,9 +33,7 @@ D:\Git\WPF_Accounting\obj\Debug\MainWindow.baml
 D:\Git\WPF_Accounting\obj\Debug\Accounting.g.resources
 D:\Git\WPF_Accounting\obj\Debug\Accounting.Properties.Resources.resources
 D:\Git\WPF_Accounting\obj\Debug\Accounting.csproj.GenerateResource.Cache
-D:\Git\WPF_Accounting\bin\Debug\Newtonsoft.Json.dll
 D:\Git\WPF_Accounting\bin\Debug\Newtonsoft.Json.xml
-D:\Git\WPF_Accounting\bin\Debug\log4net.dll
 D:\Git\WPF_Accounting\bin\Debug\log4net.xml
 D:\Git\WPF_Accounting\obj\Debug\MemberDetail.g.cs
 D:\Git\WPF_Accounting\obj\Debug\MemberDetail.baml
@@ -65,3 +63,8 @@ C:\Git\Accounting\Accounting\obj\Debug\Window2.baml
 C:\Git\Accounting\Accounting\bin\Debug\Data\Data.data
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\DialogSuccess.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\DialogSuccess.baml
+D:\Git\WPF_Accounting\bin\Debug\Data\Data.data
+D:\Git\WPF_Accounting\obj\Debug\Dialog\DialogSuccess.g.cs
+D:\Git\WPF_Accounting\obj\Debug\Window2.g.cs
+D:\Git\WPF_Accounting\obj\Debug\Dialog\DialogSuccess.baml
+D:\Git\WPF_Accounting\obj\Debug\Window2.baml
