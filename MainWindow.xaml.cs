@@ -33,34 +33,9 @@ namespace Accounting
         }
 
 
-        public List<Member> readData()
+        public List<Member> LoadData()
         {
-
-            //var members = new List<Member>();
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    members.Add(new Member()
-            //    {
-            //        ID = i.ToString(),
-            //        Name = "Name" + i,
-            //        Gender = Gender.Male,
-            //        Account = "xxxx-xxxx-xxxx-xxxx".Replace("x", i.ToString()),
-            //        Age = (i * 9).ToString(),
-            //        Phone = "xxxxxxxxxxxxxxxx".Replace("x", i.ToString()),
-            //        Fee = i,
-            //        Bonus = i
-            //    });
-            //}
-
-
-            //members[2].Supervisor = members[1].Ref;
-            //members[2].Subordinate.Add(members[3].Ref);
-            //members[2].Subordinate.Add(members[4].Ref);
-
-            var jsonData = data.ReadData();
-
-            Members = JsonConvert.DeserializeObject<List<Member>>(jsonData);
+            Members = DataStorage.LoadData();
 
             //ds.SaveData(JsonConvert.SerializeObject(Members));
             return Members;
@@ -134,7 +109,7 @@ namespace Accounting
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            var members = readData();
+            var members = LoadData();
             this.dgStaff.DataContext = members;
         }
 

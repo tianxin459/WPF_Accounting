@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Accounting"
       mc:Ignorable="d" 
       d:DesignHeight="600"
@@ -38,19 +38,9 @@
                             <DataGridTextColumn  Header="Subordinate2" Width="80" Binding="{Binding Subordinate[1].Name}" ClipboardContentBinding="{x:Null}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Name="AddMember" Content="添加" Canvas.Right="10" Click="AddMember_Click"></Button>
+                    <Button Name="AddMember" Content="添加" Canvas.Right="10" Click="AddMember_Click" Margin="10"></Button>
                 </Canvas>
                 <TreeView Name="tvRelation">
-                    <TreeView.ItemContainerStyle>
-                        <Style TargetType="{x:Type TreeViewItem}">
-                            <Setter Property="IsExpanded" Value="True"/>
-                        </Style>
-                    </TreeView.ItemContainerStyle>
-                    <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate   ItemsSource="{Binding Children}">
-                            <TextBlock Text="{Binding Name}" />
-                        </HierarchicalDataTemplate>
-                    </TreeView.ItemTemplate>
                 </TreeView>
             </StackPanel>
         </StackPanel>

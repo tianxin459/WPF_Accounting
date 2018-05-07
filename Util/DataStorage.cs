@@ -32,7 +32,7 @@ namespace Accounting.Util
                 EnsureDataPath();
                 //var file = new FileInfo(DataFile);
                 var fs = File.OpenWrite(DataFile);
-                byte[] buffer = Encoding.Default.GetBytes(text);
+                byte[] buffer = Encoding.UTF8.GetBytes(text);
                 fs.Write(buffer, 0, buffer.Length);
             }
             catch(Exception e)
@@ -106,10 +106,14 @@ namespace Accounting.Util
             try
             {
                 EnsureDataPath();
-                var jsonData = JsonConvert.SerializeObject(data);
 
+                //clear file
+                FileStream fsTruncate = new FileStream(DataFile, FileMode.Truncate, FileAccess.ReadWrite);
+                fsTruncate.Close();
+
+                var jsonData = JsonConvert.SerializeObject(data);
                 var fs = File.OpenWrite(DataFile);
-                byte[] buffer = Encoding.Default.GetBytes(jsonData);
+                byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
                 fs.Write(buffer, 0, buffer.Length);
             }
             catch (Exception e)

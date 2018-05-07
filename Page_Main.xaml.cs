@@ -72,10 +72,13 @@ namespace Accounting
             {
                 ID = parentMember.ID,
                 Name = parentMember.Name,
+                Header = parentMember.Name,
+                IsExpanded = true
             };
 
             var childNote = note;
-            parentNote.Children.Add(childNote);
+            parentNote.Items.Add(childNote);
+            //parentNote.Children.Add(childNote);
 
             if (parentNote == null)
                 return parentNote;
@@ -89,11 +92,14 @@ namespace Accounting
             {
                 ID = m.ID,
                 Name = m.Name,
+                Header = m.Name,
+                IsExpanded = true
             };
 
             foreach (var child in m.Subordinate)
             {
                 var childNote = Members.Where(x => x.ID == child.ID && x.Name == child.Name).FirstOrDefault<Member>();
+                note.Items.Add(BuildChildNodes(childNote));
                 note.Children.Add(BuildChildNodes(childNote));
             }
 
@@ -141,8 +147,8 @@ namespace Accounting
                 this.Members = DataStorage.ReadData(path);
                 DataStorage.SaveData(this.Members);
                 this.dgStaff.ItemsSource = this.Members;
+                DialogHost.Show(new DialogSuccess("导入成功"));
             }
-            DialogHost.Show(new DialogSuccess("导入成功"));
         }
 
         private void btnBackup_Click(object sender, RoutedEventArgs e)
@@ -152,6 +158,7 @@ namespace Accounting
 
         private void AddMember_Click(object sender, RoutedEventArgs e)
         {
+            this.SelectedMember = new Member(Member.GenerateID());
             this.NavigationService.Navigate(new Uri("pack://application:,,,/Page_MemberDetail.xaml"));
         }
     }

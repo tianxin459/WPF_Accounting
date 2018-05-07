@@ -20,13 +20,19 @@ namespace Accounting.Model
         public decimal Fee { get; set; }
         public decimal Bonus { get; set; }
 
-        public Member Supervisor2 { get; set; }
-        public List<Member> Subordinate2 { get; set; } = new List<Member>();
-
-        public RefMember Supervisor { get; set; }
+        public RefMember Supervisor { get; set; } = new RefMember();
         public List<RefMember> Subordinate { get; set; } = new List<RefMember>();
 
         public RefMember Ref { get { return new RefMember() { ID = this.ID, Name = this.Name }; } }
+
+        public Member() { }
+        public Member(string ID) {
+            this.ID = ID;
+        }
+
+        public static string GenerateID() {
+            return DateTime.Now.ToString("yyyyMMddHHmmssms");
+        }
     }
 
     public enum Gender
