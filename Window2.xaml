@@ -1,0 +1,35 @@
+﻿<Window x:Class="Accounting.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Accounting"
+        xmlns:md="Accounting.Model"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Title="MainWindow" 
+        WindowStartupLocation="CenterScreen"
+        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
+        Width="{Binding SystemParameters.PrimaryScreenWidth}" 
+        mc:Ignorable="d">
+    <materialDesign:DialogHost>
+        <materialDesign:DialogHost.DialogContent>
+            <Label Content="Check this out"></Label>
+        </materialDesign:DialogHost.DialogContent>
+        <Grid>
+        <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Name="dataGrid1" VerticalAlignment="Top" Width="308">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridComboBoxColumn x:Name="ComboBoxColumn" Header="Position" SelectedItemBinding="{Binding Position,Mode=TwoWay}"/>
+                <DataGridComboBoxColumn x:Name="ComboBoxColumn2" Header="Player" DisplayMemberPath="Position" SelectedValuePath="Position" SelectedValueBinding="{Binding Position, Mode=TwoWay}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="OpenDialog" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
+        </Grid>
+    </materialDesign:DialogHost>
+
+</Window>

@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Accounting"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+                
+      d:DesignHeight="900" d:DesignWidth="500"
       Title="Page_MemberDetail">
     <Page.Resources>
         <CollectionViewSource x:Key="Name" Source="{Binding ItemsSubordinate}" />
@@ -49,7 +50,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <Label Content="身份证号"></Label>
-                <TextBox Name="txtID" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
+                <TextBox Name="txtIDNumber" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
@@ -72,7 +73,7 @@
                 <TextBox Name="txtBank" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <StackPanel Name="panelAccount" Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <Label Content="银行账号"></Label>
                 <TextBox Name="txtAccount" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
             </StackPanel>
@@ -95,22 +96,13 @@
                             <!--<DataGridTextColumn  Header="ID" Width="80" Binding="{Binding ID}" ClipboardContentBinding="{x:Null}"/>-->
                             <DataGridTextColumn  Header="Name" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
                             <!--<DataGridComboBoxColumn  Header="Name" Width="80" ClipboardContentBinding="{x:Null}" SelectedValueBinding="{x:Null}" SelectedItemBinding="{x:Null}" TextBinding="{x:Null}"/>-->
-
-                            <DataGridTemplateColumn Header="Template模式">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ComboBox SelectedValue="{Binding Path=Name}" ItemsSource="{Binding ItemsSubordinate,ElementName=this}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Template2">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ComboBox ItemsSource="{Binding Name}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridComboBoxColumn Width="100" Header="专业组" SelectedValuePath="Name" TextBinding="{Binding Department}" ItemsSource="{Binding Source={StaticResource Name}}" DisplayMemberPath="Name" />
+                            <DataGridComboBoxColumn x:Name="comboSub" Width="100" Header="姓名"  DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValueBinding="{Binding Name, Mode=TwoWay}" >
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <EventSetter Event="SelectionChanged" Handler="SubNameSelectionChanged" />
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
                             <!--<DataGridTextColumn  Header="Age" Width="10" Binding="{Binding Age}" ClipboardContentBinding="{x:Null}"/>-->
                             <DataGridTextColumn  Header="Gender" Width="80" Binding="{Binding Gender}" ClipboardContentBinding="{x:Null}"/>
                             <!--<DataGridComboBoxColumn ClipboardContentBinding="{x:Null}" SelectedValueBinding="{x:Null}" SelectedItemBinding="{x:Null}" TextBinding="{x:Null}"/>-->
@@ -127,8 +119,13 @@
                 </StackPanel>
             </StackPanel>
 
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <Button x:Name="button"  Style="{StaticResource MaterialDesignRaisedDarkButton}"
+    Width="100"
+    ToolTip="保存更改" Content="保存" d:LayoutOverrides="Height" Click="button_Click"/>
+</StackPanel>
         </StackPanel>
 
-        <Button x:Name="button" Content="Button" d:LayoutOverrides="Height" Click="button_Click"/>
-    </StackPanel>
+         </StackPanel>
 </local:BasePage>

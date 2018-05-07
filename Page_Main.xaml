@@ -3,54 +3,56 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Accounting"
       mc:Ignorable="d" 
       d:DesignHeight="600"
       Title="Page_Main" Loaded="Page_Loaded" HorizontalAlignment="Stretch">
 
 
-    <StackPanel>
-        <StackPanel Grid.Row="0" Orientation="Horizontal"  Height="50">
-            <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
-            <Button Name="btnPrint" Content="打印" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-            <Button Name="btnReport" Content="报表" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-            <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="btnBackup_Click"/>
-            <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="btnRestore_Click"/>
-
+    <materialDesign:DialogHost>
+        <StackPanel>
+            <StackPanel Grid.Row="0" Orientation="Horizontal"  Height="50">
+                <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90"/>
+                <Button Name="btnPrint" Content="打印" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>
+                <Button Name="btnReport" Content="报表" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>
+                <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnBackup_Click"/>
+                <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnRestore_Click"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">
+                <Canvas Height="220" HorizontalAlignment="Stretch">
+                    <DataGrid Name="dgStaff" HorizontalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="200"  VerticalAlignment="Top"  Margin="10,10,10,10" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
+                        <DataGrid.Columns>
+                            <!--<DataGridTextColumn  Header="ID" Width="80" Binding="{Binding ID}" ClipboardContentBinding="{x:Null}"/>-->
+                            <DataGridTextColumn  Header="Name" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
+                            <!--<DataGridTextColumn  Header="Age" Width="10" Binding="{Binding Age}" ClipboardContentBinding="{x:Null}"/>-->
+                            <DataGridTextColumn  Header="Gender" Width="80" Binding="{Binding Gender}" ClipboardContentBinding="{x:Null}"/>
+                            <!--<DataGridComboBoxColumn ClipboardContentBinding="{x:Null}" SelectedValueBinding="{x:Null}" SelectedItemBinding="{x:Null}" TextBinding="{x:Null}"/>-->
+                            <DataGridTextColumn  Header="Bank" Width="100" Binding="{Binding Bank}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="Account" Width="200" Binding="{Binding Account}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="Phone" Width="160" Binding="{Binding Phone}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="Fee" Width="60" Binding="{Binding Fee}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="Bonus" Width="60" Binding="{Binding Bonus}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="Supervisor" Width="80" Binding="{Binding Supervisor.Name}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="Subordinate1" Width="80" Binding="{Binding Subordinate[0].Name}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="Subordinate2" Width="80" Binding="{Binding Subordinate[1].Name}" ClipboardContentBinding="{x:Null}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Name="AddMember" Content="添加" Canvas.Right="10" Click="AddMember_Click"></Button>
+                </Canvas>
+                <TreeView Name="tvRelation">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="IsExpanded" Value="True"/>
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate   ItemsSource="{Binding Children}">
+                            <TextBlock Text="{Binding Name}" />
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">
-            <Canvas Height="220" HorizontalAlignment="Stretch">
-                <DataGrid Name="dgStaff" HorizontalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="200"  VerticalAlignment="Top"  Margin="10,10,10,10" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
-                <DataGrid.Columns>
-                    <!--<DataGridTextColumn  Header="ID" Width="80" Binding="{Binding ID}" ClipboardContentBinding="{x:Null}"/>-->
-                    <DataGridTextColumn  Header="Name" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
-                    <!--<DataGridTextColumn  Header="Age" Width="10" Binding="{Binding Age}" ClipboardContentBinding="{x:Null}"/>-->
-                    <DataGridTextColumn  Header="Gender" Width="80" Binding="{Binding Gender}" ClipboardContentBinding="{x:Null}"/>
-                    <!--<DataGridComboBoxColumn ClipboardContentBinding="{x:Null}" SelectedValueBinding="{x:Null}" SelectedItemBinding="{x:Null}" TextBinding="{x:Null}"/>-->
-                    <DataGridTextColumn  Header="Bank" Width="100" Binding="{Binding Bank}" ClipboardContentBinding="{x:Null}"/>
-                    <DataGridTextColumn  Header="Account" Width="200" Binding="{Binding Account}" ClipboardContentBinding="{x:Null}"/>
-                    <DataGridTextColumn  Header="Phone" Width="160" Binding="{Binding Phone}" ClipboardContentBinding="{x:Null}"/>
-                    <DataGridTextColumn  Header="Fee" Width="60" Binding="{Binding Fee}" ClipboardContentBinding="{x:Null}"/>
-                    <DataGridTextColumn  Header="Bonus" Width="60" Binding="{Binding Bonus}" ClipboardContentBinding="{x:Null}"/>
-                    <DataGridTextColumn  Header="Supervisor" Width="80" Binding="{Binding Supervisor.Name}" ClipboardContentBinding="{x:Null}"/>
-                    <DataGridTextColumn  Header="Subordinate1" Width="80" Binding="{Binding Subordinate[0].Name}" ClipboardContentBinding="{x:Null}"/>
-                    <DataGridTextColumn  Header="Subordinate2" Width="80" Binding="{Binding Subordinate[1].Name}" ClipboardContentBinding="{x:Null}"/>
-                </DataGrid.Columns>
-                </DataGrid>
-                <Button Name="AddMember" Content="添加" Canvas.Right="10" Click="AddMember_Click"></Button>
-            </Canvas>
-            <TreeView Name="tvRelation">
-                <TreeView.ItemContainerStyle>
-                    <Style TargetType="{x:Type TreeViewItem}">
-                        <Setter Property="IsExpanded" Value="True"/>
-                    </Style>
-                </TreeView.ItemContainerStyle>
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate   ItemsSource="{Binding Children}">
-                        <TextBlock Text="{Binding Name}" />
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
-        </StackPanel>
-    </StackPanel>
+    </materialDesign:DialogHost>
 </local:BasePage>

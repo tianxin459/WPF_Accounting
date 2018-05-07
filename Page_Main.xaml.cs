@@ -1,5 +1,8 @@
-﻿using Accounting.Model;
+﻿using Accounting.Dialog;
+using Accounting.Model;
 using Accounting.Util;
+using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -130,8 +133,16 @@ namespace Accounting
 
         private void btnRestore_Click(object sender, RoutedEventArgs e)
         {
-            MemberDetail popup = new MemberDetail();
-            popup.ShowDialog();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Data file (*.data)|*.data";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var path = openFileDialog.FileName;
+                this.Members = DataStorage.ReadData(path);
+                DataStorage.SaveData(this.Members);
+                this.dgStaff.ItemsSource = this.Members;
+            }
+            DialogHost.Show(new DialogSuccess("导入成功"));
         }
 
         private void btnBackup_Click(object sender, RoutedEventArgs e)

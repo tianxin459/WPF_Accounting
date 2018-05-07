@@ -11,6 +11,7 @@ namespace Accounting.Model
     {
         public string ID { get; set; }
         public string Name { get; set; }
+        public string IDNumber { get; set; }
         public Gender Gender { get; set; }
         public string Age { get; set; }
         public string Bank { get; set; }

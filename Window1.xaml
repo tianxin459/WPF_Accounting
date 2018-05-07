@@ -17,4 +17,5 @@
         Width="{Binding SystemParameters.PrimaryScreenWidth}" 
         mc:Ignorable="d"
         Source="Page_Main.xaml">
+        
 </NavigationWindow>

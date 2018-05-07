@@ -1,0 +1,204 @@
+[
+  {
+    "ID": "0",
+    "Name": "Name0",
+    "Gender": 1,
+    "Age": "0",
+    "Bank": null,
+    "Account": "0000-0000-0000-0000",
+    "Phone": "0000000000000000",
+    "Fee": 0.0,
+    "Bonus": 0.0,
+    "Supervisor2": null,
+    "Subordinate2": [],
+    "Supervisor": null,
+    "Subordinate": [],
+    "Ref": {
+      "ID": "0",
+      "Name": "Name0"
+    }
+  },
+  {
+    "ID": "1",
+    "Name": "Name1",
+    "Gender": 1,
+    "Age": "9",
+    "Bank": null,
+    "Account": "1111-1111-1111-1111",
+    "Phone": "1111111111111111",
+    "Fee": 1.0,
+    "Bonus": 1.0,
+    "Supervisor2": null,
+    "Subordinate2": [],
+    "Supervisor": null,
+    "Subordinate": [],
+    "Ref": {
+      "ID": "1",
+      "Name": "Name1"
+    }
+  },
+  {
+    "ID": "2",
+    "Name": "Name2",
+    "Gender": 1,
+    "Age": "18",
+    "Bank": null,
+    "Account": "2222-2222-2222-2222",
+    "Phone": "2222222222222222",
+    "Fee": 2.0,
+    "Bonus": 2.0,
+    "Supervisor2": null,
+    "Subordinate2": [],
+    "Supervisor": {
+      "ID": "1",
+      "Name": "Name1"
+    },
+    "Subordinate": [
+      {
+        "ID": "3",
+        "Name": "Name3"
+      },
+      {
+        "ID": "4",
+        "Name": "Name4"
+      }
+    ],
+    "Ref": {
+      "ID": "2",
+      "Name": "Name2"
+    }
+  },
+  {
+    "ID": "3",
+    "Name": "Name3",
+    "Gender": 1,
+    "Age": "27",
+    "Bank": null,
+    "Account": "3333-3333-3333-3333",
+    "Phone": "3333333333333333",
+    "Fee": 3.0,
+    "Bonus": 3.0,
+    "Supervisor2": null,
+    "Subordinate2": [],
+    "Supervisor": null,
+    "Subordinate": [],
+    "Ref": {
+      "ID": "3",
+      "Name": "Name3"
+    }
+  },
+  {
+    "ID": "4",
+    "Name": "Name4",
+    "Gender": 1,
+    "Age": "36",
+    "Bank": null,
+    "Account": "4444-4444-4444-4444",
+    "Phone": "4444444444444444",
+    "Fee": 4.0,
+    "Bonus": 4.0,
+    "Supervisor2": null,
+    "Subordinate2": [],
+    "Supervisor": null,
+    "Subordinate": [],
+    "Ref": {
+      "ID": "4",
+      "Name": "Name4"
+    }
+  },
+  {
+    "ID": "5",
+    "Name": "Name5",
+    "Gender": 1,
+    "Age": "45",
+    "Bank": null,
+    "Account": "5555-5555-5555-5555",
+    "Phone": "5555555555555555",
+    "Fee": 5.0,
+    "Bonus": 5.0,
+    "Supervisor2": null,
+    "Subordinate2": [],
+    "Supervisor": null,
+    "Subordinate": [],
+    "Ref": {
+      "ID": "5",
+      "Name": "Name5"
+    }
+  },
+  {
+    "ID": "6",
+    "Name": "Name6",
+    "Gender": 1,
+    "Age": "54",
+    "Bank": null,
+    "Account": "6666-6666-6666-6666",
+    "Phone": "6666666666666666",
+    "Fee": 6.0,
+    "Bonus": 6.0,
+    "Supervisor2": null,
+    "Subordinate2": [],
+    "Supervisor": null,
+    "Subordinate": [],
+    "Ref": {
+      "ID": "6",
+      "Name": "Name6"
+    }
+  },
+  {
+    "ID": "7",
+    "Name": "Name7",
+    "Gender": 1,
+    "Age": "63",
+    "Bank": null,
+    "Account": "7777-7777-7777-7777",
+    "Phone": "7777777777777777",
+    "Fee": 7.0,
+    "Bonus": 7.0,
+    "Supervisor2": null,
+    "Subordinate2": [],
+    "Supervisor": null,
+    "Subordinate": [],
+    "Ref": {
+      "ID": "7",
+      "Name": "Name7"
+    }
+  },
+  {
+    "ID": "8",
+    "Name": "Name8",
+    "Gender": 1,
+    "Age": "72",
+    "Bank": null,
+    "Account": "8888-8888-8888-8888",
+    "Phone": "8888888888888888",
+    "Fee": 8.0,
+    "Bonus": 8.0,
+    "Supervisor2": null,
+    "Subordinate2": [],
+    "Supervisor": null,
+    "Subordinate": [],
+    "Ref": {
+      "ID": "8",
+      "Name": "Name8"
+    }
+  },
+  {
+    "ID": "9",
+    "Name": "Name9",
+    "Gender": 1,
+    "Age": "81",
+    "Bank": null,
+    "Account": "9999-9999-9999-9999",
+    "Phone": "9999999999999999",
+    "Fee": 9.0,
+    "Bonus": 9.0,
+    "Supervisor2": null,
+    "Subordinate2": [],
+    "Supervisor": null,
+    "Subordinate": [],
+    "Ref": {
+      "ID": "9",
+      "Name": "Name9"
+    }
+  }
+]

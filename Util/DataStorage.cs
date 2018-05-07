@@ -7,14 +7,16 @@ using System.IO;
 using System.Security.Permissions;
 using System.Windows;
 using System.Security;
+using Accounting.Model;
+using Newtonsoft.Json;
 
 namespace Accounting.Util
 {
     public class DataStorage
     {
-        public string FolderName = "Data";
-        public string FileName = "Data";
-        public string DataFile { get { return FolderName + "\\" + FileName; } }
+        public static string FolderName = "Data";
+        public static string FileName = "Data.data";
+        public static string DataFile { get { return FolderName + "\\" + FileName; } }
 
         public DataStorage() {
             //log4net.Config.XmlConfigurator.Configure();
@@ -22,17 +24,6 @@ namespace Accounting.Util
             //log.Error("test");
         }
 
-        public void EnsureDataPath()
-        {
-            if (!Directory.Exists(FolderName))
-            {
-                Directory.CreateDirectory(FolderName);
-            }
-            if (!File.Exists(DataFile))
-            {
-                File.Create(DataFile);
-            }
-        }
 
         public void SaveData(string text)
         {
@@ -59,6 +50,69 @@ namespace Accounting.Util
                 return text;
             }
             catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static void EnsureDataPath()
+        {
+            if (!Directory.Exists(FolderName))
+            {
+                Directory.CreateDirectory(FolderName);
+            }
+            if (!File.Exists(DataFile))
+            {
+                File.Create(DataFile);
+            }
+        }
+
+
+
+        public static List<Member> LoadData()
+        {
+            try
+            {
+                EnsureDataPath();
+                var jsonData = File.ReadAllText(DataFile);
+                List<Member> data = JsonConvert.DeserializeObject<List<Member>>(jsonData);
+                return data;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+        public static List<Member> ReadData(string path)
+        {
+            try
+            {
+                var jsonData = File.ReadAllText(path);
+
+                List<Member> data = JsonConvert.DeserializeObject<List<Member>>(jsonData);
+                return data;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+        public static void SaveData(List<Member> data)
+        {
+            try
+            {
+                EnsureDataPath();
+                var jsonData = JsonConvert.SerializeObject(data);
+
+                var fs = File.OpenWrite(DataFile);
+                byte[] buffer = Encoding.Default.GetBytes(jsonData);
+                fs.Write(buffer, 0, buffer.Length);
+            }
+            catch (Exception e)
             {
                 throw e;
             }
