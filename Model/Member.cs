@@ -31,7 +31,8 @@ namespace Accounting.Model
             this.ID = ID;
         }
 
-        private List<decimal> BonusBase = new List<decimal>() { 209, 171, 133, 94, 73, 50 };
+        [JsonIgnore]
+        private List<decimal> BonusBase = new List<decimal>() { 228, 190, 152, 114, 76, 38 };
 
 
         public decimal CalcuateBonusInMemberTree(List<Member> memberTree)
@@ -41,18 +42,29 @@ namespace Accounting.Model
                 .Where(x => x.ID == this.ID)
                 .FirstOrDefault();
 
-            if(m.Subordinate.Count==0)
+
+            if(m==null || m.Subordinate.Count==0)
             {
                 return 0;
             }
 
             var level = 0;
+            List<int> lvs = new List<int>();
 
             foreach (var sm in m.Subordinate)
             {
                 var lv = level;
                 bonus += SumChildrenBonus(sm.ID, memberTree,ref lv);
-                bonus += BonusBase[lv];
+                if (lv < BonusBase.Count)
+                {
+                    bonus += BonusBase[lv];
+                }
+                lvs.Add(lv);
+            }
+
+            if (lvs.Max() > BonusBase.Count) // if 6 gen exceed, then have plus share of 2% of 38w;
+            {
+                bonus += (decimal)(380000 * 0.02);
             }
 
             this.Bonus = bonus;
@@ -73,7 +85,7 @@ namespace Accounting.Model
                 .Where(x => x.ID == id)
                 .FirstOrDefault();
 
-            if (m.Subordinate.Count == 0)
+            if (m==null||m.Subordinate.Count == 0)
             {
                 level = 0;
                 return 0;

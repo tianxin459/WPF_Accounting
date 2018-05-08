@@ -16,6 +16,6 @@
         Height="{Binding SystemParameters.PrimaryScreenHeight}" 
         Width="{Binding SystemParameters.PrimaryScreenWidth}" 
         mc:Ignorable="d"
-        Source="Page_Main.xaml">
+        Source="Page_Main.xaml" Navigating="NavigationWindow_Navigating" Navigated="NavigationWindow_Navigated">
         
 </NavigationWindow>

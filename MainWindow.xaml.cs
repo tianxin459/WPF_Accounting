@@ -135,8 +135,6 @@ namespace Accounting
 
         private void btnRestore_Click(object sender, RoutedEventArgs e)
         {
-            MemberDetail popup = new MemberDetail();
-            popup.ShowDialog();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Accounting
     {
         public const string GLOBAL_MEMBERS = "Members";
         public const string GLOBAL_SELECTEDMEMBERS = "SelectedMembers";
+        public const string GLOBAL_SELECTEDMEMBERSTACK = "SelectedMemberStack";
         public List<Member> Members {
             get {
                 if (!Application.Current.Properties.Contains(GLOBAL_MEMBERS))
@@ -37,6 +38,21 @@ namespace Accounting
                 Application.Current.Properties[GLOBAL_SELECTEDMEMBERS] = value;
             }
         }
+
+        public Stack<Member> SelectedMemberStack
+        {
+            get
+            {
+                if (!Application.Current.Properties.Contains(GLOBAL_SELECTEDMEMBERSTACK))
+                    return new Stack<Member>();
+                return Application.Current.Properties[GLOBAL_SELECTEDMEMBERSTACK] as Stack<Member>;
+            }
+            set
+            {
+                Application.Current.Properties[GLOBAL_SELECTEDMEMBERSTACK] = value;
+            }
+        }
+        
     }
 
 

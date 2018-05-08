@@ -13,7 +13,7 @@
       mc:Ignorable="d" 
                 
       d:DesignHeight="900" d:DesignWidth="500"
-      Title="Page_MemberDetail">
+      Title="Page_MemberDetail" Loaded="BasePage_Loaded">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -107,18 +107,16 @@
                               Width="15" Height="15"
                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
                         </Button>
+                        <Button ToolTip="添加新下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                             Click="AddNewSubButton_Click_1" Canvas.Right="10" Loaded="Button_Loaded">
+                            <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+                              Stretch="Uniform"
+                              Width="15" Height="15"
+                              Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
+                        </Button>
                     </Canvas>
                 </StackPanel>
                 <StackPanel>
-                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Content="银行账号"></Label>
-                    <TextBox Name="comboSubordinate1" HorizontalAlignment="Stretch" MinWidth="300"></TextBox>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Content="银行账号"></Label>
-                    <TextBox Name="comboSubordinate2" HorizontalAlignment="Stretch" MinWidth="300"></TextBox>
-                </StackPanel>-->
 
 
                     <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">

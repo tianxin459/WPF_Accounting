@@ -35,8 +35,6 @@ D:\Git\WPF_Accounting\obj\Debug\Accounting.Properties.Resources.resources
 D:\Git\WPF_Accounting\obj\Debug\Accounting.csproj.GenerateResource.Cache
 D:\Git\WPF_Accounting\bin\Debug\Newtonsoft.Json.xml
 D:\Git\WPF_Accounting\bin\Debug\log4net.xml
-D:\Git\WPF_Accounting\obj\Debug\MemberDetail.g.cs
-D:\Git\WPF_Accounting\obj\Debug\MemberDetail.baml
 D:\Git\WPF_Accounting\obj\Debug\Page_MemberDetail.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Page_MemberDetail.baml
 D:\Git\WPF_Accounting\obj\Debug\Window1.g.cs

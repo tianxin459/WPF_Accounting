@@ -35,11 +35,32 @@ namespace Accounting
 
 
 
+        private void BasePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            //refresh name based on id
+            this.SelectedMember
+                .Subordinate
+                .ForEach(x => x.Name = this.Members
+                    .Where(y => y.ID == x.ID)
+                    .Select(n => n.Name)
+                .FirstOrDefault());
+
+            //remove invalid item (null name)
+            for (var i = this.SelectedMember.Subordinate.Count() - 1; i > 0; i--)
+            {
+                if (string.IsNullOrEmpty(this.SelectedMember.Subordinate[i].Name))
+                {
+                    this.SelectedMember.Subordinate.RemoveAt(i);
+                }
+            }
+        }
+
         public Page_MemberDetail()
         {
             InitializeComponent();
 
-            int level = 0;
+           
+            
             this.SelectedMember.CalcuateBonusInMemberTree(this.Members);
 
             this.comboGender.ItemsSource = Enum.GetValues(typeof(Gender));
@@ -239,6 +260,7 @@ namespace Accounting
                 throw ex;
             }
             DialogHost.Show(new DialogSuccess("保存成功"));
+            //this.NavigationService.GoBack();
 
         }
 
@@ -266,6 +288,25 @@ namespace Accounting
             this.SelectedMember.Subordinate.Add(new RefMember());
             AddSubordinateCombo(this.SelectedMember.Subordinate.Count - 1);
         }
+        private void AddNewSubButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            var mid = Member.GenerateID();
+            var m = new Member(mid);
+            this.SelectedMember.Subordinate.Add(new RefMember() { ID = mid });
+            this.SelectedMemberStack.Push(this.SelectedMember);
+            this.SelectedMember = m;
+
+            App.SelectedMember = m;
+            App.SelectedMemberStack = this.SelectedMemberStack;
+            
+            this.NavigationService.Navigate(new Page_MemberDetail());
+        }
+
+        private void Button_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         //private void SubNameSelectionChanged(object sender, SelectionChangedEventArgs e)
         //{

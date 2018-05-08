@@ -45,7 +45,7 @@ namespace Accounting
         }
 
         
-        public MemberNote GenerateTree(Member m)
+        public TreeViewItem GenerateTree(Member m)
         {
 
             var note = BuildChildNodes(m);
@@ -55,7 +55,7 @@ namespace Accounting
         }
 
 
-        public MemberNote BuildParentNodes(Member m, MemberNote note)
+        public TreeViewItem BuildParentNodes(Member m, TreeViewItem note)
         {
 
             if (m.Supervisor == null)
@@ -67,10 +67,11 @@ namespace Accounting
                 .Where(x => x.ID == m.Supervisor.ID && x.Name == m.Supervisor.Name)
                 .FirstOrDefault<Member>();
 
-            var parentNote = new MemberNote()
+            var parentNote = new TreeViewItem()
             {
-                ID = parentMember.ID,
-                Name = parentMember.Name,
+                //ID = parentMember.ID,
+                //Name = parentMember.ID,
+                Tag = parentMember.ID,
                 Header = parentMember.Name,
                 IsExpanded = true
             };
@@ -85,13 +86,15 @@ namespace Accounting
             return BuildParentNodes(parentMember, parentNote);
         }
 
-        public MemberNote BuildChildNodes(Member m)
+        public TreeViewItem BuildChildNodes(Member m)
         {
-            var note = new MemberNote()
+            var note = new TreeViewItem()
             {
-                ID = m.ID,
-                Name = m.Name,
+                //ID = m.ID,
+                //Name = m.ID,
+                Tag = m.ID,
                 Header = m.Name,
+                
                 IsExpanded = true
             };
 
@@ -99,7 +102,7 @@ namespace Accounting
             {
                 var childNote = Members.Where(x => x.ID == child.ID && x.Name == child.Name).FirstOrDefault<Member>();
                 note.Items.Add(BuildChildNodes(childNote));
-                note.Children.Add(BuildChildNodes(childNote));
+                //note.Items.Add(BuildChildNodes(childNote));
             }
 
             return note;

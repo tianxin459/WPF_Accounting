@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Accounting.Model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -55,6 +56,42 @@ namespace Accounting
                 Environment.Exit(0);
             }
         }
+
+        public const string GLOBAL_MEMBERS = "Members";
+        public const string GLOBAL_SELECTEDMEMBERS = "SelectedMembers";
+        public const string GLOBAL_SELECTEDMEMBERSTACK = "SelectedMemberStack";
+        //public static Member SelectedMember
+        //{
+        //    get
+        //    {
+        //        if (!Application.Current.Properties.Contains(GLOBAL_SELECTEDMEMBERS))
+        //            return null;
+        //        return Application.Current.Properties[GLOBAL_SELECTEDMEMBERS] as Member;
+        //    }
+        //    set
+        //    {
+        //        Application.Current.Properties[GLOBAL_SELECTEDMEMBERS] = value;
+        //    }
+        //}
+
+        
+
+        //public static Stack<Member> SelectedMemberStack
+        //{
+        //    get
+        //    {
+        //        if (!Application.Current.Properties.Contains(GLOBAL_SELECTEDMEMBERSTACK))
+        //            return new Stack<Member>();
+        //        return Application.Current.Properties[GLOBAL_SELECTEDMEMBERSTACK] as Stack<Member>;
+        //    }
+        //    set
+        //    {
+        //        Application.Current.Properties[GLOBAL_SELECTEDMEMBERSTACK] = value;
+        //    }
+        //}
+
+        public static Member SelectedMember { get; set; } = new Member();
+        public static Stack<Member> SelectedMemberStack { get; set; } = new Stack<Member>();
     }
 
 }
