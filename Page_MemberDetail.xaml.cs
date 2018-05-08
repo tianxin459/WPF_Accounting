@@ -100,6 +100,7 @@ namespace Accounting
 
                 var btnDelete = new Button();
                 btnDelete.Content = "delete";
+                btnDelete.Name = "delbtn_"+i;
                 btnDelete.Width = 100;
                 btnDelete.Margin = new Thickness(10);
                 btnDelete.Click += DeleteSubButton_Click;
@@ -119,8 +120,18 @@ namespace Accounting
 
         private void DeleteSubButton_Click(object sender, RoutedEventArgs e)
         {
-            var p = (sender as Button).Parent as StackPanel;
-            p.Children.Clear();
+            try
+            {
+                var p = (sender as Button).Parent as StackPanel;
+
+                var i = (sender as Button).Name.Replace("delbtn_", string.Empty);
+                p.Children.Clear();
+                this.SelectedMember.Subordinate.RemoveAt(int.Parse(i));
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void ComboSub1_SelectionChanged(object sender, SelectionChangedEventArgs e)

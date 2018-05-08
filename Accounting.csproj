@@ -106,6 +106,7 @@
     <Compile Include="Page_MemberDetail.xaml.cs">
       <DependentUpon>Page_MemberDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Util\Caculation.cs" />
     <Compile Include="Util\DataStorage.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
