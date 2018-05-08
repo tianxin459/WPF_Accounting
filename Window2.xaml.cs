@@ -25,23 +25,12 @@ namespace Accounting
         public ObservableCollection<string> Positions { get; set; }
         public Window2()
         {
-            Positions = new ObservableCollection<string>() { "Forward", "Defense", "Goalie" };
-
-            PlayerItems = new ObservableCollection<Player> {
-                    new Player() {Name = "Tom",Position= "Forward"},
-                    new Player() {Name = "Dick", Position= "Defense"},
-                    new Player() {Name = "Harry", Position= "Goalie"}
-            };
-            Players = new ObservableCollection<Player>(){
-                    new Player() {Name = "Tom",Position= "Forward"},
-                    new Player() {Name = "Dick", Position= "Defense"},
-                    new Player() {Name = "Harry", Position= "Goalie"}
-      };
             InitializeComponent();
-            ComboBoxColumn.ItemsSource = Positions;
-            ComboBoxColumn2.ItemsSource = PlayerItems;
-            dataGrid1.ItemsSource = Players;
-            //dataGrid1.DataContext = Players;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.tv1.Items.Add(new TreeViewItem() { Header = "test" });
         }
     }
 

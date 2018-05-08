@@ -16,20 +16,34 @@
         Height="{Binding SystemParameters.PrimaryScreenHeight}" 
         Width="{Binding SystemParameters.PrimaryScreenWidth}" 
         mc:Ignorable="d">
+    
+        <Window.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Window.Resources>
     <materialDesign:DialogHost>
-        <materialDesign:DialogHost.DialogContent>
-            <Label Content="Check this out"></Label>
-        </materialDesign:DialogHost.DialogContent>
-        <Grid>
-        <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Name="dataGrid1" VerticalAlignment="Top" Width="308">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridComboBoxColumn x:Name="ComboBoxColumn" Header="Position" SelectedItemBinding="{Binding Position,Mode=TwoWay}"/>
-                <DataGridComboBoxColumn x:Name="ComboBoxColumn2" Header="Player" DisplayMemberPath="Position" SelectedValuePath="Position" SelectedValueBinding="{Binding Position, Mode=TwoWay}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Content="OpenDialog" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
-        </Grid>
+        <StackPanel>
+            <TreeView Name="tv1" MinWidth="220">
+                <TreeViewItem Header="Fruit">
+                    <TreeViewItem Header="Banana"/>
+                    <TreeViewItem Header="Grape">
+                        <TextBlock><Run Text="Grapes for us"/></TextBlock>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Peach"/>
+                    <TreeViewItem Header="Pear"/>
+                    <TreeViewItem Header="Strawberry"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Empty" />
+            </TreeView>
+            <Button ToolTip="Add an item" Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" Click="Button_Click">
+                <materialDesign:PackIcon Kind="Close" />
+            </Button>
+        </StackPanel>
     </materialDesign:DialogHost>
 
 </Window>

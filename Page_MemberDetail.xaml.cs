@@ -39,6 +39,8 @@ namespace Accounting
         {
             InitializeComponent();
 
+            int level = 0;
+            this.SelectedMember.CalcuateBonusInMemberTree(this.Members);
 
             this.comboGender.ItemsSource = Enum.GetValues(typeof(Gender));
             this.comboSupervisor.IsReadOnly = true;
@@ -73,6 +75,51 @@ namespace Accounting
             BuildSubordinateCombo();
         }
 
+        private void AddSubordinateCombo(int i)
+        {
+            var comboSub1 = new ComboBox();
+            comboSub1.MinWidth = 100;
+            comboSub1.Margin = new Thickness(10);
+            comboSub1.Name = "comboSub" + i;
+            comboSub1.HorizontalAlignment = HorizontalAlignment.Stretch;
+            comboSub1.ItemsSource = this.Members
+                .Where(x => x.Subordinate.Count <= 2 && x.Supervisor == null)
+                .Select(x => new ComboItem() { Name = x.Name, ID = x.ID });
+            comboSub1.DisplayMemberPath = "Name";
+            comboSub1.SelectedValuePath = "ID";
+            comboSub1.SetBinding(ComboBox.SelectedValueProperty, new Binding("ID") { Source = this.SelectedMember.Subordinate[i], Mode = BindingMode.TwoWay });
+            comboSub1.SelectionChanged += ComboSub1_SelectionChanged;
+
+            var textblock = new TextBlock();
+            textblock.Name = "tbSub" + i;
+            textblock.Margin = new Thickness(10);
+            textblock.HorizontalAlignment = HorizontalAlignment.Stretch;
+            textblock.MinWidth = 200;
+            textblock.Text = this.Members
+                .Where(x => x.ID == this.SelectedMember.Subordinate[i].ID)
+                .Select(x => $"{x.Phone} {x.IDNumber} {x.Fee}")
+                .FirstOrDefault();
+
+            var btnDelete = new Button();
+            btnDelete.Content = "delete";
+            btnDelete.Name = "delbtn_" + i;
+            btnDelete.Margin = new Thickness(10);
+            btnDelete.Click += DeleteSubButton_Click;
+            btnDelete.Style = this.FindResource("MaterialDesignFloatingActionMiniButton") as Style;
+            btnDelete.Content = new PackIcon() { Kind = PackIconKind.Close };
+
+            var panel1 = new StackPanel();
+            panel1.Orientation = Orientation.Horizontal;
+
+            panel1.Children.Add(comboSub1);
+            panel1.Children.Add(textblock);
+            panel1.Children.Add(btnDelete);
+
+            panel1.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            this.panelSubordinate.Children.Add(panel1);
+        }
+
         private void BuildSubordinateCombo()
         {
             for (int i = 0; i < this.SelectedMember.Subordinate.Count; i++)
@@ -82,7 +129,9 @@ namespace Accounting
                 comboSub1.Margin = new Thickness(10);
                 comboSub1.Name = "comboSub" + i;
                 comboSub1.HorizontalAlignment = HorizontalAlignment.Stretch;
-                comboSub1.ItemsSource = this.Members.Select(x => new ComboItem() { Name = x.Name, ID = x.ID });
+                comboSub1.ItemsSource = this.Members
+                    .Where(x=>x.Subordinate.Count<=2 && x.Supervisor==null)
+                    .Select(x => new ComboItem() { Name = x.Name, ID = x.ID });
                 comboSub1.DisplayMemberPath = "Name";
                 comboSub1.SelectedValuePath = "ID";
                 comboSub1.SetBinding(ComboBox.SelectedValueProperty, new Binding("ID") { Source = this.SelectedMember.Subordinate[i], Mode = BindingMode.TwoWay });
@@ -100,10 +149,11 @@ namespace Accounting
 
                 var btnDelete = new Button();
                 btnDelete.Content = "delete";
-                btnDelete.Name = "delbtn_"+i;
-                btnDelete.Width = 100;
+                btnDelete.Name = "delbtn_" + i;
                 btnDelete.Margin = new Thickness(10);
                 btnDelete.Click += DeleteSubButton_Click;
+                btnDelete.Style = this.FindResource("MaterialDesignFloatingActionMiniButton") as Style;
+                btnDelete.Content = new PackIcon() { Kind = PackIconKind.Close };
 
                 var panel1 = new StackPanel();
                 panel1.Orientation = Orientation.Horizontal;
@@ -111,10 +161,27 @@ namespace Accounting
                 panel1.Children.Add(comboSub1);
                 panel1.Children.Add(textblock);
                 panel1.Children.Add(btnDelete);
+                //panel1.Children.Add(btnDelete2);
 
                 panel1.HorizontalAlignment = HorizontalAlignment.Stretch;
 
                 this.panelSubordinate.Children.Add(panel1);
+            }
+        }
+
+        private void BtnDelete2_MouseUp1(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                var p = (sender as Button).Parent as StackPanel;
+
+                var i = (sender as Button).Name.Replace("delbtn_i", string.Empty);
+                p.Children.Clear();
+                this.SelectedMember.Subordinate.RemoveAt(int.Parse(i));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -153,6 +220,8 @@ namespace Accounting
         {
             try
             {
+                this.SelectedMember.Subordinate
+                    .ForEach(x => x.Name = this.Members.Where(m1 => m1.ID == x.ID).FirstOrDefault().Name);
                 var m = this.SelectedMember;
                 if (this.Members.Exists(x => x.ID == m.ID))
                 {
@@ -188,6 +257,14 @@ namespace Accounting
                 .FirstOrDefault()
                 .Subordinate
                 .Add(new RefMember() { ID = this.SelectedMember.ID, Name = this.SelectedMember.Name });
+        }
+        
+
+        private void AddSubButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            var panel = this.FindName("panelSubordinate") as StackPanel;
+            this.SelectedMember.Subordinate.Add(new RefMember());
+            AddSubordinateCombo(this.SelectedMember.Subordinate.Count - 1);
         }
 
         //private void SubNameSelectionChanged(object sender, SelectionChangedEventArgs e)

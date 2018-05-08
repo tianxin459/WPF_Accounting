@@ -9,7 +9,15 @@
       d:DesignHeight="600"
       Title="Page_Main" Loaded="Page_Loaded" HorizontalAlignment="Stretch">
 
-
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <materialDesign:DialogHost>
         <StackPanel>
             <StackPanel Grid.Row="0" Orientation="Horizontal"  Height="50">
@@ -40,7 +48,7 @@
                     </DataGrid>
                     <Button Name="AddMember" Content="添加" Canvas.Right="10" Click="AddMember_Click" Margin="10"></Button>
                 </Canvas>
-                <TreeView Name="tvRelation">
+                <TreeView Name="tvRelation" MinWidth="220" HorizontalAlignment="Stretch">
                 </TreeView>
             </StackPanel>
         </StackPanel>

@@ -36,7 +36,7 @@ namespace Accounting
         public List<Member> LoadData()
         {
             Members = DataStorage.LoadData();
-
+            Members.ForEach(x => x.CalcuateBonusInMemberTree(Members));
             //ds.SaveData(JsonConvert.SerializeObject(Members));
             return Members;
         }

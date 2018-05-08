@@ -45,20 +45,22 @@
                     <DataGridTextColumn  Header="Subordinate2" Width="80" Binding="{Binding Subordinate[1].Name}" ClipboardContentBinding="{x:Null}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            
             <TreeView Name="tvRelation">
                 <!--<TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}">
                         <Setter Property="IsExpanded" Value="True"/>
                     </Style>
-                </TreeView.ItemContainerStyle>
+                </TreeView.ItemContainerStyle>-->
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate   ItemsSource="{Binding Children}">
                         <TextBlock Text="{Binding Name}" />
                     </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>-->
+                </TreeView.ItemTemplate>
             </TreeView>
-            
+
         </StackPanel>
+       
     </StackPanel>
     <!--<Grid>
         <materialDesign:Card Padding="32" Margin="16">

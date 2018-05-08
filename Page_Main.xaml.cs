@@ -35,13 +35,12 @@ namespace Accounting
         }
 
 
-        public List<Member> readData()
+        public List<Member> LoadData()
         {
-            var jsonData = data.ReadData();
-            
-            Members = JsonConvert.DeserializeObject<List<Member>>(jsonData);
+            Members = DataStorage.LoadData();
 
-            //ds.SaveData(JsonConvert.SerializeObject(Members));
+            Members.ForEach(x => x.CalcuateBonusInMemberTree(Members));
+            
             return Members;
         }
 
@@ -108,7 +107,7 @@ namespace Accounting
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var members = readData();
+            var members = LoadData();
             this.dgStaff.DataContext = members;
         }
 
