@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Accounting.Model;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,17 +28,13 @@ namespace Accounting
         public Window1()
         {
             InitializeComponent();
-            App.SelectedMemberStack = new Stack<Model.Member>();
         }
 
         //protected override void onn
 
         private void NavigationWindow_Navigating(object sender, NavigatingCancelEventArgs e)
         {
-            //if (App.SelectedMemberStack.Count() > 0)
-            //{
-            //    App.SelectedMember = App.SelectedMemberStack.Pop();
-            //}
+            
             if (Content != null && !_allowDirectNavigation)
             {
                 e.Cancel = true;
@@ -70,6 +68,13 @@ namespace Accounting
                     break;
                 case NavigationMode.Back:
                     NavigationService.GoBack();
+
+                    if (App.SelectedMemberStack.Count() > 0)
+                    {
+                        Member m;
+                        App.SelectedMemberStack.TryPop(out m);
+                        App.SelectedMember = m;
+                    }
                     break;
 
                 case NavigationMode.Forward:
@@ -93,7 +98,6 @@ namespace Accounting
 
         private void NavigationWindow_Navigated(object sender, NavigationEventArgs e)
         {
-            //var p = Application.Current.Properties;
         }
     }
 }

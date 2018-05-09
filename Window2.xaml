@@ -28,21 +28,23 @@
         </Window.Resources>
     <materialDesign:DialogHost>
         <StackPanel>
-            <TreeView Name="tv1" MinWidth="220">
-                <TreeViewItem Header="Fruit">
-                    <TreeViewItem Header="Banana"/>
-                    <TreeViewItem Header="Grape">
-                        <TextBlock><Run Text="Grapes for us"/></TextBlock>
-                    </TreeViewItem>
-                    <TreeViewItem Header="Peach"/>
-                    <TreeViewItem Header="Pear"/>
-                    <TreeViewItem Header="Strawberry"/>
-                </TreeViewItem>
-                <TreeViewItem Header="Empty" />
-            </TreeView>
-            <Button ToolTip="Add an item" Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" Click="Button_Click">
-                <materialDesign:PackIcon Kind="Close" />
-            </Button>
+            <ComboBox Name="comboSearch"
+  IsEditable="True"
+  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBoxItem
+    IsSelected="True">
+                    Apple
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Banana
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Pear
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Orange
+                </ComboBoxItem>
+            </ComboBox>
         </StackPanel>
     </materialDesign:DialogHost>
 

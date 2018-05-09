@@ -1,5 +1,6 @@
 ﻿using Accounting.Model;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -91,7 +92,8 @@ namespace Accounting
         //}
 
         public static Member SelectedMember { get; set; } = new Member();
-        public static Stack<Member> SelectedMemberStack { get; set; } = new Stack<Member>();
+        public static List<Member> Members { get; set; } = new List<Member>();
+        public static ConcurrentStack<Member> SelectedMemberStack { get; set; } = new ConcurrentStack<Member>();
     }
 
 }

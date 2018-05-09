@@ -37,11 +37,11 @@ namespace Accounting
 
         public List<Member> LoadData()
         {
-            Members = DataStorage.LoadData();
+            App.Members = DataStorage.LoadData();
 
-            Members.ForEach(x => x.CalcuateBonusInMemberTree(Members));
+            App.Members.ForEach(x => x.CalcuateBonusInMemberTree(App.Members));
             
-            return Members;
+            return App.Members;
         }
 
         
@@ -63,7 +63,7 @@ namespace Accounting
                 return note;
             }
 
-            var parentMember = Members
+            var parentMember = App.Members
                 .Where(x => x.ID == m.Supervisor.ID && x.Name == m.Supervisor.Name)
                 .FirstOrDefault<Member>();
 
@@ -100,7 +100,7 @@ namespace Accounting
 
             foreach (var child in m.Subordinate)
             {
-                var childNote = Members.Where(x => x.ID == child.ID && x.Name == child.Name).FirstOrDefault<Member>();
+                var childNote = App.Members.Where(x => x.ID == child.ID && x.Name == child.Name).FirstOrDefault<Member>();
                 note.Items.Add(BuildChildNodes(childNote));
                 //note.Items.Add(BuildChildNodes(childNote));
             }
@@ -110,8 +110,7 @@ namespace Accounting
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var members = LoadData();
-            this.dgStaff.DataContext = members;
+            this.dgStaff.ItemsSource = LoadData();
         }
 
         private void dgStaff_MouseDown(object sender, MouseButtonEventArgs e)
@@ -124,8 +123,8 @@ namespace Accounting
             DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
             if (row == null) return;
 
-            this.SelectedMember = row.Item as Member;
-            this.NavigationService.Navigate(new Uri("pack://application:,,,/Page_MemberDetail.xaml"));
+            App.SelectedMember = row.Item as Member;
+            this.NavigationService.Navigate(new Page_MemberDetail(App.SelectedMember));
         }
 
         private void dgStaff_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -146,9 +145,9 @@ namespace Accounting
             if (openFileDialog.ShowDialog() == true)
             {
                 var path = openFileDialog.FileName;
-                this.Members = DataStorage.ReadData(path);
-                DataStorage.SaveData(this.Members);
-                this.dgStaff.ItemsSource = this.Members;
+                App.Members = DataStorage.ReadData(path);
+                DataStorage.SaveData(App.Members);
+                this.dgStaff.ItemsSource = App.Members;
                 DialogHost.Show(new DialogSuccess("导入成功"));
             }
         }
@@ -160,8 +159,8 @@ namespace Accounting
 
         private void AddMember_Click(object sender, RoutedEventArgs e)
         {
-            this.SelectedMember = new Member(Member.GenerateID());
-            this.NavigationService.Navigate(new Uri("pack://application:,,,/Page_MemberDetail.xaml"));
+            App.SelectedMember = new Member(Member.GenerateID());
+            this.NavigationService.Navigate(new Page_MemberDetail(new Member(Member.GenerateID())));
         }
     }
 }

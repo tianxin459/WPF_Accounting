@@ -42,7 +42,6 @@ D:\Git\WPF_Accounting\obj\Debug\Window1.baml
 D:\Git\WPF_Accounting\obj\Debug\Page_Main.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Page_Main.baml
 D:\Git\WPF_Accounting\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Git\Accounting\Accounting\obj\Debug\MemberDetail.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Page_Main.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Page_MemberDetail.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Window1.g.cs
@@ -52,7 +51,6 @@ C:\Git\Accounting\Accounting\bin\Debug\Newtonsoft.Json.dll
 C:\Git\Accounting\Accounting\bin\Debug\log4net.xml
 C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignColors.pdb
 C:\Git\Accounting\Accounting\bin\Debug\Newtonsoft.Json.xml
-C:\Git\Accounting\Accounting\obj\Debug\MemberDetail.baml
 C:\Git\Accounting\Accounting\obj\Debug\Page_Main.baml
 C:\Git\Accounting\Accounting\obj\Debug\Page_MemberDetail.baml
 C:\Git\Accounting\Accounting\obj\Debug\Window1.baml

@@ -14,7 +14,7 @@
         <Button Content="Dock=Left"/>-->
         <!--<Button Content="Dock=Right" DockPanel.Dock="Right"/>-->
         
-        <Button Content="确认"  DockPanel.Dock="Bottom" HorizontalAlignment="Center" Width="100" Margin="10"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+        <Button Name="btnConfirm"  Content="确认"  DockPanel.Dock="Bottom" HorizontalAlignment="Center" Width="100" Margin="10"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
         <TextBlock  Style="{StaticResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Center" Margin="10" Text="{Binding Message}">
         </TextBlock>
     </DockPanel>

@@ -21,6 +21,7 @@ namespace Accounting.Dialog
     public partial class DialogSuccess : UserControl
     {
         public string Message { get; set; }
+        public Button ComfirmButton { get { return this.btnConfirm; } set { this.btnConfirm = value; } }
         public DialogSuccess(string message = "message")
         {
             Message = message;

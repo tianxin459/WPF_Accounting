@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -26,11 +27,13 @@ namespace Accounting
         public Window2()
         {
             InitializeComponent();
+            HintAssist.SetHint(this.comboSearch, "ssss");
+
+            this.comboSearch.Style = this.FindResource("MaterialDesignFloatingHintComboBox") as Style;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.tv1.Items.Add(new TreeViewItem() { Header = "test" });
         }
     }
 

@@ -13,14 +13,11 @@
       mc:Ignorable="d" 
                 
       d:DesignHeight="900" d:DesignWidth="500"
-      Title="Page_MemberDetail" Loaded="BasePage_Loaded">
+      Title="Page_MemberDetail" Loaded="BasePage_Loaded" Unloaded="BasePage_Unloaded">
 
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
@@ -100,20 +97,31 @@
                     </StackPanel>
 
                     <Canvas HorizontalAlignment="Right" Height="50">
-                        <Button ToolTip="添加下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                        <materialDesign:PopupBox Grid.Row="1"
+                                     Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+                                     PlacementMode="LeftAndAlignMiddles"
+                                     UnfurlOrientation="Horizontal"
+                                     ToolTip="Manage items"
+                                     Margin="0 0 10 10"
+                                     HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                            <StackPanel Orientation="Horizontal">
+                                <Button ToolTip="添加下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                              Click="AddSubButton_Click_1">
-                            <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+                                    <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
                               Stretch="Uniform"
                               Width="15" Height="15"
                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
-                        </Button>
-                        <Button ToolTip="添加新下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                                </Button>
+                                <Button ToolTip="添加新下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                              Click="AddNewSubButton_Click_1" Canvas.Right="10" Loaded="Button_Loaded">
-                            <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+                                    <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
                               Stretch="Uniform"
                               Width="15" Height="15"
                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
-                        </Button>
+                                </Button>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                       
                     </Canvas>
                 </StackPanel>
                 <StackPanel>

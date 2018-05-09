@@ -21,7 +21,7 @@ namespace Accounting.Model
         public decimal Fee { get; set; }
         public decimal Bonus { get; set; }
 
-        public RefMember Supervisor { get; set; } = new RefMember();
+        public RefMember Supervisor { get; set; }
         public List<RefMember> Subordinate { get; set; } = new List<RefMember>();
 
         public RefMember Ref { get { return new RefMember() { ID = this.ID, Name = this.Name }; } }
