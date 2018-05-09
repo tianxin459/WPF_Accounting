@@ -106,7 +106,7 @@ namespace Accounting
             this.comboSupervisor.SetBinding(ComboBox.SelectedValueProperty, new Binding("Supervisor.ID") { Source = this.Member, Mode = BindingMode.TwoWay });
             this.txtAge.SetBinding(TextBox.TextProperty, new Binding("Age") { Source = this.Member, Mode = BindingMode.TwoWay });
             this.txtPhone.SetBinding(TextBox.TextProperty, new Binding("Phone") { Source = this.Member, Mode = BindingMode.TwoWay });
-            this.txtBonus.SetBinding(TextBox.TextProperty, new Binding("Bonus") { Source = this.Member, Mode = BindingMode.TwoWay });
+            this.txtBonus.SetBinding(TextBlock.TextProperty, new Binding("Bonus") { Source = this.Member, Mode = BindingMode.OneWay });
             this.txtMemberShipFee.SetBinding(TextBox.TextProperty, new Binding("Fee") { Source = this.Member, Mode = BindingMode.TwoWay });
             this.txtBank.SetBinding(TextBox.TextProperty, new Binding("Bank") { Source = this.Member, Mode = BindingMode.TwoWay });
             this.txtAccount.SetBinding(TextBox.TextProperty, new Binding("Account") { Source = this.Member, Mode = BindingMode.TwoWay });

@@ -25,138 +25,154 @@
         </ResourceDictionary>
     </Page.Resources>
     <materialDesign:DialogHost>
-        <StackPanel>
-            <Label Content="MemberInfo Detail"></Label>
-            <StackPanel HorizontalAlignment="Center" Width="500">
+        <Grid Margin="16" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="300" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Margin="16 10 8 0" HorizontalAlignment="Center"/>
+            <!--<TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16 0 8 0">OS</TextBlock>-->
+            <ComboBox Name="comboSupervisor"  Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="负责人" HorizontalAlignment="Stretch" MinWidth="160" SelectionChanged="comboSupervisor_SelectionChanged" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Content="负责人"></Label>
-                    <ComboBox Name="comboSupervisor" HorizontalAlignment="Stretch" MinWidth="160" SelectionChanged="comboSupervisor_SelectionChanged"></ComboBox>
-                </StackPanel>
-                <StackPanel>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50*" />
-                            <ColumnDefinition Width="25*" />
-                            <ColumnDefinition Width="25*" />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" >
-                            <Label Content="姓名"></Label>
-                            <TextBox Name="txtName" HorizontalAlignment="Stretch" MinWidth="80"></TextBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" >
-                            <Label Content="姓别"></Label>
-                            <ComboBox Name="comboGender" HorizontalAlignment="Stretch" MinWidth="80">
-                                <!--<ComboBoxItem>男</ComboBoxItem>
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1">
+            </StackPanel>-->
+            <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*" />
+                        <ColumnDefinition Width="25*" />
+                        <ColumnDefinition Width="25*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" >
+                        <!--<materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Margin="16 10 8 0" HorizontalAlignment="Center"/>-->
+                        <!--<Label Content="姓名"></Label>-->
+                        <TextBox Name="txtName" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                            <materialDesign:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                                    <materialDesign:PackIcon Kind="Account" />
+                                    <TextBlock>姓名</TextBlock>
+                                </StackPanel>
+                            </materialDesign:HintAssist.Hint>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" >
+                        <!--<Label Content="姓别"></Label>-->
+                        <ComboBox Name="comboGender"  materialDesign:HintAssist.Hint="姓别" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <!--<ComboBoxItem>男</ComboBoxItem>
                             <ComboBoxItem>女</ComboBoxItem>-->
-                            </ComboBox>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2">
-                            <Label Content="年龄"></Label>
-                            <TextBox Name="txtAge" HorizontalAlignment="Stretch" MinWidth="80" ></TextBox>
-                        </StackPanel>
-                    </Grid>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Content="身份证号"></Label>
-                    <TextBox Name="txtIDNumber" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Content="电话号码"></Label>
-                    <TextBox Name="txtPhone" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Content="奖金"></Label>
-                    <TextBox Name="txtBonus" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Content="会费缴纳"></Label>
-                    <TextBox Name="txtMemberShipFee" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" >
-                    <Label Content="开户行"></Label>
-                    <TextBox Name="txtBank" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
-                </StackPanel>
-
-                <StackPanel Name="panelAccount" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Content="银行账号"></Label>
-                    <TextBox Name="txtAccount" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
-                </StackPanel>
-
-                <StackPanel>
-                    <StackPanel Name="panelSubordinate" Orientation="Vertical" HorizontalAlignment="Stretch">
+                        </ComboBox>
                     </StackPanel>
 
-                    <Canvas HorizontalAlignment="Right" Height="50">
-                        <materialDesign:PopupBox Grid.Row="1"
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2">
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16 0 8 0">年龄</TextBlock>
+                        <TextBox Name="txtAge"  materialDesign:HintAssist.Hint="年龄" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <materialDesign:PackIcon Kind="AccountCardDetails" Grid.Row="2" Grid.Column="2"/>
+            <TextBox Name="txtIDNumber" Grid.Row="2" Grid.Column="3" materialDesign:HintAssist.Hint="身份证号" HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+
+            <materialDesign:PackIcon Kind="Phone" Grid.Row="3" Grid.Column="0"  />
+            <TextBox Name="txtPhone" Grid.Row="3" Grid.Column="1" materialDesign:HintAssist.Hint="电话号码" HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="1">
+                <Label Content="电话号码"></Label>
+                <TextBox Name="txtPhone" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
+            </StackPanel>-->
+            <materialDesign:PackIcon Grid.Row="3" Grid.Column="2" Kind="CurrencyCny" />
+            <TextBlock  Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">奖金</TextBlock>
+
+            <TextBlock  Name="txtBonus"   Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Margin="16 0 8 0">OS</TextBlock>
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch"  Grid.Row="3" Grid.Column="3">
+                <Label Content="奖金"></Label>
+                <TextBox Name="txtBonus" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
+            </StackPanel>-->
+            
+            <materialDesign:PackIcon Grid.Row="4" Grid.Column="0" Kind="CurrencyCny" />
+            <TextBlock  Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="16 0 8 0">会费缴纳</TextBlock>
+
+            <TextBox Name="txtMemberShipFee" Grid.Row="4" Grid.Column="1" materialDesign:HintAssist.Hint="会费缴纳" HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch"  Grid.Row="4" Grid.Column="1">
+                <Label Content="会费缴纳"></Label>
+                <TextBox Name="txtMemberShipFee" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
+            </StackPanel>-->
+            <materialDesign:PackIcon Kind="Bank" Grid.Row="5" Grid.Column="0" />
+            <TextBox Name="txtBank" Grid.Row="5" Grid.Column="1" materialDesign:HintAssist.Hint="开户银行" HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch"  Grid.Row="5" Grid.Column="1">
+                <Label Content="开户行"></Label>
+                <TextBox Name="txtBank" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
+            </StackPanel>-->
+            <materialDesign:PackIcon Kind="AccountOutline"  Grid.Row="5" Grid.Column="2" />
+            <TextBox Name="txtAccount" materialDesign:HintAssist.Hint="银行账号"  Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <!--<StackPanel Name="panelAccount" Orientation="Horizontal" HorizontalAlignment="Stretch"  Grid.Row="5" Grid.Column="3">
+                <Label Content="银行账号"></Label>
+                <TextBox Name="txtAccount" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
+            </StackPanel>-->
+
+
+            <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
+                <StackPanel Name="panelSubordinate" Orientation="Vertical" HorizontalAlignment="Stretch">
+                </StackPanel>
+
+                <Canvas HorizontalAlignment="Right" Height="50">
+                    <materialDesign:PopupBox Grid.Row="1"
                                      Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
                                      PlacementMode="LeftAndAlignMiddles"
                                      UnfurlOrientation="Horizontal"
                                      ToolTip="Manage items"
                                      Margin="0 0 10 10"
                                      HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                            <StackPanel Orientation="Horizontal">
-                                <Button ToolTip="添加下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                        <StackPanel Orientation="Horizontal">
+                            <Button ToolTip="添加下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                              Click="AddSubButton_Click_1">
-                                    <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+                                <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
                               Stretch="Uniform"
                               Width="15" Height="15"
                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
-                                </Button>
-                                <Button ToolTip="添加新下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                            </Button>
+                            <Button ToolTip="添加新下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                              Click="AddNewSubButton_Click_1" Canvas.Right="10" Loaded="Button_Loaded">
-                                    <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+                                <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
                               Stretch="Uniform"
                               Width="15" Height="15"
                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
-                                </Button>
-                            </StackPanel>
-                        </materialDesign:PopupBox>
-                       
-                    </Canvas>
-                </StackPanel>
-                <StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                </Canvas>
+            </StackPanel>
 
-
-                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <DataGrid Name="dgSubordinate"  ItemsSource="{Binding Path=ItemsSubordinate,ElementName=this}" AutoGenerateColumns="False" Height="200" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Margin="10,10,10,10" Grid.ColumnSpan="2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn  Header="Name" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridComboBoxColumn x:Name="comboSub" Width="100" Header="姓名"  DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValueBinding="{Binding Name, Mode=TwoWay}" >
-                                <DataGridComboBoxColumn.EditingElementStyle>
-                                    <Style TargetType="{x:Type ComboBox}">
-                                        <EventSetter Event="SelectionChanged" Handler="SubNameSelectionChanged" />
-                                    </Style>
-                                </DataGridComboBoxColumn.EditingElementStyle>
-                            </DataGridComboBoxColumn>
-                            <DataGridTextColumn  Header="Gender" Width="80" Binding="{Binding Gender}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Bank" Width="100" Binding="{Binding Bank}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Account" Width="200" Binding="{Binding Account}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Phone" Width="160" Binding="{Binding Phone}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Fee" Width="60" Binding="{Binding Fee}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Bonus" Width="60" Binding="{Binding Bonus}" ClipboardContentBinding="{x:Null}"/>
-                            </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>-->
-
-                </StackPanel>
-
-
-                <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Right">
-                    <Button x:Name="button"  Style="{StaticResource MaterialDesignRaisedDarkButton}"
+            <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Right" Grid.Row="7" Grid.Column="3">
+                <Button x:Name="button"  Style="{StaticResource MaterialDesignRaisedDarkButton}"
     Width="100"
     ToolTip="保存更改" Content="保存" d:LayoutOverrides="Height" Click="button_Click"/>
-                </StackPanel>
             </StackPanel>
-        </StackPanel>
+            <!-- ///////////////// ////////////////////////////////////////////////  -->
+            
+    </Grid>
     </materialDesign:DialogHost>
 </local:BasePage>
