@@ -28,6 +28,13 @@ namespace Accounting
         {
             public string ID { get; set; }
             public string Name { get; set; }
+
+            public ComboItem() { }
+            public ComboItem(string id,string name)
+            {
+                ID = id;
+                Name = name;
+            }
         }
 
         public Member Member
@@ -92,6 +99,7 @@ namespace Accounting
             this.comboSupervisor.IsReadOnly = true;
 
             List<ComboItem> itemsSupervisor = this.Members
+                .Where(x=>x.Subordinate.Count()<2)
                 .Select(x => new ComboItem() { ID = x.ID, Name = x.Name })
                 .ToList();
 
@@ -120,14 +128,20 @@ namespace Accounting
             comboSub1.Margin = new Thickness(10);
             comboSub1.Name = "comboSub" + i;
             comboSub1.HorizontalAlignment = HorizontalAlignment.Stretch;
-            comboSub1.ItemsSource = this.ItemsSubordinate;
+            var currentItem = this.Member.Subordinate[i];
+            comboSub1.ItemsSource = this.ItemsSubordinate.Concat(new[] { new ComboItem(currentItem.ID, currentItem.Name) });
             comboSub1.DisplayMemberPath = "Name";
             comboSub1.SelectedValuePath = "ID";
-            comboSub1.SetBinding(ComboBox.SelectedValueProperty, new Binding("ID") { Source = this.Member.Subordinate[i], Mode = BindingMode.TwoWay });
+            comboSub1.SetBinding(ComboBox.SelectedValueProperty, new Binding("ID") { Source = this.Member.Subordinate[i], Mode = BindingMode.OneWay });
             comboSub1.SelectionChanged += ComboSub1_SelectionChanged;
             comboSub1.IsEditable = true;
             comboSub1.Style = this.FindResource("MaterialDesignFloatingHintComboBox") as Style;
             HintAssist.SetHint(comboSub1, "关联下属");
+
+
+            var textMember = this.Members
+                .Where(x => x.ID == this.Member.Subordinate[i].ID)
+                .FirstOrDefault();
 
 
             var textblock = new TextBlock();
@@ -135,24 +149,60 @@ namespace Accounting
             textblock.Margin = new Thickness(10);
             textblock.HorizontalAlignment = HorizontalAlignment.Stretch;
             textblock.MinWidth = 200;
-            textblock.Text = this.Members
-                .Where(x => x.ID == this.Member.Subordinate[i].ID)
-                .Select(x => $"{x.Phone} {x.IDNumber} {x.Fee}")
-                .FirstOrDefault();
+            textblock.Text = $"{textMember.Phone} {textMember.IDNumber} {textMember.Fee}";
+            textblock.Visibility = Visibility.Hidden;
+
+            var textblockPhone = new TextBox();
+            textblockPhone.Name = "tbPhone" + i.ToString();
+            this.RegisterName(textblockPhone.Name, textblockPhone);
+            textblockPhone.Margin = new Thickness(10);
+            textblockPhone.HorizontalAlignment = HorizontalAlignment.Stretch;
+            textblockPhone.Style = this.FindResource("MaterialDesignFloatingHintTextBox") as Style;
+            textblockPhone.Text = textMember.Phone;
+            HintAssist.SetHint(textblockPhone, "电话号码");
+            textblockPhone.IsEnabled = false;
+
+            var textblockIDNumber = new TextBox();
+            textblockIDNumber.Name = "tbIDNumber" + i.ToString();
+            this.RegisterName(textblockIDNumber.Name, textblockIDNumber);
+            textblockIDNumber.Margin = new Thickness(10);
+            textblockIDNumber.HorizontalAlignment = HorizontalAlignment.Stretch;
+            textblockIDNumber.Style = this.FindResource("MaterialDesignFloatingHintTextBox") as Style;
+            textblockIDNumber.Text = textMember.IDNumber;
+            HintAssist.SetHint(textblockIDNumber, "身份证号");
+            textblockIDNumber.IsEnabled = false;
+
+
+            var textblockFee = new TextBox();
+            textblockFee.Name = "tbFee" + i.ToString();
+            this.RegisterName(textblockFee.Name, textblockFee);
+            textblockFee.Margin = new Thickness(10);
+            textblockFee.HorizontalAlignment = HorizontalAlignment.Stretch;
+            textblockFee.Style = this.FindResource("MaterialDesignFloatingHintTextBox") as Style;
+            textblockFee.Text = textMember.Fee.ToString();
+            HintAssist.SetHint(textblockFee, "缴纳费用");
+            textblockFee.IsEnabled = false;
 
             var btnDelete = new Button();
             btnDelete.Content = "delete";
             btnDelete.Name = "delbtn_" + i;
             btnDelete.Margin = new Thickness(10);
             btnDelete.Click += DeleteSubButton_Click;
+            btnDelete.VerticalAlignment = VerticalAlignment.Center;
+            btnDelete.Height = 20;
+            btnDelete.Width = 20;
             btnDelete.Style = this.FindResource("MaterialDesignFloatingActionMiniButton") as Style;
             btnDelete.Content = new PackIcon() { Kind = PackIconKind.Close };
 
             var panel1 = new StackPanel();
+            panel1.Name = "panelSub_"+i;
             panel1.Orientation = Orientation.Horizontal;
 
             panel1.Children.Add(comboSub1);
-            panel1.Children.Add(textblock);
+            //panel1.Children.Add(textblock);
+            panel1.Children.Add(textblockPhone);
+            panel1.Children.Add(textblockIDNumber);
+            panel1.Children.Add(textblockFee);
             panel1.Children.Add(btnDelete);
 
             panel1.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -164,49 +214,50 @@ namespace Accounting
         {
             for (int i = 0; i < this.Member.Subordinate.Count; i++)
             {
-                var comboSub1 = new ComboBox();
-                comboSub1.MinWidth = 100;
-                comboSub1.Margin = new Thickness(10);
-                comboSub1.Name = "comboSub" + i;
-                comboSub1.HorizontalAlignment = HorizontalAlignment.Stretch;
-                comboSub1.ItemsSource = this.ItemsSubordinate;
-                comboSub1.DisplayMemberPath = "Name";
-                comboSub1.SelectedValuePath = "ID";
-                comboSub1.SetBinding(ComboBox.SelectedValueProperty, new Binding("ID") { Source = this.Member.Subordinate[i], Mode = BindingMode.TwoWay });
-                comboSub1.SelectionChanged += ComboSub1_SelectionChanged;
-                comboSub1.Style = this.FindResource("MaterialDesignFloatingHintComboBox") as Style;
-                comboSub1.IsEditable = true;
-                HintAssist.SetHint(comboSub1, "关联下属");
+                AddSubordinateCombo(i);
+                //var comboSub1 = new ComboBox();
+                //comboSub1.MinWidth = 100;
+                //comboSub1.Margin = new Thickness(10);
+                //comboSub1.Name = "comboSub" + i;
+                //comboSub1.HorizontalAlignment = HorizontalAlignment.Stretch;
+                //comboSub1.ItemsSource = this.ItemsSubordinate;
+                //comboSub1.DisplayMemberPath = "Name";
+                //comboSub1.SelectedValuePath = "ID";
+                //comboSub1.SetBinding(ComboBox.SelectedValueProperty, new Binding("ID") { Source = this.Member.Subordinate[i], Mode = BindingMode.TwoWay });
+                //comboSub1.SelectionChanged += ComboSub1_SelectionChanged;
+                //comboSub1.Style = this.FindResource("MaterialDesignFloatingHintComboBox") as Style;
+                //comboSub1.IsEditable = true;
+                //HintAssist.SetHint(comboSub1, "关联下属");
 
-                var textblock = new TextBlock();
-                textblock.Name = "tbSub" + i;
-                textblock.Margin = new Thickness(10);
-                textblock.HorizontalAlignment = HorizontalAlignment.Stretch;
-                textblock.MinWidth = 200;
-                textblock.Text = this.Members
-                    .Where(x => x.ID == this.Member.Subordinate[i].ID)
-                    .Select(x => $"{x.Phone} {x.IDNumber} {x.Fee}")
-                    .FirstOrDefault();
+                //var textblock = new TextBlock();
+                //textblock.Name = "tbSub" + i;
+                //textblock.Margin = new Thickness(10);
+                //textblock.HorizontalAlignment = HorizontalAlignment.Stretch;
+                //textblock.MinWidth = 200;
+                //textblock.Text = this.Members
+                //    .Where(x => x.ID == this.Member.Subordinate[i].ID)
+                //    .Select(x => $"{x.Phone} {x.IDNumber} {x.Fee}")
+                //    .FirstOrDefault();
 
-                var btnDelete = new Button();
-                btnDelete.Content = "delete";
-                btnDelete.Name = "delbtn_" + i;
-                btnDelete.Margin = new Thickness(10);
-                btnDelete.Click += DeleteSubButton_Click;
-                btnDelete.Style = this.FindResource("MaterialDesignFloatingActionMiniButton") as Style;
-                btnDelete.Content = new PackIcon() { Kind = PackIconKind.Close };
+                //var btnDelete = new Button();
+                //btnDelete.Content = "delete";
+                //btnDelete.Name = "delbtn_" + i;
+                //btnDelete.Margin = new Thickness(10);
+                //btnDelete.Click += DeleteSubButton_Click;
+                //btnDelete.Style = this.FindResource("MaterialDesignFloatingActionMiniButton") as Style;
+                //btnDelete.Content = new PackIcon() { Kind = PackIconKind.Close };
 
-                var panel1 = new StackPanel();
-                panel1.Orientation = Orientation.Horizontal;
+                //var panel1 = new StackPanel();
+                //panel1.Orientation = Orientation.Horizontal;
 
-                panel1.Children.Add(comboSub1);
-                panel1.Children.Add(textblock);
-                panel1.Children.Add(btnDelete);
-                //panel1.Children.Add(btnDelete2);
+                //panel1.Children.Add(comboSub1);
+                //panel1.Children.Add(textblock);
+                //panel1.Children.Add(btnDelete);
+                ////panel1.Children.Add(btnDelete2);
 
-                panel1.HorizontalAlignment = HorizontalAlignment.Stretch;
+                //panel1.HorizontalAlignment = HorizontalAlignment.Stretch;
 
-                this.panelSubordinate.Children.Add(panel1);
+                //this.panelSubordinate.Children.Add(panel1);
             }
         }
 
@@ -235,9 +286,11 @@ namespace Accounting
                 var strI = (sender as Button).Name.Replace("delbtn_", string.Empty);
                 var i = int.Parse(strI);
                 var removeMember = this.Member.Subordinate[i];
-                this.Member.Subordinate.RemoveAt(i);
                 var relatedChildren = this.Members.Where(x => x.ID ==removeMember.ID && x.Supervisor?.ID == this.Member.ID).ToList();
                 relatedChildren.ForEach(x => x.Supervisor = null);
+                this.Member.Subordinate.RemoveAt(i);
+                this.Member.CalcuateBonusInMemberTree(this.Members);
+                this.txtBonus.Text = this.Member.Bonus.ToString();
                 p.Children.Clear();
             }
             catch (Exception ex)
@@ -250,12 +303,63 @@ namespace Accounting
         {
             var selectID = (sender as ComboBox).SelectedValue;
             var parent = (sender as ComboBox).Parent as StackPanel;
-            (parent.Children[1] as TextBlock).Text = this.Members
+            //set supervisor for selected child
+            this.Members.Where(x => x.ID == selectID.ToString())
+                .FirstOrDefault().Supervisor = new RefMember() { ID = this.Member.ID, Name = this.Member.Name };
+
+            //var seqI = (sender as ComboBox).Name.Replace("comboSub", string.Empty);
+            //var oldID = this.Member.Subordinate[int.Parse(seqI)].ID;
+            //var newID = selectID.ToString();
+            //clear supervisor for old id
+            //this.Members
+            //    .Where(x => x.ID == oldID)
+            //    .ToList()
+            //    .ForEach(x => x.Supervisor = null);
+
+            #region label display
+            var subMember = this.Members
                     .Where(x => x.ID == selectID.ToString())
-                    .Select(x => $"{x.Phone} {x.IDNumber} {x.Fee}")
                     .FirstOrDefault();
+
+            //(parent.Children[1] as TextBlock).Text = $"{subMember.Phone} {subMember.IDNumber} {subMember.Fee}";
+
+            var i = parent.Name.Replace("panelSub_", string.Empty);
+
+            var tbPhone = parent.FindName("tbPhone" + i);
+            if(tbPhone!=null)
+                (tbPhone as TextBox).Text = subMember.Phone;
+            
+            var tbIDNumber= parent.FindName("tbIDNumber" + i);
+            if (tbIDNumber != null)
+                (tbIDNumber as TextBox).Text = subMember.IDNumber;
+
+            var tbFee = parent.FindName("tbFee" + i);
+            if (tbFee != null)
+                (tbFee as TextBox).Text = subMember.Fee.ToString();
+            #endregion
         }
 
+        public void UpdateTreeCollection(Member m, List<Member> mt)
+        {
+            foreach(var sub in m.Subordinate)
+            {
+                //set supervisor for selected child
+                this.Members.Where(x => x.ID == sub.ID.ToString())
+                    .FirstOrDefault().Supervisor = new RefMember() { ID = m.ID, Name = m.Name };
+
+                //clear supervisor for orignal child
+                this.Members
+                    .Where(x => x.ID != sub.ID.ToString() && x.Supervisor?.ID == m.ID)
+                    .ToList()
+                    .ForEach(x => x.Supervisor = null);
+            }
+
+
+        }
+
+
+        private void ReCaculateBonus() {
+        }
         /// <summary>
         /// Save data
         /// </summary>
@@ -265,8 +369,14 @@ namespace Accounting
         {
             try
             {
+                
                 this.Member.Subordinate
                     .ForEach(x => x.Name = this.Members.Where(m1 => m1.ID == x.ID).FirstOrDefault().Name);
+
+                UpdateTreeCollection(this.Member, this.Members);
+
+                ReCaculateBonus();
+
                 //var m = this.Member;
                 if (this.Members.Exists(x => x.ID == this.Member.ID))
                 {
@@ -298,6 +408,9 @@ namespace Accounting
 
         private void comboSupervisor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if ((sender as ComboBox).SelectedValue == null)
+                return;
+
             var supID = (sender as ComboBox).SelectedValue.ToString();
 
             //add supervisor
@@ -307,10 +420,19 @@ namespace Accounting
                 .FirstOrDefault();
 
             //add subordinate for supervisor note
-            this.Members.Where(x => x.ID == supID)
-                .FirstOrDefault()
-                .Subordinate
-                .Add(new RefMember() { ID = this.Member.ID, Name = this.Member.Name });
+            if (!string.IsNullOrEmpty(this.Member.Supervisor?.ID))
+                this.Members.Where(x => x.ID == this.Member.Supervisor.ID && !x.Subordinate.Exists(s => s.ID == this.Member.ID))
+                    .FirstOrDefault()
+                    ?.Subordinate
+                    ?.Add(new RefMember() { ID = this.Member.ID, Name = this.Member.Name });
+
+            //clear other sub collections
+            this.Members
+                .Where(x => x.ID != this.Member.Supervisor.ID && x.Subordinate.Exists(s => s.ID == this.Member.ID))
+                .ToList()
+                .ForEach(x => x.Subordinate = x.Subordinate.Where(y => y.ID != this.Member.ID).ToList());
+
+
         }
 
 
@@ -349,6 +471,45 @@ namespace Accounting
             //{
             //    this.SelectedMember = this.SelectedMemberStack.Pop();
             //}
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //clear subordinate
+                this.Members
+                    .Where(x => x.Subordinate.Exists(s => s.ID == this.Member.ID))
+                    .ToList()
+                    .ForEach(x => x.Subordinate = x.Subordinate.Where(s => s.ID != this.Member.ID).ToList());
+
+                //clear supervisor
+                this.Members
+                    .Where(x => x.Supervisor?.ID == this.Member.ID)
+                    .ToList()
+                    .ForEach(x => x.Supervisor = null);
+
+                for (var i = this.Members.Count - 1; i >= 0; i--)
+                {
+                    if (this.Members[i].ID == this.Member.ID)
+                    {
+                        this.Members.RemoveAt(i);
+                        break;
+                    }
+                }
+
+                DataStorage.SaveData(this.Members);
+
+                var dialogSuccess = new DialogSuccess("删除成功");
+                dialogSuccess.ComfirmButton.Click += DialogComfirmButton_Click;
+                DialogHost.Show(dialogSuccess);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+
         }
 
 

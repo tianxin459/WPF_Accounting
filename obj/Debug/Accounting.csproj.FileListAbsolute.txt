@@ -18,7 +18,6 @@ C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Git\Accounting\Accounting\obj\Debug\App.baml
-D:\Git\WPF_Accounting\obj\Debug\Accounting.csprojResolveAssemblyReference.cache
 D:\Git\WPF_Accounting\obj\Debug\MainWindow.g.cs
 D:\Git\WPF_Accounting\obj\Debug\App.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Accounting_MarkupCompile.cache
@@ -33,8 +32,6 @@ D:\Git\WPF_Accounting\obj\Debug\MainWindow.baml
 D:\Git\WPF_Accounting\obj\Debug\Accounting.g.resources
 D:\Git\WPF_Accounting\obj\Debug\Accounting.Properties.Resources.resources
 D:\Git\WPF_Accounting\obj\Debug\Accounting.csproj.GenerateResource.Cache
-D:\Git\WPF_Accounting\bin\Debug\Newtonsoft.Json.xml
-D:\Git\WPF_Accounting\bin\Debug\log4net.xml
 D:\Git\WPF_Accounting\obj\Debug\Page_MemberDetail.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Page_MemberDetail.baml
 D:\Git\WPF_Accounting\obj\Debug\Window1.g.cs
@@ -64,3 +61,4 @@ D:\Git\WPF_Accounting\obj\Debug\Dialog\DialogSuccess.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Window2.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Dialog\DialogSuccess.baml
 D:\Git\WPF_Accounting\obj\Debug\Window2.baml
+D:\Git\WPF_Accounting\bin\Debug\Icon\application.png

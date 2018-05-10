@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,16 +25,26 @@ namespace Accounting
         public ObservableCollection<Player> Players { get; set; }
         public ObservableCollection<Player> PlayerItems { get; set; }
         public ObservableCollection<string> Positions { get; set; }
+
+        public string Str { get; set; } = "222";
         public Window2()
         {
             InitializeComponent();
-            HintAssist.SetHint(this.comboSearch, "ssss");
+            txtSearch.DataContext = Str;
+            this.txtSearch.SetBinding(TextBox.TextProperty, new Binding("Str") { Source = this, Mode = BindingMode.TwoWay });
 
-            this.comboSearch.Style = this.FindResource("MaterialDesignFloatingHintComboBox") as Style;
+            //HintAssist.SetHint(this.comboSearch, "ssss");
+
+            //this.comboSearch.Style = this.FindResource("MaterialDesignFloatingHintComboBox") as Style;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Str = "dddddddddddd";
         }
     }
 

@@ -16,8 +16,11 @@
         Height="{Binding SystemParameters.PrimaryScreenHeight}" 
         Width="{Binding SystemParameters.PrimaryScreenWidth}" 
         mc:Ignorable="d">
-    
-        <Window.Resources>
+
+    <!--<Window.DataContext>
+        <local:Window2 />
+    </Window.DataContext>-->
+    <Window.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
@@ -25,27 +28,9 @@
                     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
-        </Window.Resources>
-    <materialDesign:DialogHost>
-        <StackPanel>
-            <ComboBox Name="comboSearch"
-  IsEditable="True"
-  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                <ComboBoxItem
-    IsSelected="True">
-                    Apple
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    Banana
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    Pear
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    Orange
-                </ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
-    </materialDesign:DialogHost>
-
+    </Window.Resources>
+    <StackPanel>
+        <TextBox Name="txtSearch" ></TextBox>
+        <Button Content="test" Click="Button_Click_1"></Button>
+    </StackPanel>
 </Window>

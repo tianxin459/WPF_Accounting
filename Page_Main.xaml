@@ -27,28 +27,41 @@
                 <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnBackup_Click"/>
                 <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnRestore_Click"/>
             </StackPanel>
+            <Separator/>
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">
+                <Canvas HorizontalAlignment="Stretch" Height="40">
+                    <TextBox Name="txtFilter" HorizontalAlignment="Left" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyUp="txtFilter_KeyUp">
+                        <!--<TextBox Name="txtFilter" Text="{Binding ., UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" HorizontalAlignment="Left" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyUp="txtFilter_KeyUp">-->
+                        <materialDesign:HintAssist.Hint>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="-2 0 0 0">
+                                <materialDesign:PackIcon Kind="SearchWeb" />
+                            </StackPanel>
+                        </materialDesign:HintAssist.Hint>
+                    </TextBox>
+                    <Button Name="AddMember" Height="30" HorizontalAlignment="Right" Content="添加新人" Canvas.Right="10" Click="AddMember_Click" Margin="10"></Button>
+                </Canvas>
                 <Canvas Height="220" HorizontalAlignment="Stretch">
-                    <DataGrid Name="dgStaff" HorizontalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="200"  VerticalAlignment="Top"  Margin="10,10,10,10" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
+                    <DataGrid Name="dgStaff" HorizontalAlignment="Stretch" IsReadOnly="True" AutoGenerateColumns="False" Height="200"  VerticalAlignment="Top"  Margin="10,10,10,10" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
                         <DataGrid.Columns>
                             <!--<DataGridTextColumn  Header="ID" Width="80" Binding="{Binding ID}" ClipboardContentBinding="{x:Null}"/>-->
-                            <DataGridTextColumn  Header="Name" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="姓名" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
                             <!--<DataGridTextColumn  Header="Age" Width="10" Binding="{Binding Age}" ClipboardContentBinding="{x:Null}"/>-->
-                            <DataGridTextColumn  Header="Gender" Width="80" Binding="{Binding Gender}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="身份证号" Width="200" Binding="{Binding IDNumber}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="性别" Width="80" Binding="{Binding Gender}" ClipboardContentBinding="{x:Null}"/>
                             <!--<DataGridComboBoxColumn ClipboardContentBinding="{x:Null}" SelectedValueBinding="{x:Null}" SelectedItemBinding="{x:Null}" TextBinding="{x:Null}"/>-->
-                            <DataGridTextColumn  Header="Bank" Width="100" Binding="{Binding Bank}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Account" Width="200" Binding="{Binding Account}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Phone" Width="160" Binding="{Binding Phone}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Fee" Width="60" Binding="{Binding Fee}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Bonus" Width="60" Binding="{Binding Bonus}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Supervisor" Width="80" Binding="{Binding Supervisor.Name}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Subordinate1" Width="80" Binding="{Binding Subordinate[0].Name}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn  Header="Subordinate2" Width="80" Binding="{Binding Subordinate[1].Name}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="银行" Width="100" Binding="{Binding Bank}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="账号" Width="200" Binding="{Binding Account}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="电话" Width="160" Binding="{Binding Phone}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="缴费" Width="60" Binding="{Binding Fee}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="奖金" Width="60" Binding="{Binding Bonus}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="主管" Width="80" Binding="{Binding Supervisor.Name}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="下属1" Width="80" Binding="{Binding Subordinate[0].Name}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn  Header="下属2" Width="80" Binding="{Binding Subordinate[1].Name}" ClipboardContentBinding="{x:Null}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Name="AddMember" Content="添加" Canvas.Right="10" Click="AddMember_Click" Margin="10"></Button>
                 </Canvas>
-                <TreeView Name="tvRelation" MinWidth="220" HorizontalAlignment="Stretch">
+                <Separator/>
+                <TreeView Name="tvRelation" MinWidth="220" HorizontalAlignment="Stretch" SelectedItemChanged="tvRelation_SelectedItemChanged">
                 </TreeView>
             </StackPanel>
         </StackPanel>

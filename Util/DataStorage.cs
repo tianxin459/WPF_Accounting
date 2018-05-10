@@ -121,5 +121,31 @@ namespace Accounting.Util
                 throw e;
             }
         }
+
+
+        public static void ExportData(string path,List<Member> data)
+        {
+            try
+            {
+                FileStream fs;
+                if(File.Exists(path))
+                {
+                    FileStream fsTruncate = new FileStream(path, FileMode.Truncate, FileAccess.ReadWrite);
+                    fsTruncate.Close();
+                    fs = File.OpenWrite(path);
+                }
+                else {
+                    fs = File.Create(path);
+                }
+
+                var jsonData = JsonConvert.SerializeObject(data);
+                byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
+                fs.Write(buffer, 0, buffer.Length);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
