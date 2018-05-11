@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -126,14 +127,22 @@ namespace Accounting
         public TreeViewItem BuildParentNodes(Member m, TreeViewItem note)
         {
 
-            if (m.Supervisor == null)
+            if (m.Parent == null)
             {
                 return note;
             }
 
-            var parentMember = App.Members
-                .Where(x => x.ID == m.Supervisor.ID && x.Name == m.Supervisor.Name)
-                .FirstOrDefault<Member>();
+            //var parentMember = App.Members
+            //    .Where(x => x.ID == m.Supervisor.ID && x.Name == m.Supervisor.Name)
+            //    .FirstOrDefault<Member>();
+            var parentMemberRef = App.Members
+                  .Where(x => x.Children.Exists(y => y.ID == m.ID))
+                  .FirstOrDefault<Member>();
+            if (parentMemberRef == null)
+                return null;
+            //?.Subordinate.Where(x=>x.ID==m.ID).FirstOrDefault();
+
+            var parentMember = App.Members.Where(x => x.ID == parentMemberRef.ID).FirstOrDefault();
 
             var parentNote = new TreeViewItem()
             {
@@ -166,7 +175,7 @@ namespace Accounting
                 IsExpanded = true
             };
 
-            foreach (var child in m.Subordinate)
+            foreach (var child in m.Children)
             {
                 var childNote = App.Members.Where(x => x.ID == child.ID).FirstOrDefault<Member>();
                 note.Items.Add(BuildChildNodes(childNote));
@@ -184,6 +193,8 @@ namespace Accounting
         private void dgStaff_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DataGrid dataGrid = sender as DataGrid;
+            if (dataGrid.SelectedIndex < 0)
+                return;
             DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
             if (row == null) return;
 
@@ -197,7 +208,6 @@ namespace Accounting
             DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
             if (row == null) return;
             Member m = row.Item as Member;
-            this.btnBackup.Content = m.ID + '|' + m.Name;
             this.tvRelation.Items.Clear();
             this.tvRelation.Items.Add(GenerateTree(m));
         }
@@ -266,6 +276,18 @@ namespace Accounting
         {
             //this.FilterString = this.txtFilter.Text;
             //FilterCollection();
+        }
+
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+            var path = AppDomain.CurrentDomain.BaseDirectory;
+            var pathHtmlTemplate = path + "\\Print\\Print.html";
+            var print_text = File.ReadAllText(pathHtmlTemplate);
+            print_text = print_text.Replace("$data$", JsonConvert.SerializeObject(this.Members));
+            var printPath = pathHtmlTemplate.Replace("Print.html", "Print1.html");
+            File.WriteAllText(printPath, print_text);
+            //DataStorage.ExportPrintFile(printPath, print_text);
+            System.Diagnostics.Process.Start(printPath);
         }
     }
 }

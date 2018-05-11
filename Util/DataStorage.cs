@@ -147,5 +147,35 @@ namespace Accounting.Util
                 throw e;
             }
         }
+
+        public static void ExportPrintFile(string path, string text)
+        {
+            try
+            {
+                FileStream fs;
+                if (File.Exists(path))
+                {
+                    FileStream fsTruncate = new FileStream(path, FileMode.Truncate, FileAccess.ReadWrite);
+                    fsTruncate.Close();
+                    fs = File.OpenWrite(path);
+                }
+                else
+                {
+                    fs = File.Create(path);
+                }
+
+                //var jsonData = JsonConvert.SerializeObject(data);
+                byte[] buffer = Encoding.UTF8.GetBytes(text);
+                fs.Write(buffer, 0, buffer.Length);
+                fs.Flush();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally {
+
+            }
+        }
     }
 }

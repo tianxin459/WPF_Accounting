@@ -21,10 +21,10 @@ namespace Accounting.Model
         public decimal Fee { get; set; }
         public decimal Bonus { get; set; }
 
-        public RefMember Supervisor { get; set; }
-        public List<RefMember> Subordinate { get; set; } = new List<RefMember>();
+        public RefMember Parent { get; set; }
+        public List<RefMember> Children { get; set; } = new List<RefMember>();
 
-        public RefMember Ref { get { return new RefMember() { ID = this.ID, Name = this.Name }; } }
+        public RefMember Ref { get { return new RefMember(this.ID,this.Name); } }
 
         public Member() { }
         public Member(string ID) {
@@ -43,15 +43,16 @@ namespace Accounting.Model
                 .FirstOrDefault();
 
 
-            if(m==null || m.Subordinate.Count==0)
+            if(m==null || m.Children.Count==0)
             {
+                this.Bonus = bonus;
                 return 0;
             }
 
             var level = 0;
             List<int> lvs = new List<int>();
 
-            foreach (var sm in m.Subordinate)
+            foreach (var sm in m.Children)
             {
                 var lv = level;
                 bonus += SumChildrenBonus(sm.ID, memberTree,ref lv);
@@ -85,7 +86,7 @@ namespace Accounting.Model
                 .Where(x => x.ID == id)
                 .FirstOrDefault();
 
-            if (m==null||m.Subordinate.Count == 0)
+            if (m==null||m.Children.Count == 0)
             {
                 level = 0;
                 return 0;
@@ -93,7 +94,7 @@ namespace Accounting.Model
 
             level++;
 
-            foreach (var sm in m.Subordinate)
+            foreach (var sm in m.Children)
             {
                 var lv = level;
                 bonus += SumChildrenBonus(sm.ID, memberTree, ref lv);
@@ -124,5 +125,11 @@ namespace Accounting.Model
     {
         public string ID { get; set; }
         public string Name { get; set; }
+
+        public RefMember(string id="", string name = "")
+        {
+            ID = id;
+            Name = name;
+        }
     }
 }

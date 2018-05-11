@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Print</title>
+</head>
+<style>
+    .container{
+        width: 100%;
+        display: flex;
+        
+    }
+    table{
+        border:1px solid black;
+        width: 90%;
+        margin-top: 10px;
+    margin-left:auto; 
+    margin-right:auto;
+        display:block;
+        border-collapse: collapse;
+    }
+    thead{
+        background-color: orange;
+    }
+
+        thead th {
+            background-color: orange;
+            text-align: left;
+            padding: 2px;
+            font-size: 15px;
+        }
+
+
+    tbody tr{
+        border-bottom: 1px solid black;
+    }
+
+    tbody td {
+        /*width: 9%;*/
+        font-size: 12px;
+        border: 1px solid black;
+        padding: 2px;
+        width: auto;
+    }
+</style>
+<body>
+    <div class="container">
+    <table id="tblData">
+        <thead>
+            <th style="width:6%">姓名</th>
+            <th style="width:15%">身份证号</th>
+            <th style="width:2%"><!--性别--></th>
+            <th style="width:2%">年龄</th>
+            <th style="width:15%">银行</th>
+            <th style="width:15%">帐号</th>
+            <th style="width:15%">电话</th>
+            <th style="width:7%">缴费情况</th>
+            <th style="width:7%">奖金</th>
+            <th style="width:6%">上司</th>
+            <th style="width:6%">下属1</th>
+            <th style="width:6%">下属2</th>
+        </thead>
+        <tbody id="tblData_tbody"></tbody>
+    </table>
+</div>
+</body>
+
+</html>
+<script>
+    var data = [{
+        "ID": "0",
+        "Name": "Name0",
+        "IDNumber": null,
+        "Gender": 1,
+        "Age": "0",
+        "Bank": null,
+        "Account": "0000-0000-0000-0000",
+        "Phone": "0000000000000000",
+        "Fee": 0.0,
+        "Bonus": 0.0,
+        "Parent": null,
+        "Children": [],
+        "Ref": {
+            "ID": "0",
+            "Name": "Name0"
+        }
+    }, {
+        "ID": "1",
+        "Name": "Name1",
+        "IDNumber": null,
+        "Gender": 1,
+        "Age": "9",
+        "Bank": null,
+        "Account": "1111-1111-1111-1111",
+        "Phone": "1111111111111111",
+        "Fee": 1.0,
+        "Bonus": 646.0,
+        "Parent": null,
+        "Children": [{
+            "ID": "2",
+            "Name": "Name2"
+        }],
+        "Ref": {
+            "ID": "1",
+            "Name": "Name1"
+        }
+    }, {
+        "ID": "2",
+        "Name": "Name2",
+        "IDNumber": null,
+        "Gender": 1,
+        "Age": "18",
+        "Bank": null,
+        "Account": "2222-2222-2222-2222",
+        "Phone": "2222222222222222",
+        "Fee": 2.0,
+        "Bonus": 456.0,
+        "Parent": {
+            "ID": "1",
+            "Name": "Name1"
+        },
+        "Children": [{
+            "ID": "3",
+            "Name": "Name3"
+        }, {
+            "ID": "4",
+            "Name": "Name4"
+        }],
+        "Ref": {
+            "ID": "2",
+            "Name": "Name2"
+        }
+    }, {
+        "ID": "3",
+        "Name": "Name3",
+        "IDNumber": null,
+        "Gender": 1,
+        "Age": "27",
+        "Bank": null,
+        "Account": "3333-3333-3333-3333",
+        "Phone": "3333333333333333",
+        "Fee": 3.0,
+        "Bonus": 0.0,
+        "Parent": {
+            "ID": "2",
+            "Name": "Name2"
+        },
+        "Children": [],
+        "Ref": {
+            "ID": "3",
+            "Name": "Name3"
+        }
+    }, {
+        "ID": "4",
+        "Name": "Name4",
+        "IDNumber": null,
+        "Gender": 1,
+        "Age": "36",
+        "Bank": null,
+        "Account": "4444-4444-4444-4444",
+        "Phone": "4444444444444444",
+        "Fee": 4.0,
+        "Bonus": 0.0,
+        "Parent": null,
+        "Children": [],
+        "Ref": {
+            "ID": "4",
+            "Name": "Name4"
+        }
+    }, {
+        "ID": "5",
+        "Name": "Name5",
+        "IDNumber": null,
+        "Gender": 1,
+        "Age": "45",
+        "Bank": null,
+        "Account": "5555-5555-5555-5555",
+        "Phone": "5555555555555555",
+        "Fee": 5.0,
+        "Bonus": 228.0,
+        "Parent": null,
+        "Children": [{
+            "ID": "201805102333493349",
+            "Name": "无天梁"
+        }],
+        "Ref": {
+            "ID": "5",
+            "Name": "Name5"
+        }
+    }, {
+        "ID": "6",
+        "Name": "Name6",
+        "IDNumber": null,
+        "Gender": 1,
+        "Age": "54",
+        "Bank": null,
+        "Account": "6666-6666-6666-6666",
+        "Phone": "6666666666666666",
+        "Fee": 6.0,
+        "Bonus": 0.0,
+        "Parent": null,
+        "Children": [],
+        "Ref": {
+            "ID": "6",
+            "Name": "Name6"
+        }
+    }, {
+        "ID": "7",
+        "Name": "Name7",
+        "IDNumber": null,
+        "Gender": 1,
+        "Age": "63",
+        "Bank": null,
+        "Account": "7777-7777-7777-7777",
+        "Phone": "7777777777777777",
+        "Fee": 7.0,
+        "Bonus": 0.0,
+        "Parent": null,
+        "Children": [],
+        "Ref": {
+            "ID": "7",
+            "Name": "Name7"
+        }
+    }, {
+        "ID": "8",
+        "Name": "Name8",
+        "IDNumber": null,
+        "Gender": 1,
+        "Age": "72",
+        "Bank": null,
+        "Account": "8888-8888-8888-8888",
+        "Phone": "8888888888888888",
+        "Fee": 8.0,
+        "Bonus": 0.0,
+        "Parent": null,
+        "Children": [],
+        "Ref": {
+            "ID": "8",
+            "Name": "Name8"
+        }
+    }, {
+        "ID": "9",
+        "Name": "Name9",
+        "IDNumber": null,
+        "Gender": 1,
+        "Age": "81",
+        "Bank": null,
+        "Account": "9999-9999-9999-9999",
+        "Phone": "9999999999999999",
+        "Fee": 9.0,
+        "Bonus": 0.0,
+        "Parent": null,
+        "Children": [],
+        "Ref": {
+            "ID": "9",
+            "Name": "Name9"
+        }
+    }, {
+        "ID": "201805102333493349",
+        "Name": "无天梁",
+        "IDNumber": "12433453245",
+        "Gender": 1,
+        "Age": "12",
+        "Bank": "烦烦烦",
+        "Account": "3234",
+        "Phone": "342545345",
+        "Fee": 33.0,
+        "Bonus": 0.0,
+        "Parent": {
+            "ID": "5",
+            "Name": "Name5"
+        },
+        "Children": [],
+        "Ref": {
+            "ID": "201805102333493349",
+            "Name": "无天梁"
+        }
+    }]
+</script>
+<script>
+    var tableBody = document.getElementById('tblData_tbody');
+    var tr, td, row, cell;
+    for (row = 0; row < data.length; row++) {
+        tr = document.createElement('tr');
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "name";
+        td.innerHTML = data[row].Name;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "idnumber";
+        td.innerHTML = data[row].IDNumber;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "gender";
+        if (data[row].Gender > 0) {
+            td.innerHTML = data[row].Gender == 1 ? "男" : "女";
+        }
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "age";
+        td.innerHTML = data[row].Age;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "bank";
+        td.innerHTML = data[row].Bank;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "account";
+        td.innerHTML = data[row].Account;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "phone";
+        td.innerHTML = data[row].Phone;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "fee";
+        td.innerHTML = data[row].Fee;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "bonus";
+        td.innerHTML = data[row].Bonus;
+
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "parent";
+        if (data[row].Parent)
+            td.innerHTML = data[row].Parent.Name;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "child";
+        if (data[row].Children[0])
+            td.innerHTML = data[row].Children[0].Name;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "child";
+        if (data[row].Children[1])
+            td.innerHTML = data[row].Children[1].Name;
+
+        tableBody.appendChild(tr);
+    }
+    // document.getElementById('container').appendChild(table);
+</script>

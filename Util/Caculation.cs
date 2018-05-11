@@ -18,7 +18,7 @@ namespace Accounting.Util
                 
             }
 
-            while(currentM.Supervisor != null)
+            while(currentM.Parent != null)
             {
                 //Members.Where()
             }

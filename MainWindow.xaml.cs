@@ -66,13 +66,13 @@ namespace Accounting
         public MemberNote BuildParentNodes(Member m,MemberNote note)
         {
 
-            if (m.Supervisor == null)
+            if (m.Parent == null)
             {
                 return note;
             }
 
             var parentMember = Members
-                .Where(x => x.ID == m.Supervisor.ID && x.Name == m.Supervisor.Name)
+                .Where(x => x.ID == m.Parent.ID && x.Name == m.Parent.Name)
                 .FirstOrDefault<Member>();
 
             var parentNote = new MemberNote()
@@ -98,7 +98,7 @@ namespace Accounting
                 Name = m.Name,
             };
 
-            foreach(var child in m.Subordinate)
+            foreach(var child in m.Children)
             {
                 var childNote = Members.Where(x => x.ID == child.ID && x.Name == child.Name).FirstOrDefault<Member>();
                 note.Children.Add(BuildChildNodes(childNote));

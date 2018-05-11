@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Print</title>
+</head>
+<style>
+    .container {
+        width: 100%;
+        display: flex;
+    }
+
+    table {
+        border: 1px solid black;
+        width: 90%;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background-color: orange;
+    }
+
+        thead th {
+            background-color: orange;
+            text-align: left;
+            padding: 2px;
+            font-size: 15px;
+        }
+
+
+    tbody tr {
+        border-bottom: 1px solid black;
+    }
+
+    tbody td {
+        /*width: 9%;*/
+        font-size: 12px;
+        border: 1px solid black;
+        padding: 2px;
+        width: auto;
+    }
+</style>
+<body>
+    <div class="container">
+        <table id="tblData">
+            <thead>
+            <th style="width:6%">姓名</th>
+            <th style="width:15%">身份证号</th>
+            <th style="width:2%"><!--性别--></th>
+            <th style="width:2%">年龄</th>
+            <th style="width:15%">银行</th>
+            <th style="width:15%">帐号</th>
+            <th style="width:15%">电话</th>
+            <th style="width:7%">缴费情况</th>
+            <th style="width:7%">奖金</th>
+            <th style="width:6%">上司</th>
+            <th style="width:6%">下属1</th>
+            <th style="width:6%">下属2</th>
+            </thead>
+            <tbody id="tblData_tbody"></tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+<script>
+    var data = $data$
+</script>
+<script>
+    var tableBody = document.getElementById('tblData_tbody');
+    var tr, td, row, cell;
+    for (row = 0; row < data.length; row++) {
+        tr = document.createElement('tr');
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "name";
+        td.innerHTML = data[row].Name;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "idnumber";
+        td.innerHTML = data[row].IDNumber;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "gender";
+        td.innerHTML = data[row].Gender;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "age";
+        td.innerHTML = data[row].Age;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "bank";
+        td.innerHTML = data[row].Bank;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "account";
+        td.innerHTML = data[row].Account;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "phone";
+        td.innerHTML = data[row].Phone;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "fee";
+        td.innerHTML = data[row].Fee;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "bonus";
+        td.innerHTML = data[row].Bonus;
+
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "parent";
+        if (data[row].Parent)
+            td.innerHTML = data[row].Parent.Name;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "child";
+        if (data[row].Children[0])
+            td.innerHTML = data[row].Children[0].Name;
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "child";
+        if (data[row].Children[1])
+            td.innerHTML = data[row].Children[1].Name;
+
+        tableBody.appendChild(tr);
+    }
+    // document.getElementById('container').appendChild(table);
+</script>

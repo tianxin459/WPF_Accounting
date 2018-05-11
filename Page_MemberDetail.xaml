@@ -10,6 +10,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
       xmlns:local="clr-namespace:Accounting"
+      xmlns:validationRule="clr-namespace:Accounting.Util"
       mc:Ignorable="d" 
                 
       d:DesignHeight="900" d:DesignWidth="500"
@@ -169,7 +170,7 @@
                 </StackPanel>
 
                 <Canvas HorizontalAlignment="Right" Height="50">
-                    <materialDesign:PopupBox Grid.Row="1"
+                    <materialDesign:PopupBox Name="btnPopup" Grid.Row="1"
                                      Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
                                      PlacementMode="LeftAndAlignMiddles"
                                      UnfurlOrientation="Horizontal"
@@ -179,17 +180,11 @@
                         <StackPanel Orientation="Horizontal">
                             <Button ToolTip="添加下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                              Click="AddSubButton_Click_1">
-                                <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-                              Stretch="Uniform"
-                              Width="15" Height="15"
-                              Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
+                                <materialDesign:PackIcon Kind="AccountPlus" />
                             </Button>
                             <Button ToolTip="添加新下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                              Click="AddNewSubButton_Click_1" Canvas.Right="10" Loaded="Button_Loaded">
-                                <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-                              Stretch="Uniform"
-                              Width="15" Height="15"
-                              Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
+                                <materialDesign:PackIcon Kind="AccountPlusOutline" />
                             </Button>
                         </StackPanel>
                     </materialDesign:PopupBox>
@@ -197,12 +192,18 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Right" Grid.Row="7" Grid.Column="3">
-                <Button x:Name="button"  Style="{StaticResource MaterialDesignRaisedDarkButton}"
-    Width="100"
-    ToolTip="保存更改" Content="保存" d:LayoutOverrides="Height" Click="button_Click"/>
-                <Button x:Name="btnDelete"  Style="{StaticResource MaterialDesignRaisedDarkButton}"
-    Width="100"
-    ToolTip="删除" Content="删除" d:LayoutOverrides="Height" Click="btnDelete_Click"/>
+                <Button x:Name="button"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="保存更改" d:LayoutOverrides="Height" Click="button_Click" Margin="5,0">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ContentSave" />
+                        <TextBlock Margin="5,0,0,0">保存</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnDelete"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="删除" d:LayoutOverrides="Height" Click="btnDelete_Click" Margin="5,0">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="AccountRemove" />
+                        <TextBlock Margin="5,0,0,0">删除</TextBlock>
+                    </StackPanel>
+                </Button>
             </StackPanel>
             <!-- ///////////////// ////////////////////////////////////////////////  -->
             

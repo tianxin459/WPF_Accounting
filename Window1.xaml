@@ -13,8 +13,8 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
-        Height="{Binding 800}" 
-        Width="{Binding 600}" 
+        Height="800" 
+        Width="1024" 
         mc:Ignorable="d"
         Source="Page_Main.xaml" Navigating="NavigationWindow_Navigating" Navigated="NavigationWindow_Navigated">
         

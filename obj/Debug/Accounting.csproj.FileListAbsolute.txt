@@ -2,11 +2,9 @@ C:\Git\Accounting\Accounting\bin\Debug\Accounting.exe.config
 C:\Git\Accounting\Accounting\bin\Debug\Accounting.exe
 C:\Git\Accounting\Accounting\bin\Debug\Accounting.pdb
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.csprojResolveAssemblyReference.cache
-C:\Git\Accounting\Accounting\obj\Debug\MainWindow.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\App.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Accounting_MarkupCompile.cache
 C:\Git\Accounting\Accounting\obj\Debug\Accounting_MarkupCompile.lref
-C:\Git\Accounting\Accounting\obj\Debug\MainWindow.baml
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.g.resources
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.Properties.Resources.resources
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.csproj.GenerateResource.Cache
@@ -62,3 +60,10 @@ D:\Git\WPF_Accounting\obj\Debug\Window2.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Dialog\DialogSuccess.baml
 D:\Git\WPF_Accounting\obj\Debug\Window2.baml
 D:\Git\WPF_Accounting\bin\Debug\Icon\application.png
+C:\Git\Accounting\Accounting\bin\Debug\Icon\application.png
+C:\Git\Accounting\Accounting\bin\Debug\Print\Print.html
+C:\Git\Accounting\Accounting\obj\Debug\Accounting_Content.g.cs
+C:\Git\Accounting\Accounting\bin\Debug\Print\Print - Copy.html
+C:\Git\Accounting\Accounting\obj\Debug\Dialog\DialogComfirm.g.cs
+C:\Git\Accounting\Accounting\obj\Debug\Dialog\DialogComfirm.baml
+C:\Git\Accounting\Accounting\obj\Debug\MainWindow.baml
