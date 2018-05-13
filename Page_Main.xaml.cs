@@ -98,7 +98,7 @@ namespace Accounting
             DataGridCollection.Filter = new Predicate<object>(Filter);
             this.dgStaff.ItemsSource = DataGridCollection;
             this.txtFilter.DataContext = FilterString;
-            this.txtFilter.SetBinding(TextBox.TextProperty, new Binding("FilterString") { Source = this, Mode = BindingMode.TwoWay,UpdateSourceTrigger= UpdateSourceTrigger.PropertyChanged });
+            this.txtFilter.SetBinding(TextBox.TextProperty, new Binding("FilterString") { Source = this, Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
 
 
         }
@@ -170,7 +170,7 @@ namespace Accounting
                 //ID = m.ID,
                 //Name = m.ID,
                 Tag = m.ID,
-                Header = m.Bonus==0? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus}",
+                Header = m.Bonus==0? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus} --"+m.calText,
                 
                 IsExpanded = true
             };
@@ -178,9 +178,15 @@ namespace Accounting
             foreach (var child in m.Children)
             {
                 var childNote = App.Members.Where(x => x.ID == child.ID).FirstOrDefault<Member>();
+                if(childNote==null)
+                {
+                    child.ID = "";
+                    continue;
+                }
                 note.Items.Add(BuildChildNodes(childNote));
                 //note.Items.Add(BuildChildNodes(childNote));
             }
+            m.Children = m.Children.Where(x => !string.IsNullOrEmpty(x.ID)).ToList();
 
             return note;
         }

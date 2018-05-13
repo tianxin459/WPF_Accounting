@@ -100,6 +100,7 @@
     <Compile Include="Dialog\DialogSuccess.xaml.cs">
       <DependentUpon>DialogSuccess.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\CalItem.cs" />
     <Compile Include="Page_Main.xaml.cs">
       <DependentUpon>Page_Main.xaml</DependentUpon>
     </Compile>
@@ -165,6 +166,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\Data - Copy.data">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Data.data">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

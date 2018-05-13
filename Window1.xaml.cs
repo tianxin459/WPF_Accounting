@@ -99,5 +99,19 @@ namespace Accounting
         private void NavigationWindow_Navigated(object sender, NavigationEventArgs e)
         {
         }
+
+        private void NavigationWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth - 60;
+            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 60;
+            this.WindowState = System.Windows.WindowState.Normal;
+            this.WindowStyle = System.Windows.WindowStyle.SingleBorderWindow;
+            //this.ResizeMode = System.Windows.ResizeMode.NoResize;
+            //this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            //this.Topmost = true;
+
+            this.Left = 30;
+            this.Top = 30;
+        }
     }
 }

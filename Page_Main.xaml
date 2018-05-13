@@ -6,8 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Accounting"
       mc:Ignorable="d" 
-      d:DesignHeight="600"
-      Title="Page_Main" Loaded="Page_Loaded" HorizontalAlignment="Stretch">
+      Title="Page_Main" Loaded="Page_Loaded" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -19,6 +18,7 @@
         </ResourceDictionary>
     </Page.Resources>
     <materialDesign:DialogHost>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Width="Auto" Orientation="Vertical">
             <StackPanel Grid.Row="0" Orientation="Horizontal"  Height="50">
                 <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90"/>
@@ -35,12 +35,13 @@
                         <materialDesign:HintAssist.Hint>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="-2 0 0 0">
                                 <materialDesign:PackIcon Kind="SearchWeb" />
+                                <TextBlock >姓名检索</TextBlock>
                             </StackPanel>
                         </materialDesign:HintAssist.Hint>
                     </TextBox>
                     <Button Name="AddMember" Height="30" HorizontalAlignment="Right" Content="添加新人" Canvas.Right="10" Click="AddMember_Click" Margin="10"></Button>
                 </Canvas>
-                <DataGrid Name="dgStaff"  MaxHeight="400" Width="Auto" HorizontalAlignment="Stretch" IsReadOnly="True" AutoGenerateColumns="False" MinHeight="200"  VerticalAlignment="Top"  Margin="10,10,10,10" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
+                <DataGrid Name="dgStaff"  MaxHeight="300" Width="Auto" HorizontalAlignment="Stretch" IsReadOnly="True" AutoGenerateColumns="False" MinHeight="200"  VerticalAlignment="Top"  Margin="10,10,10,10" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
                     <DataGrid.Columns>
                         <!--<DataGridTextColumn  Header="ID" Width="80" Binding="{Binding ID}" ClipboardContentBinding="{x:Null}"/>-->
                         <DataGridTextColumn  Header="姓名" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
@@ -67,6 +68,7 @@
                     </TreeView>
                 </ScrollViewer>
             </StackPanel>
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </materialDesign:DialogHost>
 </local:BasePage>

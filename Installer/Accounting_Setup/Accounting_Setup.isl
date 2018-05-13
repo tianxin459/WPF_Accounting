@@ -344,6 +344,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{55D6FAC2-75C2-4707-8534-670268CD24BA}</td><td>ICON</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{666E7635-77FC-4B44-91BC-B32D8228CA8C}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{3BB6796D-6846-42A4-B6E9-9F3A694D1B11}</td><td>DATA</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT3</td><td>{222FA7B1-B1AB-4540-B2D0-B32324015D52}</td><td>PRINT</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MaterialDesignColors.dll</td><td>{DA9F96F3-EFCC-40AD-9551-0B29118916D2}</td><td>INSTALLDIR</td><td>2</td><td/><td>materialdesigncolors.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MaterialDesignThemes.Wpf.dll</td><td>{1B4FDA6A-B397-42C5-957B-7474C1817DA5}</td><td>INSTALLDIR</td><td>2</td><td/><td>materialdesignthemes.wpf.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Newtonsoft.Json.dll</td><td>{CBE0D7A2-43B5-4EB4-9C00-9CED9FF93636}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1063,10 +1064,12 @@
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT2</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>INSTALLDIR</td><td>MaterialDesignColors.dll</td></row>
 		<row><td>INSTALLDIR</td><td>MaterialDesignThemes.Wpf.dll</td></row>
 		<row><td>INSTALLDIR</td><td>Newtonsoft.Json.dll</td></row>
 		<row><td>INSTALLDIR</td><td>log4net.dll</td></row>
+		<row><td>PRINT</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1171,6 +1174,7 @@
 		<row><td>MY_PRODUCT_NAME1</td><td>ET</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>MyPicturesFolder</td><td>TARGETDIR</td><td>.:MyPict~1|MyPictures</td><td/><td>0</td><td/></row>
 		<row><td>NetHoodFolder</td><td>TARGETDIR</td><td>.:NetHood</td><td/><td>0</td><td/></row>
+		<row><td>PRINT</td><td>INSTALLDIR</td><td>Print</td><td/><td>0</td><td/></row>
 		<row><td>PersonalFolder</td><td>TARGETDIR</td><td>.:Personal</td><td/><td>0</td><td/></row>
 		<row><td>PrimaryVolumePath</td><td>TARGETDIR</td><td>.:Primar~1|PrimaryVolumePath</td><td/><td>0</td><td/></row>
 		<row><td>PrintHoodFolder</td><td>TARGETDIR</td><td>.:PRINTH~1|PrintHood</td><td/><td>0</td><td/></row>
@@ -1888,6 +1892,7 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>AlwaysInstall</td><td>MaterialDesignColors.dll</td></row>
 		<row><td>AlwaysInstall</td><td>MaterialDesignThemes.Wpf.dll</td></row>
 		<row><td>AlwaysInstall</td><td>Newtonsoft.Json.dll</td></row>
@@ -1911,13 +1916,14 @@
 		<row><td>accounting.pdb</td><td>ISX_DEFAULTCOMPONENT1</td><td>ACCOUN~1.PDB|Accounting.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\Accounting.pdb</td><td>1</td><td/></row>
 		<row><td>accounting.vshost.exe</td><td>Accounting.vshost.exe</td><td>ACCOUN~1.EXE|Accounting.vshost.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\Accounting.vshost.exe</td><td>1</td><td/></row>
 		<row><td>accounting.vshost.exe.config</td><td>ISX_DEFAULTCOMPONENT1</td><td>ACCOUN~1.CON|Accounting.vshost.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\Accounting.vshost.exe.config</td><td>1</td><td/></row>
-		<row><td>accounting.vshost.exe.manife</td><td>ISX_DEFAULTCOMPONENT1</td><td>ACCOUN~1.MAN|Accounting.vshost.exe.manifest</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\Accounting.vshost.exe.manifest</td><td>1</td><td/></row>
 		<row><td>application.png</td><td>ISX_DEFAULTCOMPONENT</td><td>APPLIC~1.PNG|application.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\Icon\application.png</td><td>1</td><td/></row>
 		<row><td>data.data</td><td>ISX_DEFAULTCOMPONENT2</td><td>DATA~1.DAT|Data.data</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\Data\Data.data</td><td>1</td><td/></row>
 		<row><td>log4net.dll</td><td>log4net.dll</td><td>log4net.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\log4net.dll</td><td>1</td><td/></row>
 		<row><td>materialdesigncolors.dll</td><td>MaterialDesignColors.dll</td><td>MATERI~1.DLL|MaterialDesignColors.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\MaterialDesignColors.dll</td><td>1</td><td/></row>
 		<row><td>materialdesignthemes.wpf.dll</td><td>MaterialDesignThemes.Wpf.dll</td><td>MATERI~1.DLL|MaterialDesignThemes.Wpf.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\MaterialDesignThemes.Wpf.dll</td><td>1</td><td/></row>
 		<row><td>newtonsoft.json.dll</td><td>Newtonsoft.Json.dll</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\Newtonsoft.Json.dll</td><td>1</td><td/></row>
+		<row><td>print.html</td><td>ISX_DEFAULTCOMPONENT3</td><td>PRINT~1.HTM|Print.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\Print\Print.html</td><td>1</td><td/></row>
+		<row><td>print___copy.html</td><td>ISX_DEFAULTCOMPONENT3</td><td>PRINT-~1.HTM|Print - Copy.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Git\WPF_Accounting\bin\Release\Print\Print - Copy.html</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2065,6 +2071,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_EE5D9731_B4A3_4523_BDFD_67EC87EEC2EC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_D25CF78F_E928_4895_B542_66F914A374DE_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_23F7A4F2_4746_4C2D_8D49_EC0AA658DF35_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT3</td><td/><td/><td>_4803766F_401B_4995_BEB9_B870DF04930D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MaterialDesignColors.dll</td><td/><td/><td>_D8770971_0C2D_4181_9AFE_C19ED17CDFC5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MaterialDesignThemes.Wpf.dll</td><td/><td/><td>_36A23169_8348_443A_85DF_C54E3C152679_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Newtonsoft.Json.dll</td><td/><td/><td>_1E633790_486C_4C8D_9E13_1D5D61D9F64C_FILTER</td><td/><td/><td/><td/></row>
@@ -3878,7 +3885,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
-		<row><td>Accounting.exe1_2C69C06646F646659E4A55124FADFA8A.exe</td><td/><td>&lt;VSSolutionFolder&gt;\bin\Release\Icon\AppIco.ico</td><td>0</td></row>
+		<row><td>Accounting.exe1_7E4603146A6C47C38FBE7947C3AA9622.exe</td><td/><td>&lt;VSSolutionFolder&gt;\bin\Release\Icon\AppIco.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4011,7 +4018,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{AC01B424-2DF2-4A74-9116-9201CDEC70D8}</td></row>
 		<row><td>ISUSSignature</td><td>{F034F1AF-A586-4847-9311-214FDDDFC995}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewObjects,viewRelease</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewObjects,viewRelease,viewISToday,viewUpdateService,viewUpgradePaths</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4385,7 +4392,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{CB6BEBFC-90C0-4047-8CE6-2A47889D3EB9}</td><td/></row>
 		<row><td>ProductName</td><td>Accounting</td><td/></row>
-		<row><td>ProductVersion</td><td>0.80.0000</td><td/></row>
+		<row><td>ProductVersion</td><td>0.81.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4547,7 +4554,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>Accounting.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>Accounting.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Accounting.exe1_2C69C06646F646659E4A55124FADFA8A.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>Accounting.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>Accounting.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Accounting.exe1_7E4603146A6C47C38FBE7947C3AA9622.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

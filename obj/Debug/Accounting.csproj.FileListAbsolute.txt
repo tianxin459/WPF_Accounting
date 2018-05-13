@@ -16,7 +16,6 @@ C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Git\Accounting\Accounting\obj\Debug\App.baml
-D:\Git\WPF_Accounting\obj\Debug\MainWindow.g.cs
 D:\Git\WPF_Accounting\obj\Debug\App.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Accounting_MarkupCompile.cache
 D:\Git\WPF_Accounting\obj\Debug\Accounting_MarkupCompile.lref
@@ -26,7 +25,6 @@ D:\Git\WPF_Accounting\bin\Debug\Accounting.exe.config
 D:\Git\WPF_Accounting\bin\Debug\Accounting.exe
 D:\Git\WPF_Accounting\bin\Debug\Accounting.pdb
 D:\Git\WPF_Accounting\obj\Debug\App.baml
-D:\Git\WPF_Accounting\obj\Debug\MainWindow.baml
 D:\Git\WPF_Accounting\obj\Debug\Accounting.g.resources
 D:\Git\WPF_Accounting\obj\Debug\Accounting.Properties.Resources.resources
 D:\Git\WPF_Accounting\obj\Debug\Accounting.csproj.GenerateResource.Cache
@@ -67,3 +65,10 @@ C:\Git\Accounting\Accounting\bin\Debug\Print\Print - Copy.html
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\DialogComfirm.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\DialogComfirm.baml
 C:\Git\Accounting\Accounting\obj\Debug\MainWindow.baml
+D:\Git\WPF_Accounting\bin\Debug\Print\Print - Copy.html
+D:\Git\WPF_Accounting\bin\Debug\Print\Print.html
+D:\Git\WPF_Accounting\obj\Debug\Accounting.csprojResolveAssemblyReference.cache
+D:\Git\WPF_Accounting\obj\Debug\Dialog\DialogComfirm.g.cs
+D:\Git\WPF_Accounting\obj\Debug\Accounting_Content.g.cs
+D:\Git\WPF_Accounting\obj\Debug\Dialog\DialogComfirm.baml
+D:\Git\WPF_Accounting\bin\Debug\Data\Data - Copy.data
