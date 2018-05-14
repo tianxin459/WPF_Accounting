@@ -64,7 +64,6 @@ C:\Git\Accounting\Accounting\obj\Debug\Accounting_Content.g.cs
 C:\Git\Accounting\Accounting\bin\Debug\Print\Print - Copy.html
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\DialogComfirm.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\DialogComfirm.baml
-C:\Git\Accounting\Accounting\obj\Debug\MainWindow.baml
 D:\Git\WPF_Accounting\bin\Debug\Print\Print - Copy.html
 D:\Git\WPF_Accounting\bin\Debug\Print\Print.html
 D:\Git\WPF_Accounting\obj\Debug\Accounting.csprojResolveAssemblyReference.cache
@@ -72,3 +71,8 @@ D:\Git\WPF_Accounting\obj\Debug\Dialog\DialogComfirm.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Accounting_Content.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Dialog\DialogComfirm.baml
 D:\Git\WPF_Accounting\bin\Debug\Data\Data - Copy.data
+C:\Git\Accounting\Accounting\bin\Debug\Data\Data - Copy.data
+C:\Git\Accounting\Accounting\obj\Debug\Contorl\UserControl1.g.cs
+C:\Git\Accounting\Accounting\obj\Debug\Contorl\UserControl1.baml
+C:\Git\Accounting\Accounting\obj\Debug\Contorl\HeaderMenu.g.cs
+C:\Git\Accounting\Accounting\obj\Debug\Contorl\HeaderMenu.baml

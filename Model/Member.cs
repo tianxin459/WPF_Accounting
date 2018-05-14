@@ -24,6 +24,7 @@ namespace Accounting.Model
         public string Phone { get; set; }
         public decimal Fee { get; set; }
         public decimal Bonus { get; set; }
+        public string JoinDate { get; set; }
 
         public RefMember Parent { get; set; }
         public List<RefMember> Children { get; set; } = new List<RefMember>();
@@ -52,18 +53,13 @@ namespace Accounting.Model
                 this.Bonus = bonus;
                 return 0;
             }
-
-            var level = 0;
+            
             List<int> lvs = new List<int>();
-
-            int bi = 1;
+            
             foreach (var sm in m.Children)
             {
-                var lv = level;
-
-                var sumChild = SumChildrenBonus(sm.ID, memberTree, ref lv, this.calText);
+                var sumChild = SumChildrenBonus(sm.ID, memberTree, this.calText);
                 sumChild.Level++;
-                var lvBonus = new Decimal();
                 sumChildren.Add(sumChild);
             }
             foreach (var s in sumChildren)
@@ -74,7 +70,7 @@ namespace Accounting.Model
                 {
                     sl = BonusBase[s.Level];
 
-                    this.calText.Append(string.Format("Lv{1}-{0}", sl, s.Level));
+                    this.calText.Append(string.Format("Lv{1}:{0}", sl, s.Level));
                     this.calText.Append("+");
                     bonus += sl;
                 }
@@ -85,10 +81,10 @@ namespace Accounting.Model
 
             if (sumChildren.Count > 0 && lvl > BonusBase.Count) // if 6 gen exceed, then have plus share of 2% of 38w;
             {
-                if (App.Members.Count() > 100)
+                if (App.Members.Where(x => DateTime.Parse(x.JoinDate).Year == DateTime.Now.Year).Count() > 100)
                 {
                     var extBonus = (decimal)(380000 * 0.02);
-                    this.calText.Append(string.Format("|MaxLv:{0} (6级后奖励金:{1})", extBonus));
+                    this.calText.Append(string.Format(" (6级后奖励金:{0})", extBonus));
                 }
                     
             }
@@ -104,11 +100,11 @@ namespace Accounting.Model
         /// <param name="memberTree"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public CalItem SumChildrenBonus(string id, List<Member> memberTree, ref int level, StringBuilder sb)
+        public CalItem SumChildrenBonus(string id, List<Member> memberTree, StringBuilder sb)
         {
             CalItem sumReturn = new CalItem();
             List<CalItem> sumChildren = new List<CalItem>();
-            decimal bonus = 0;
+
             var m = memberTree
                 .Where(x => x.ID == id)
                 .FirstOrDefault();
@@ -124,30 +120,12 @@ namespace Accounting.Model
             
             foreach (var sm in m.Children)
             {
-                var lv = level;
                 var sumChild = new CalItem();
-                sumChild = SumChildrenBonus(sm.ID, memberTree, ref lv, sb);
+                sumChild = SumChildrenBonus(sm.ID, memberTree, sb);
                 sumChild.Level++;
-                var lvBonus = new Decimal() ;
-                //if (sumChild.Level < BonusBase.Count())
-                //{ 
-                //    lvBonus =  BonusBase[sumChild.Level];
-                //}
-                //bonus += lvBonus;
-                //sb.Append(string.Format("(c_{0}+lv{1}_{2})", childBonusSum.ToString(),lv+1, lvBonus.ToString()));
-                //sb.Append(string.Format("{0}", sumChild.Sum.ToString()));
-                //sb.Append("+");
-                lvs.Add(lv);
                 sumChildren.Add(sumChild);
             }
-
-            //level++;
             
-
-            //if (lvs.Count() > 0)
-            //{
-            //    level = lvs.Max();
-            //}
             foreach(var s in sumChildren)
             {
                 if (s.Level < BonusBase.Count())
@@ -161,7 +139,6 @@ namespace Accounting.Model
                 }
             }
             sumReturn.Level = sumChildren.Select(x => x.Level).Max();
-            //this.Bonus = bonus;
             return sumReturn;
         }
 

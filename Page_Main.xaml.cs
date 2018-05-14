@@ -280,8 +280,6 @@ namespace Accounting
 
         private void txtFilter_KeyUp(object sender, KeyEventArgs e)
         {
-            //this.FilterString = this.txtFilter.Text;
-            //FilterCollection();
         }
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)

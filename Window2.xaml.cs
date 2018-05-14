@@ -44,7 +44,7 @@ namespace Accounting
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Str = "dddddddddddd";
+            this.cardFliper.IsFlipped = !this.cardFliper.IsFlipped;
         }
     }
 

@@ -115,7 +115,9 @@ namespace Accounting
 
             
             this.txtIDNumber.SetBinding(TextBox.TextProperty, new Binding("IDNumber") { Source = this.Member, Mode = BindingMode.TwoWay });
-            this.txtName.SetBinding(TextBox.TextProperty, new Binding("Name") { Source = this.Member, Mode = BindingMode.TwoWay });
+            var nameBinding = new Binding("Name") { Source = this.Member, Mode = BindingMode.TwoWay };
+            nameBinding.ValidationRules.Add(new NotEmptyValidationRule());
+            this.txtName.SetBinding(TextBox.TextProperty, nameBinding);
             this.comboGender.SetBinding(ComboBox.SelectedValueProperty, new Binding("Gender") { Source = this.Member, Mode = BindingMode.TwoWay });
             this.comboSupervisor.SetBinding(ComboBox.SelectedValueProperty, new Binding("Parent.ID") { Source = this.Member, Mode = BindingMode.TwoWay });
             this.txtAge.SetBinding(TextBox.TextProperty, new Binding("Age") { Source = this.Member, Mode = BindingMode.TwoWay });
@@ -125,6 +127,9 @@ namespace Accounting
             this.txtBank.SetBinding(TextBox.TextProperty, new Binding("Bank") { Source = this.Member, Mode = BindingMode.TwoWay });
             this.txtAccount.SetBinding(TextBox.TextProperty, new Binding("Account") { Source = this.Member, Mode = BindingMode.TwoWay });
 
+            var dateBinding = new Binding("JoinDate") { Source = this.Member, Mode = BindingMode.TwoWay };
+            //dateBinding.ValidationRules.Add(new NotEmptyValidationRule());
+            this.txtJoinDate.SetBinding(DatePicker.SelectedDateProperty, dateBinding);
         }
 
         private void AddSubordinateCombo(int i,RefMember childMember = null)

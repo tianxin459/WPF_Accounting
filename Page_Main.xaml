@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Accounting"
+      xmlns:localControl="clr-namespace:Accounting.Contorl"
       mc:Ignorable="d" 
       Title="Page_Main" Loaded="Page_Loaded" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
@@ -18,17 +19,23 @@
         </ResourceDictionary>
     </Page.Resources>
     <materialDesign:DialogHost>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Width="Auto" Orientation="Vertical">
-            <StackPanel Grid.Row="0" Orientation="Horizontal"  Height="50">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <localControl:HeaderMenu Grid.Row="0"></localControl:HeaderMenu>
+            <!--<StackPanel Grid.Row="0" Orientation="Horizontal"  Height="50">
                 <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90"/>
                 <Button Name="btnPrint" Content="打印" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnPrint_Click"/>
-                <!--<Button Name="btnReport" Content="报表" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>-->
+                --><!--<Button Name="btnReport" Content="报表" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>--><!--
                 <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnBackup_Click"/>
                 <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnRestore_Click"/>
-            </StackPanel>
-            <Separator/>
-            <StackPanel Grid.Row="1" Orientation="Vertical" Width="Auto">
+            </StackPanel>-->
+
+            <StackPanel Grid.Row="1"  Orientation="Vertical" Width="Auto">
+                <Separator/>
                 <Canvas HorizontalAlignment="Stretch" Height="40">
                     <TextBox Name="txtFilter" HorizontalAlignment="Left" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyUp="txtFilter_KeyUp">
                         <!--<TextBox Name="txtFilter" Text="{Binding ., UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" HorizontalAlignment="Left" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyUp="txtFilter_KeyUp">-->
@@ -59,16 +66,15 @@
                         <DataGridTextColumn  Header="下属2" Width="80" Binding="{Binding Children[1].Name}" ClipboardContentBinding="{x:Null}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <!--<Canvas ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Name="canvasStaff" MinHeight="220"  HorizontalAlignment="Stretch" Width="{Binding ElementName=this,Path=Width}">
-                   
-                </Canvas>-->
+            </StackPanel>
+            <!---->
+        <StackPanel Grid.Row="2" Orientation="Vertical">
                 <Separator/>
-                <ScrollViewer HorizontalAlignment="Stretch" MinWidth="220" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <TreeView Name="tvRelation" HorizontalAlignment="Stretch" SelectedItemChanged="tvRelation_SelectedItemChanged">
-                    </TreeView>
-                </ScrollViewer>
+            <ScrollViewer Grid.Row="2" HorizontalAlignment="Stretch" MinWidth="220" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <TreeView Name="tvRelation" HorizontalAlignment="Stretch" SelectedItemChanged="tvRelation_SelectedItemChanged">
+                </TreeView>
+            </ScrollViewer>
             </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
+        </Grid>
     </materialDesign:DialogHost>
 </local:BasePage>
