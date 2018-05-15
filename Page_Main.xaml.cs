@@ -119,7 +119,6 @@ namespace Accounting
 
             var note = BuildChildNodes(m);
             note = BuildParentNodes(m, note);
-
             return note;
         }
 
@@ -148,7 +147,7 @@ namespace Accounting
             {
                 //ID = parentMember.ID,
                 //Name = parentMember.ID,
-                Tag = parentMember.ID,
+                Tag = new TreeViewTagObj(parentMember.ID, parentMember.calText.ToString()),
                 Header = $"{parentMember.Name} 奖金：{parentMember.Bonus}",
                 IsExpanded = true
             };
@@ -169,7 +168,7 @@ namespace Accounting
             {
                 //ID = m.ID,
                 //Name = m.ID,
-                Tag = m.ID,
+                Tag = new TreeViewTagObj(m.ID, m.calText.ToString()),
                 Header = m.Bonus==0? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus} --"+m.calText,
                 
                 IsExpanded = true
@@ -218,56 +217,6 @@ namespace Accounting
             this.tvRelation.Items.Add(GenerateTree(m));
         }
 
-        private void btnRestore_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Data file (*.data)|*.data";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                var path = openFileDialog.FileName;
-                App.Members = DataStorage.ReadData(path);
-                DataStorage.SaveData(App.Members);
-                this.dgStaff.ItemsSource = App.Members;
-                DialogHost.Show(new DialogSuccess("导入成功"));
-            }
-        }
-
-        private void btnBackup_Click(object sender, RoutedEventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Data file (*.data)|*.data";
-            saveFileDialog.DefaultExt = "data";
-            saveFileDialog.AddExtension = true;
-            saveFileDialog.RestoreDirectory = true;
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                var path = saveFileDialog.FileName;
-                DataStorage.ExportData(path, App.Members);
-                DialogHost.Show(new DialogSuccess("导出成功"));
-            }
-
-            //if (result == true)
-            //{
-            //    //获得文件路径
-            //    localFilePath = saveFileDialog.FileName.ToString();
-
-            //    //获取文件名，不带路径
-            //    fileNameExt = localFilePath.Substring(localFilePath.LastIndexOf("\\") + 1);
-
-            //    //获取文件路径，不带文件名
-            //    FilePath = localFilePath.Substring(0, localFilePath.LastIndexOf("\\"));
-
-            //    //给文件名前加上时间
-            //    newFileName = fileNameExt + "_" + DateTime.Now.ToString("yyyyMMdd");
-            //    newFileName = FilePath + "\\" + newFileName;
-
-            //    //在文件名里加字符
-            //    //saveFileDialog.FileName.Insert(1,"dameng");
-            //    //为用户使用 SaveFileDialog 选定的文件名创建读/写文件流。
-            //    System.IO.File.WriteAllText(newFileName, wholestring); //这里的文件名其实是含有路径的。
-            //}
-        }
-
         private void AddMember_Click(object sender, RoutedEventArgs e)
         {
             App.SelectedMember = new Member(Member.GenerateID());
@@ -292,6 +241,44 @@ namespace Accounting
             File.WriteAllText(printPath, print_text);
             //DataStorage.ExportPrintFile(printPath, print_text);
             System.Diagnostics.Process.Start(printPath);
+        }
+
+        private void btnBackup_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Data file (*.data)|*.data";
+            saveFileDialog.DefaultExt = "data";
+            saveFileDialog.AddExtension = true;
+            saveFileDialog.RestoreDirectory = true;
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                var path = saveFileDialog.FileName;
+                DataStorage.ExportData(path, App.Members);
+                DialogHost.Show(new DialogSuccess("导出成功"));
+            }
+        }
+        private void btnRestore_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Data file (*.data)|*.data";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var path = openFileDialog.FileName;
+                App.Members = DataStorage.ReadData(path);
+                DataStorage.SaveData(App.Members);
+                this.dgStaff.ItemsSource = App.Members;
+                DialogHost.Show(new DialogSuccess("导入成功"));
+            }
+        }
+
+        private void btnGoback_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

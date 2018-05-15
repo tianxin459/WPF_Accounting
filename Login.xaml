@@ -1,0 +1,65 @@
+﻿<Window x:Class="Accounting.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Accounting"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Login" Height="300" Width="500">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!--<DockPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock  Name="txtMsg"></TextBlock>
+            <StackPanel Orientation="Horizontal" >
+                <TextBox Name="txtPassword" Width="100"></TextBox>
+                <Button Content="登录程序" Margin="5,0,0,0" Click="Button_Click"></Button>
+                <Button Content="更改密码" Margin="5,0,0,0" Click="btnChangePassword_Click" Background="DarkBlue"></Button>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>-->
+
+    <materialDesign:Flipper HorizontalAlignment="Center" VerticalAlignment="Center" Name="cardFliper" Style="{StaticResource MaterialDesignCardFlipper}">
+        <materialDesign:Flipper.FrontContent>
+            <DockPanel Height="100" Width="500">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock  Name="txtMsg"></TextBlock>
+                    <StackPanel Orientation="Horizontal" >
+                        <PasswordBox Name="txtPassword" Width="150" materialDesign:HintAssist.Hint="登录密码" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"></PasswordBox>
+                        <Button Content="登录程序" Margin="5,0,0,0" Click="Button_Click"></Button>
+                        <Button Content="更改密码" Margin="5,0,0,0" Click="btnChangePassword_Click" Background="DarkBlue" Style="{StaticResource MaterialDesignToolForegroundButton}"></Button>
+                    </StackPanel>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:Flipper.FrontContent>
+        <materialDesign:Flipper.BackContent>
+            <DockPanel Height="200" Width="300">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock  Name="txtMsg2"></TextBlock>
+                    <PasswordBox  Name="txtOldPassword" Margin="5" materialDesign:HintAssist.Hint="原密码" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"></PasswordBox>
+                    <PasswordBox  Name="txtNewPassword1" Margin="5" materialDesign:HintAssist.Hint="新密码" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"></PasswordBox>
+                    <PasswordBox  Name="txtNewPassword2" Margin="5" materialDesign:HintAssist.Hint="确认密码" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"></PasswordBox>
+                    <StackPanel Orientation="Horizontal" >
+                        <Button Content="更改密码" Margin="5,0,0,0" Click="btnChangePassword_Click" Background="DarkBlue"></Button>
+                    </StackPanel>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:Flipper.BackContent>
+    </materialDesign:Flipper>
+</Window>

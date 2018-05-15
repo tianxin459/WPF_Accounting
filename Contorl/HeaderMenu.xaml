@@ -8,23 +8,30 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <materialDesign:ColorZone
-                Grid.Row="0"
-  Mode="PrimaryDark"
-  Padding="16"
-  CornerRadius="3"
-  materialDesign:ShadowAssist.ShadowDepth="Depth3"
-  Margin="2">
-            <StackPanel
-    Orientation="Horizontal">
-                <ToggleButton
-      Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                <TextBlock
-      VerticalAlignment="Center"
-      Margin="16 0 0 0">
-    Material Design In XAML Toolkit
-                </TextBlock>
+        <materialDesign:ColorZone Grid.Row="0" Mode="PrimaryDark" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+            <DockPanel>
+                <!--<materialDesign:PopupBox
+      DockPanel.Dock="Right"
+      PlacementMode="BottomAndAlignRightEdges">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal"  Height="50">
+                        <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90"/>
+                        <Button Name="btnPrint" Content="打印" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnPrint_Click"/>
+                        
+                <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnBackup_Click"/>
+                <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnRestore_Click"/>
             </StackPanel>
+                </materialDesign:PopupBox>-->
+
+                <StackPanel Orientation="Horizontal">
+                    <!--<ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />-->
+                    <Button Name="btnGoback" Click="btnGoback_Click">
+                        <materialDesign:PackIcon Kind="ArrowLeftBoldCircleOutline" />
+                    </Button>
+                    <Button Name="btnMain2" Content="主页" HorizontalAlignment="Left"  Width="90"/>
+
+                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0"> 人员关联统计</TextBlock>
+                </StackPanel>
+            </DockPanel>
         </materialDesign:ColorZone>
     </Grid>
 </UserControl>

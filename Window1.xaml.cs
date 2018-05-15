@@ -105,7 +105,7 @@ namespace Accounting
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth - 60;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 60;
             this.WindowState = System.Windows.WindowState.Normal;
-            this.WindowStyle = System.Windows.WindowStyle.SingleBorderWindow;
+            //this.WindowStyle = System.Windows.WindowStyle.None;
             //this.ResizeMode = System.Windows.ResizeMode.NoResize;
             //this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             //this.Topmost = true;

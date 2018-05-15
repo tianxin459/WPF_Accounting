@@ -1,5 +1,11 @@
-﻿using System;
+﻿using Accounting.Dialog;
+using Accounting.Util;
+using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,5 +30,25 @@ namespace Accounting.Contorl
         {
             InitializeComponent();
         }
+
+
+        #region button event
+        private void btnGoback_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GetNavigationService(this.Parent)?.GoBack();
+        }
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btnBackup_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        private void btnRestore_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        #endregion
+
     }
 }

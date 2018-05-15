@@ -35,7 +35,7 @@
         <localControl:HeaderMenu></localControl:HeaderMenu>
         <TextBox Name="txtSearch" ></TextBox>
         <Button Content="test" Click="Button_Click_1"></Button>
-        <materialDesign:Flipper Name="cardFliper" Style="{StaticResource MaterialDesignCardFlipper}">
+        <materialDesign:Flipper   Name="cardFliper" Style="{StaticResource MaterialDesignCardFlipper}">
             <materialDesign:Flipper.FrontContent>
                 <Button Name="btnFlip" Style="{StaticResource MaterialDesignFlatButton}"
                         Command="{x:Static materialDesign:Flipper.FlipCommand}"

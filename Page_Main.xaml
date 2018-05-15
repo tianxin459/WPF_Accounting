@@ -22,19 +22,42 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="4*"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
             </Grid.RowDefinitions>
-            <localControl:HeaderMenu Grid.Row="0"></localControl:HeaderMenu>
+            <materialDesign:ColorZone Grid.Row="0" Mode="PrimaryDark" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal">
+
+                        <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                            <Button Name="btnGoback" Click="btnGoback_Click">
+                                <materialDesign:PackIcon Kind="ArrowLeftBoldCircleOutline" />
+                            </Button>
+                            <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Width="90"/>
+                        </StackPanel>
+                        <StackPanel  Orientation="Horizontal" Margin="10,0,10,0" Height="50">
+                            <Button Name="btnPrint" Content="打印" HorizontalAlignment="Right"   Width="90" Grid.Column="1" Click="btnPrint_Click"/>
+                            <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right"   Width="90" Grid.Column="1" Click="btnBackup_Click"/>
+                            <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right"  Width="90" Grid.Column="1" Click="btnRestore_Click"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <Button Name="btnClose" HorizontalAlignment="Right" Background="Red" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" ToolTip="MaterialDesignFloatingActionMiniDarkButton" Click="btnClose_Click">
+                        <materialDesign:PackIcon Kind="CloseOutline" Height="24" Width="24" />
+                    </Button>
+                </DockPanel>
+            </materialDesign:ColorZone>
             <!--<StackPanel Grid.Row="0" Orientation="Horizontal"  Height="50">
                 <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90"/>
                 <Button Name="btnPrint" Content="打印" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnPrint_Click"/>
-                --><!--<Button Name="btnReport" Content="报表" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>--><!--
+                -->
+            <!--<Button Name="btnReport" Content="报表" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>-->
+            <!--
                 <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnBackup_Click"/>
                 <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnRestore_Click"/>
             </StackPanel>-->
 
-            <StackPanel Grid.Row="1"  Orientation="Vertical" Width="Auto">
+            <StackPanel Grid.Row="1" MaxHeight="400" Orientation="Vertical" VerticalAlignment="Stretch" Width="Auto">
                 <Separator/>
                 <Canvas HorizontalAlignment="Stretch" Height="40">
                     <TextBox Name="txtFilter" HorizontalAlignment="Left" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyUp="txtFilter_KeyUp">
@@ -48,7 +71,7 @@
                     </TextBox>
                     <Button Name="AddMember" Height="30" HorizontalAlignment="Right" Content="添加新人" Canvas.Right="10" Click="AddMember_Click" Margin="10"></Button>
                 </Canvas>
-                <DataGrid Name="dgStaff"  MaxHeight="300" Width="Auto" HorizontalAlignment="Stretch" IsReadOnly="True" AutoGenerateColumns="False" MinHeight="200"  VerticalAlignment="Top"  Margin="10,10,10,10" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
+                <DataGrid Name="dgStaff" MaxHeight="330"  Width="Auto" HorizontalAlignment="Stretch" IsReadOnly="True" AutoGenerateColumns="False"  VerticalAlignment="Stretch"  Margin="10,10,10,10" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
                     <DataGrid.Columns>
                         <!--<DataGridTextColumn  Header="ID" Width="80" Binding="{Binding ID}" ClipboardContentBinding="{x:Null}"/>-->
                         <DataGridTextColumn  Header="姓名" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
@@ -72,7 +95,36 @@
                 <Separator/>
             <ScrollViewer Grid.Row="2" HorizontalAlignment="Stretch" MinWidth="220" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <TreeView Name="tvRelation" HorizontalAlignment="Stretch" SelectedItemChanged="tvRelation_SelectedItemChanged">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                         <materialDesign:PackIcon Kind="ArrowLeftBoldCircleOutline" />
+                                        <TextBlock Text="{Binding Header}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </HierarchicalDataTemplate.ItemTemplate>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                    <!--<TreeView.Resources>
+                        <Style TargetType="TreeViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TreeViewItem">
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox Margin="2" Name="checkBox1"/>
+                                            <Border Padding="2">
+                                                <ContentPresenter Name="PART_header" ContentSource="Header"/>
+                                            </Border>
+                                        </StackPanel>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TreeView.Resources>-->
                 </TreeView>
+                    
             </ScrollViewer>
             </StackPanel>
         </Grid>

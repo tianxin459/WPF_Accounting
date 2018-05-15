@@ -113,6 +113,8 @@ namespace Accounting
             comboSupervisor.DisplayMemberPath = "Name";
             comboSupervisor.SelectedValuePath = "ID";
 
+            this.tbTitle.Text = string.IsNullOrEmpty(this.Member.Name) ? "新建人员" : "编辑人员信息";
+
             
             this.txtIDNumber.SetBinding(TextBox.TextProperty, new Binding("IDNumber") { Source = this.Member, Mode = BindingMode.TwoWay });
             var nameBinding = new Binding("Name") { Source = this.Member, Mode = BindingMode.TwoWay };
@@ -536,5 +538,15 @@ namespace Accounting
         }
 
         #endregion
+
+        private void btnGoback_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

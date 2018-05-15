@@ -12,8 +12,7 @@
       xmlns:local="clr-namespace:Accounting"
       xmlns:validationRule="clr-namespace:Accounting.Util"
       mc:Ignorable="d" 
-                
-      d:DesignHeight="900" d:DesignWidth="500"
+      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
       Title="Page_MemberDetail" Loaded="BasePage_Loaded" Unloaded="BasePage_Unloaded">
 
     <Page.Resources>
@@ -25,197 +24,219 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <materialDesign:DialogHost>
-        <Grid Margin="16" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="300" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="300" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <!--<TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16 0 8 0">OS</TextBlock>-->
-            <ComboBox Name="comboSupervisor"  Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" MinWidth="160" SelectionChanged="comboSupervisor_SelectionChanged" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                <materialDesign:HintAssist.Hint>
-                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-                        <materialDesign:PackIcon Kind="Account" />
-                        <TextBlock>负责人</TextBlock>
-                    </StackPanel>
-                </materialDesign:HintAssist.Hint>
-            </ComboBox>
+    <materialDesign:DialogHost HorizontalAlignment="Stretch">
+        <StackPanel Margin="0,0,0,10">
+            <materialDesign:ColorZone Grid.ColumnSpan="10" Mode="PrimaryDark" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal">
 
-            <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*" />
-                        <ColumnDefinition Width="25*" />
-                        <ColumnDefinition Width="25*" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" >
-                        <!--<materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Margin="16 10 8 0" HorizontalAlignment="Center"/>-->
-                        <!--<Label Content="姓名"></Label>-->
-                        <TextBox Name="txtName" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                            <materialDesign:HintAssist.Hint>
-                                <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-                                    <materialDesign:PackIcon Kind="Account" />
-                                    <TextBlock>姓名</TextBlock>
-                                </StackPanel>
-                            </materialDesign:HintAssist.Hint>
-                        </TextBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Name="btnGoback" Click="btnGoback_Click">
+                                <materialDesign:PackIcon Kind="ArrowLeftBoldCircleOutline" />
+                            </Button>
+                            <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Width="90"/>
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" >
-                        <!--<Label Content="姓别"></Label>-->
-                        <ComboBox Name="comboGender"  materialDesign:HintAssist.Hint="姓别" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                            <!--<ComboBoxItem>男</ComboBoxItem>
+                    <TextBlock Name="tbTitle" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16 0 0 0">
+      新建人员
+                    </TextBlock>
+                    <Button Name="btnClose" HorizontalAlignment="Right" Background="Red" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" ToolTip="MaterialDesignFloatingActionMiniDarkButton" Click="btnClose_Click">
+                        <materialDesign:PackIcon Kind="CloseOutline" Height="24" Width="24" />
+                    </Button>
+                </DockPanel>
+            </materialDesign:ColorZone>
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="300" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                
+                <ComboBox Name="comboSupervisor"  Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" MinWidth="160" SelectionChanged="comboSupervisor_SelectionChanged" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="Account" />
+                            <TextBlock>负责人</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </ComboBox>
+
+                <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="25*" />
+                            <ColumnDefinition Width="25*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" >
+                            <!--<materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Margin="16 10 8 0" HorizontalAlignment="Center"/>-->
+                            <!--<Label Content="姓名"></Label>-->
+                            <TextBox Name="txtName" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                <materialDesign:HintAssist.Hint>
+                                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                                        <materialDesign:PackIcon Kind="Account" />
+                                        <TextBlock>姓名</TextBlock>
+                                    </StackPanel>
+                                </materialDesign:HintAssist.Hint>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" >
+                            <!--<Label Content="姓别"></Label>-->
+                            <ComboBox Name="comboGender"  materialDesign:HintAssist.Hint="姓别" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <!--<ComboBoxItem>男</ComboBoxItem>
                             <ComboBoxItem>女</ComboBoxItem>-->
-                        </ComboBox>
-                    </StackPanel>
+                            </ComboBox>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2">
-                        <!--<TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16 0 8 0">年龄</TextBlock>-->
-                        <TextBox Name="txtAge" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                            <materialDesign:HintAssist.Hint>
-                                <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-                                    <!--<materialDesign:PackIcon Kind="Account" />-->
-                                    <TextBlock>年龄</TextBlock>
-                                </StackPanel>
-                            </materialDesign:HintAssist.Hint>
-                        </TextBox>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2">
+                            <!--<TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="16 0 8 0">年龄</TextBlock>-->
+                            <TextBox Name="txtAge" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                <materialDesign:HintAssist.Hint>
+                                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                                        <!--<materialDesign:PackIcon Kind="Account" />-->
+                                        <TextBlock>年龄</TextBlock>
+                                    </StackPanel>
+                                </materialDesign:HintAssist.Hint>
+                            </TextBox>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
 
-            <TextBox Name="txtIDNumber" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                <materialDesign:HintAssist.Hint>
-                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-                        <materialDesign:PackIcon Kind="AccountCardDetails" />
-                        <TextBlock>身份证号</TextBlock>
-                    </StackPanel>
-                </materialDesign:HintAssist.Hint>
-            </TextBox>
+                <TextBox Name="txtIDNumber" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="AccountCardDetails" />
+                            <TextBlock>身份证号</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
 
-            <TextBox Name="txtPhone" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                <materialDesign:HintAssist.Hint>
-                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-                        <materialDesign:PackIcon Kind="Phone" />
-                        <TextBlock>电话号码</TextBlock>
-                    </StackPanel>
-                </materialDesign:HintAssist.Hint>
-            </TextBox>
+                <TextBox Name="txtPhone" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="Phone" />
+                            <TextBlock>电话号码</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="3">
-                <materialDesign:PackIcon VerticalAlignment="Center"  Kind="CurrencyCny" />
-                <TextBlock   VerticalAlignment="Center" >奖金</TextBlock>
-                <TextBlock  Name="txtBonus"    VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="3">
+                    <materialDesign:PackIcon VerticalAlignment="Center"  Kind="CurrencyCny" />
+                    <TextBlock   VerticalAlignment="Center" >奖金</TextBlock>
+                    <TextBlock  Name="txtBonus"    VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
 
-            <TextBox Name="txtMemberShipFee" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                <materialDesign:HintAssist.Hint>
-                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-                        <materialDesign:PackIcon Kind="CurrencyCny" />
-                        <TextBlock>会费缴纳</TextBlock>
-                    </StackPanel>
-                </materialDesign:HintAssist.Hint>
-            </TextBox>
+                <TextBox Name="txtMemberShipFee" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="CurrencyCny" />
+                            <TextBlock>会费缴纳</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
 
-            <DatePicker Name="txtJoinDate" Grid.Row="4" Grid.Column="3" Width="Auto" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="0,16,0,0" SelectedDateFormat="Short">
-                <materialDesign:HintAssist.Hint>
-                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-                        <materialDesign:PackIcon Kind="Timetable" />
-                        <TextBlock>加入日期</TextBlock>
-                    </StackPanel>
-                </materialDesign:HintAssist.Hint>
-            </DatePicker>
+                <DatePicker Name="txtJoinDate" Grid.Row="4" Grid.Column="3" Width="Auto" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="0,16,0,0" SelectedDateFormat="Short">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="Timetable" />
+                            <TextBlock>加入日期</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </DatePicker>
 
-            <TextBox Name="txtBank" Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                <materialDesign:HintAssist.Hint>
-                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-                        <materialDesign:PackIcon Kind="Bank" />
-                        <TextBlock>开户银行</TextBlock>
-                    </StackPanel>
-                </materialDesign:HintAssist.Hint>
-            </TextBox>
-            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch"  Grid.Row="5" Grid.Column="1">
+                <TextBox Name="txtBank" Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Stretch" MinWidth="160" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="Bank" />
+                            <TextBlock>开户银行</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch"  Grid.Row="5" Grid.Column="1">
                 <Label Content="开户行"></Label>
                 <TextBox Name="txtBank" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
             </StackPanel>-->
-            <TextBox Name="txtAccount" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                <materialDesign:HintAssist.Hint>
-                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-                        <materialDesign:PackIcon Kind="AccountOutline" />
-                        <TextBlock>银行账号</TextBlock>
-                    </StackPanel>
-                </materialDesign:HintAssist.Hint>
-            </TextBox>
-            <!--<StackPanel Name="panelAccount" Orientation="Horizontal" HorizontalAlignment="Stretch"  Grid.Row="5" Grid.Column="3">
+                <TextBox Name="txtAccount" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="AccountOutline" />
+                            <TextBlock>银行账号</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+                <!--<StackPanel Name="panelAccount" Orientation="Horizontal" HorizontalAlignment="Stretch"  Grid.Row="5" Grid.Column="3">
                 <Label Content="银行账号"></Label>
                 <TextBox Name="txtAccount" HorizontalAlignment="Stretch" MinWidth="160"></TextBox>
             </StackPanel>-->
 
 
-            <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Margin="20">
-                <StackPanel Name="panelSubordinate" Orientation="Vertical" HorizontalAlignment="Stretch">
-                </StackPanel>
+                <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Margin="20">
+                    <StackPanel Name="panelSubordinate" Orientation="Vertical" HorizontalAlignment="Stretch">
+                    </StackPanel>
 
-                <Canvas HorizontalAlignment="Right" Height="50">
-                    <materialDesign:PopupBox Name="btnPopup" Grid.Row="1"
+                    <Canvas HorizontalAlignment="Right" Height="50">
+                        <materialDesign:PopupBox Name="btnPopup" Grid.Row="1"
                                      Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
                                      PlacementMode="LeftAndAlignMiddles"
                                      UnfurlOrientation="Horizontal"
                                      ToolTip="Manage items"
                                      Margin="0 0 10 10"
                                      HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                        <StackPanel Orientation="Horizontal">
-                            <Button ToolTip="添加下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                            <StackPanel Orientation="Horizontal">
+                                <Button ToolTip="添加下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                              Click="AddSubButton_Click_1">
-                                <materialDesign:PackIcon Kind="AccountPlus" />
-                            </Button>
-                            <Button ToolTip="添加新下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                                    <materialDesign:PackIcon Kind="AccountPlus" />
+                                </Button>
+                                <Button ToolTip="添加新下属"  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                              Click="AddNewSubButton_Click_1" Canvas.Right="10" Loaded="Button_Loaded">
-                                <materialDesign:PackIcon Kind="AccountPlusOutline" />
-                            </Button>
-                        </StackPanel>
-                    </materialDesign:PopupBox>
-                </Canvas>
-            </StackPanel>
+                                    <materialDesign:PackIcon Kind="AccountPlusOutline" />
+                                </Button>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </Canvas>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Right" Grid.Row="7" Grid.Column="3">
-                <Button x:Name="button"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="保存更改" d:LayoutOverrides="Height" Click="button_Click" Margin="5,0">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="ContentSave" />
-                        <TextBlock Margin="5,0,0,0">保存</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="btnDelete"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="删除" d:LayoutOverrides="Height" Click="btnDelete_Click" Margin="5,0">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="AccountRemove" />
-                        <TextBlock Margin="5,0,0,0">删除</TextBlock>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-            <!-- ///////////////// ////////////////////////////////////////////////  -->
-            
-    </Grid>
+                <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Right" Grid.Row="7" Grid.Column="3">
+                    <Button x:Name="button"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="保存更改" d:LayoutOverrides="Height" Click="button_Click" Margin="5,0">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ContentSave" />
+                            <TextBlock Margin="5,0,0,0">保存</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnDelete"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="删除" d:LayoutOverrides="Height" Click="btnDelete_Click" Margin="5,0">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountRemove" />
+                            <TextBlock Margin="5,0,0,0">删除</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <!-- ///////////////// ////////////////////////////////////////////////  -->
+
+            </Grid>
+        </StackPanel>
     </materialDesign:DialogHost>
 </local:BasePage>
