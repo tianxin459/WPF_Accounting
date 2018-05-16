@@ -100,7 +100,7 @@ namespace Accounting
             this.txtFilter.DataContext = FilterString;
             this.txtFilter.SetBinding(TextBox.TextProperty, new Binding("FilterString") { Source = this, Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
 
-
+            this.NavigationService.RemoveBackEntry();
         }
 
 
@@ -113,8 +113,8 @@ namespace Accounting
             return App.Members;
         }
 
-        
-        public TreeViewItem GenerateTree(Member m)
+        #region treeview build MemberNote
+        public MemberNote GenerateTree(Member m)
         {
 
             var note = BuildChildNodes(m);
@@ -123,7 +123,7 @@ namespace Accounting
         }
 
 
-        public TreeViewItem BuildParentNodes(Member m, TreeViewItem note)
+        public MemberNote BuildParentNodes(Member m, MemberNote note)
         {
 
             if (m.Parent == null)
@@ -143,17 +143,18 @@ namespace Accounting
 
             var parentMember = App.Members.Where(x => x.ID == parentMemberRef.ID).FirstOrDefault();
 
-            var parentNote = new TreeViewItem()
+            var parentNote = new MemberNote()
             {
                 //ID = parentMember.ID,
-                //Name = parentMember.ID,
-                Tag = new TreeViewTagObj(parentMember.ID, parentMember.calText.ToString()),
-                Header = $"{parentMember.Name} 奖金：{parentMember.Bonus}",
-                IsExpanded = true
+                Name = parentMember.Name,
+                ID = parentMember.ID,
+                Remark = $"{parentMember.Name} 奖金：{parentMember.Bonus}",
+                ColorStr = "lavender"
+                //IsExpanded = true
             };
 
             var childNote = note;
-            parentNote.Items.Add(childNote);
+            parentNote.Children.Add(childNote);
             //parentNote.Children.Add(childNote);
 
             if (parentNote == null)
@@ -162,33 +163,112 @@ namespace Accounting
             return BuildParentNodes(parentMember, parentNote);
         }
 
-        public TreeViewItem BuildChildNodes(Member m)
+        public MemberNote BuildChildNodes(Member m)
         {
-            var note = new TreeViewItem()
+            var note = new MemberNote()
             {
                 //ID = m.ID,
-                //Name = m.ID,
-                Tag = new TreeViewTagObj(m.ID, m.calText.ToString()),
-                Header = m.Bonus==0? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus} --"+m.calText,
-                
-                IsExpanded = true
+                Name = m.Name,
+                ID = m.ID,
+                Remark = m.Bonus == 0 ? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus} --" + m.calText,
+
+                //IsExpanded = true
             };
 
             foreach (var child in m.Children)
             {
                 var childNote = App.Members.Where(x => x.ID == child.ID).FirstOrDefault<Member>();
-                if(childNote==null)
+                if (childNote == null)
                 {
                     child.ID = "";
                     continue;
                 }
-                note.Items.Add(BuildChildNodes(childNote));
+                note.Children.Add(BuildChildNodes(childNote));
                 //note.Items.Add(BuildChildNodes(childNote));
             }
             m.Children = m.Children.Where(x => !string.IsNullOrEmpty(x.ID)).ToList();
 
             return note;
         }
+        #endregion
+
+        #region treeview build TreeViewItem
+        //public TreeViewItem GenerateTree(Member m)
+        //{
+
+        //    var note = BuildChildNodes(m);
+        //    note = BuildParentNodes(m, note);
+        //    return note;
+        //}
+
+
+        //public TreeViewItem BuildParentNodes(Member m, TreeViewItem note)
+        //{
+
+        //    if (m.Parent == null)
+        //    {
+        //        return note;
+        //    }
+
+        //    //var parentMember = App.Members
+        //    //    .Where(x => x.ID == m.Supervisor.ID && x.Name == m.Supervisor.Name)
+        //    //    .FirstOrDefault<Member>();
+        //    var parentMemberRef = App.Members
+        //          .Where(x => x.Children.Exists(y => y.ID == m.ID))
+        //          .FirstOrDefault<Member>();
+        //    if (parentMemberRef == null)
+        //        return null;
+        //    //?.Subordinate.Where(x=>x.ID==m.ID).FirstOrDefault();
+
+        //    var parentMember = App.Members.Where(x => x.ID == parentMemberRef.ID).FirstOrDefault();
+
+        //    var parentNote = new TreeViewItem()
+        //    {
+        //        //ID = parentMember.ID,
+        //        //Name = parentMember.ID,
+        //        Tag = new TreeViewTagObj(parentMember.ID, parentMember.calText.ToString()),
+        //        Header = $"{parentMember.Name} 奖金：{parentMember.Bonus}",
+        //        IsExpanded = true
+        //    };
+
+        //    var childNote = note;
+        //    parentNote.Items.Add(childNote);
+        //    //parentNote.Children.Add(childNote);
+
+        //    if (parentNote == null)
+        //        return parentNote;
+
+        //    return BuildParentNodes(parentMember, parentNote);
+        //}
+
+        //public TreeViewItem BuildChildNodes(Member m)
+        //{
+        //    var note = new TreeViewItem()
+        //    {
+        //        //ID = m.ID,
+        //        //Name = m.ID,
+        //        Tag = new TreeViewTagObj(m.ID, m.calText.ToString()),
+        //        Header = m.Bonus==0? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus} --"+m.calText,
+                
+        //        IsExpanded = true
+        //    };
+
+        //    foreach (var child in m.Children)
+        //    {
+        //        var childNote = App.Members.Where(x => x.ID == child.ID).FirstOrDefault<Member>();
+        //        if(childNote==null)
+        //        {
+        //            child.ID = "";
+        //            continue;
+        //        }
+        //        note.Items.Add(BuildChildNodes(childNote));
+        //        //note.Items.Add(BuildChildNodes(childNote));
+        //    }
+        //    m.Children = m.Children.Where(x => !string.IsNullOrEmpty(x.ID)).ToList();
+
+        //    return note;
+        //}
+        #endregion
 
 
         private void dgStaff_MouseDown(object sender, MouseButtonEventArgs e)
@@ -213,8 +293,15 @@ namespace Accounting
             DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
             if (row == null) return;
             Member m = row.Item as Member;
-            this.tvRelation.Items.Clear();
-            this.tvRelation.Items.Add(GenerateTree(m));
+
+
+            List<MemberNote> treeSource = new List<MemberNote>();
+            treeSource.Add(GenerateTree(m));
+            //List<TreeViewItem> treeSource = new List<TreeViewItem>();
+            //treeSource.Add(GenerateTree(m));
+            this.tvRelation.ItemsSource = treeSource;
+            //this.tvRelation.Items.Clear();
+            //this.tvRelation.Items.Add(GenerateTree(m));
         }
 
         private void AddMember_Click(object sender, RoutedEventArgs e)

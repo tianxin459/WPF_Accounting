@@ -548,5 +548,10 @@ namespace Accounting
         {
             System.Windows.Application.Current.Shutdown();
         }
+
+        private void btnMain_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("pack://application:,,,/Page_Main.xaml"));
+        }
     }
 }

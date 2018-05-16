@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Accounting"
+      xmlns:localModel="clr-namespace:Accounting.Model"
       xmlns:localControl="clr-namespace:Accounting.Contorl"
       mc:Ignorable="d" 
       Title="Page_Main" Loaded="Page_Loaded" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -15,6 +16,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -56,22 +59,28 @@
                 <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnBackup_Click"/>
                 <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="btnRestore_Click"/>
             </StackPanel>-->
-
-            <StackPanel Grid.Row="1" MaxHeight="400" Orientation="Vertical" VerticalAlignment="Stretch" Width="Auto">
-                <Separator/>
-                <Canvas HorizontalAlignment="Stretch" Height="40">
-                    <TextBox Name="txtFilter" HorizontalAlignment="Left" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyUp="txtFilter_KeyUp">
-                        <!--<TextBox Name="txtFilter" Text="{Binding ., UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" HorizontalAlignment="Left" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyUp="txtFilter_KeyUp">-->
-                        <materialDesign:HintAssist.Hint>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="-2 0 0 0">
-                                <materialDesign:PackIcon Kind="SearchWeb" />
-                                <TextBlock >姓名检索</TextBlock>
-                            </StackPanel>
-                        </materialDesign:HintAssist.Hint>
-                    </TextBox>
-                    <Button Name="AddMember" Height="30" HorizontalAlignment="Right" Content="添加新人" Canvas.Right="10" Click="AddMember_Click" Margin="10"></Button>
-                </Canvas>
-                <DataGrid Name="dgStaff" MaxHeight="330"  Width="Auto" HorizontalAlignment="Stretch" IsReadOnly="True" AutoGenerateColumns="False"  VerticalAlignment="Stretch"  Margin="10,10,10,10" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
+            <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="8.5*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" MaxHeight="400" Orientation="Vertical" VerticalAlignment="Stretch" Width="Auto">
+                    <Separator/>
+                    <Canvas HorizontalAlignment="Stretch" Height="40" Margin="10,0,10,0">
+                        <TextBox Name="txtFilter" HorizontalAlignment="Left" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyUp="txtFilter_KeyUp">
+                            <!--<TextBox Name="txtFilter" Text="{Binding ., UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" HorizontalAlignment="Left" MinWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyUp="txtFilter_KeyUp">-->
+                            <materialDesign:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="-2 0 0 0">
+                                    <materialDesign:PackIcon Kind="SearchWeb" />
+                                    <TextBlock >姓名检索</TextBlock>
+                                </StackPanel>
+                            </materialDesign:HintAssist.Hint>
+                        </TextBox>
+                        <Button Name="AddMember" Height="30" HorizontalAlignment="Right" Content="添加新人" Canvas.Right="10" Click="AddMember_Click" Margin="10"></Button>
+                    </Canvas>
+                </StackPanel>
+                <DataGrid Grid.Row="1" Name="dgStaff" MaxHeight="330"  Width="Auto" HorizontalAlignment="Stretch" IsReadOnly="True" AutoGenerateColumns="False"  VerticalAlignment="Stretch"  Margin="10,0,10,0" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
                     <DataGrid.Columns>
                         <!--<DataGridTextColumn  Header="ID" Width="80" Binding="{Binding ID}" ClipboardContentBinding="{x:Null}"/>-->
                         <DataGridTextColumn  Header="姓名" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
@@ -87,46 +96,44 @@
                         <DataGridTextColumn  Header="主管" Width="80" Binding="{Binding Parent.Name}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn  Header="下属1" Width="80" Binding="{Binding Children[0].Name}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn  Header="下属2" Width="80" Binding="{Binding Children[1].Name}" ClipboardContentBinding="{x:Null}"/>
+                        <DataGridTextColumn  Header="加入日期" Width="80" Binding="{Binding JoinDate}" ClipboardContentBinding="{x:Null}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-            </StackPanel>
-            <!---->
-        <StackPanel Grid.Row="2" Orientation="Vertical">
-                <Separator/>
-            <ScrollViewer Grid.Row="2" HorizontalAlignment="Stretch" MinWidth="220" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <TreeView Name="tvRelation" HorizontalAlignment="Stretch" SelectedItemChanged="tvRelation_SelectedItemChanged">
-                    <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate>
-                            <HierarchicalDataTemplate.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                         <materialDesign:PackIcon Kind="ArrowLeftBoldCircleOutline" />
-                                        <TextBlock Text="{Binding Header}"></TextBlock>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </HierarchicalDataTemplate.ItemTemplate>
-                        </HierarchicalDataTemplate>
-                    </TreeView.ItemTemplate>
-                    <!--<TreeView.Resources>
-                        <Style TargetType="TreeViewItem">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="TreeViewItem">
-                                        <StackPanel Orientation="Horizontal">
-                                            <CheckBox Margin="2" Name="checkBox1"/>
-                                            <Border Padding="2">
-                                                <ContentPresenter Name="PART_header" ContentSource="Header"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TreeView.Resources>-->
-                </TreeView>
-                    
-            </ScrollViewer>
-            </StackPanel>
+                <Separator Grid.Row="2"></Separator>
+            </Grid>
+
+       <TreeView Grid.Row="2" Name="tvRelation" HorizontalAlignment="Stretch" SelectedItemChanged="tvRelation_SelectedItemChanged" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type localModel:MemberNote}"
+                                                      ItemsSource="{Binding Children}">
+                        <materialDesign:Flipper HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="cardFliper" Style="{StaticResource MaterialDesignCardFlipper}" >
+                            <materialDesign:Flipper.FrontContent>
+                                <Button
+                              Style="{StaticResource MaterialDesignFlatButton}"
+                              Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                Content="{Binding Name}"
+                                    Background="{Binding ColorStr}"
+                              Margin="8"
+                              Width="192">
+                                </Button>
+                            </materialDesign:Flipper.FrontContent>
+                            <materialDesign:Flipper.BackContent>
+                                <Button
+                              Style="{StaticResource MaterialDesignFlatButton}"
+                              Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                Content="{Binding Remark}"
+                                    Background="{Binding ColorStr}"
+                              Margin="8"
+                              Width="Auto">
+                                </Button>
+                            </materialDesign:Flipper.BackContent>
+                        </materialDesign:Flipper>
+                    </HierarchicalDataTemplate>
+            <Style TargetType="TreeViewItem">
+                <Setter Property="IsExpanded" Value="True"/>
+            </Style>
+            </TreeView.Resources>
+            </TreeView>
         </Grid>
     </materialDesign:DialogHost>
 </local:BasePage>

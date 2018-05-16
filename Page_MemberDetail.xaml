@@ -34,7 +34,7 @@
                             <Button Name="btnGoback" Click="btnGoback_Click">
                                 <materialDesign:PackIcon Kind="ArrowLeftBoldCircleOutline" />
                             </Button>
-                            <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Width="90"/>
+                            <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Width="90" Click="btnMain_Click"/>
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Name="tbTitle" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16 0 0 0">

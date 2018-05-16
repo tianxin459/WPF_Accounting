@@ -103,7 +103,7 @@ namespace Accounting
         private void NavigationWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth - 60;
-            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 60;
+            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 100;
             this.WindowState = System.Windows.WindowState.Normal;
             //this.WindowStyle = System.Windows.WindowStyle.None;
             //this.ResizeMode = System.Windows.ResizeMode.NoResize;
@@ -111,7 +111,7 @@ namespace Accounting
             //this.Topmost = true;
 
             this.Left = 30;
-            this.Top = 30;
+            this.Top = 50;
         }
     }
 }
