@@ -80,3 +80,11 @@ C:\Git\Accounting\Accounting\bin\Debug\App.init
 C:\Git\Accounting\Accounting\obj\Debug\Login.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Login.baml
 C:\Git\Accounting\Accounting\bin\Debug\Config.json
+D:\Git\WPF_Accounting\bin\Debug\App.init
+D:\Git\WPF_Accounting\bin\Debug\Config.json
+D:\Git\WPF_Accounting\obj\Debug\Contorl\HeaderMenu.g.cs
+D:\Git\WPF_Accounting\obj\Debug\Contorl\UserControl1.g.cs
+D:\Git\WPF_Accounting\obj\Debug\Login.g.cs
+D:\Git\WPF_Accounting\obj\Debug\Contorl\HeaderMenu.baml
+D:\Git\WPF_Accounting\obj\Debug\Contorl\UserControl1.baml
+D:\Git\WPF_Accounting\obj\Debug\Login.baml

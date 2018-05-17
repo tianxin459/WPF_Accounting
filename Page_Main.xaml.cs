@@ -135,8 +135,7 @@ namespace Accounting
         {
 
             var note = BuildChildNodes(m);
-            note.ColorStr = "Bisque";
-            note.FontColor = "white";
+            note.ColorStr = "BlueViolet";
             note = BuildParentNodes(m, note);
             return note;
         }

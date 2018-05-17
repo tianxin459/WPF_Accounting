@@ -131,13 +131,12 @@
                     <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type localModel:MemberNote}"
                                                       ItemsSource="{Binding Children}">
-                        <materialDesign:Flipper HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="cardFliper" Style="{StaticResource MaterialDesignCardFlipper}" >
+                        <materialDesign:Flipper HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{Binding ColorStr}" Name="cardFliper" Style="{StaticResource MaterialDesignCardFlipper}" >
                             <materialDesign:Flipper.FrontContent>
                                 <Button
                               Style="{StaticResource MaterialDesignFlatButton}"
                               Command="{x:Static materialDesign:Flipper.FlipCommand}"
                                 Content="{Binding Name}"
-                                    Background="{Binding ColorStr}"
                               Margin="8"
                               Width="192">
                                 </Button>
@@ -147,7 +146,6 @@
                               Style="{StaticResource MaterialDesignFlatButton}"
                               Command="{x:Static materialDesign:Flipper.FlipCommand}"
                                 Content="{Binding Remark}"
-                                    Background="{Binding ColorStr}"
                               Margin="8"
                               Width="Auto">
                                 </Button>
