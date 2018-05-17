@@ -79,3 +79,4 @@ C:\Git\Accounting\Accounting\obj\Debug\Contorl\HeaderMenu.baml
 C:\Git\Accounting\Accounting\bin\Debug\App.init
 C:\Git\Accounting\Accounting\obj\Debug\Login.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Login.baml
+C:\Git\Accounting\Accounting\bin\Debug\Config.json

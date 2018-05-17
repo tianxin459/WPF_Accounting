@@ -9,5 +9,6 @@ namespace Accounting.Model
     public class AppInit
     {
         public string Password{get;set;}
+        public DateTime CheckActivateDate { get; set; }
     }
 }

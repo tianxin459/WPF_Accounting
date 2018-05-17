@@ -1,4 +1,5 @@
 ﻿using Accounting.Model;
+using Accounting.Util;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Newtonsoft.Json;
 
 namespace Accounting
 {
@@ -27,7 +29,15 @@ namespace Accounting
     {
         public Window1()
         {
+            LoadConfig();
+
             InitializeComponent();
+        }
+
+        private void LoadConfig() {
+            var configJson = DataStorage.LoadAppData("Config.json");
+            List<decimal> d = JsonConvert.DeserializeObject<List<decimal>>(configJson);
+            Member.BonusBase = d;
         }
 
         //protected override void onn

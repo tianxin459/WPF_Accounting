@@ -16,6 +16,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Net;
+using System.Net.Http;
 
 namespace Accounting
 {
@@ -24,9 +26,34 @@ namespace Accounting
     /// </summary>
     public partial class Login : Window
     {
+        AppInit appInit = new AppInit();
         public Login()
         {
+
+            var jsonData = DataStorage.LoadAppData(DataStorage.AppFileName);
+            appInit = JsonConvert.DeserializeObject<AppInit>(jsonData);
+
             InitializeComponent();
+
+            //check authorization
+            new Task(()=> {
+                var currentDate = DateTime.Now;
+                var checkDate = appInit.CheckActivateDate;
+                if (currentDate >= checkDate)
+                {
+                    if (IsAppBlock())
+                    {
+                        Environment.Exit(0);
+                        //System.Windows.Application.Current.Shutdown();
+                    }
+                    else
+                    {
+                        this.appInit.CheckActivateDate = DateTime.Parse("12/12/2099");
+                        var appText = JsonConvert.SerializeObject(appInit);
+                        DataStorage.ExportText(DataStorage.AppFileName, appText);
+                    }
+                }
+            }).Start();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -51,14 +78,32 @@ namespace Accounting
             }
         }
 
+        private bool IsAppBlock()
+        {
+            try
+            {
+                using (var c = new HttpClient())
+                {
+                    var url = "https://raw.githubusercontent.com/tianxin459/GeneralAPI/master/Accounting.txt";
+                    var response = c.GetAsync(url);
+                    var s = response.Result.Content.ReadAsStringAsync();
+                    if (s.Result.Trim() == "1")
+                        return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
+        }
+
         private bool ValidatePassword(string pwd)
         {
-            var jsonData = DataStorage.LoadAppData(DataStorage.AppFileName);
-            var objApp = JsonConvert.DeserializeObject<AppInit>(jsonData);
             SHA1 sha1 = SHA1.Create();
             byte[] hashData = sha1.ComputeHash(Encoding.Default.GetBytes(pwd));
             var pwdHash = BitConverter.ToString(hashData).Replace("-", "");
-            return (pwdHash == objApp.Password);
+            return (pwdHash == appInit.Password);
         }
 
         private void btnChangePassword_Click(object sender, RoutedEventArgs e)
@@ -73,13 +118,11 @@ namespace Accounting
                         this.txtMsg2.Text = "密码不一致";
                         return;
                     }
-                    var jsonData = DataStorage.LoadAppData(DataStorage.AppFileName);
-                    var objApp = JsonConvert.DeserializeObject<AppInit>(jsonData);
                     SHA1 sha1 = SHA1.Create();
                     byte[] hashData = sha1.ComputeHash(Encoding.Default.GetBytes(this.txtNewPassword1.Password));
                     var pwdHash = BitConverter.ToString(hashData).Replace("-", "");
-                    objApp.Password = pwdHash;
-                    var appText = JsonConvert.SerializeObject(objApp);
+                    appInit.Password = pwdHash;
+                    var appText = JsonConvert.SerializeObject(appInit);
                     DataStorage.ExportText(DataStorage.AppFileName, appText);
                 }
             }
