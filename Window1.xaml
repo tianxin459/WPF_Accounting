@@ -13,7 +13,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="MainWindow" 
         mc:Ignorable="d"
-        WindowStyle="ToolWindow"
+        WindowStyle="None"
         ShowsNavigationUI="False"
         Source="Page_Main.xaml" Navigating="NavigationWindow_Navigating" Navigated="NavigationWindow_Navigated" Loaded="NavigationWindow_Loaded">
 

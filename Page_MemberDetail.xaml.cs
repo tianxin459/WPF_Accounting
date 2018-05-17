@@ -553,5 +553,10 @@ namespace Accounting
         {
             this.NavigationService.Navigate(new Uri("pack://application:,,,/Page_Main.xaml"));
         }
+
+        private void ColorZone_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            (this.Parent as Window).DragMove();
+        }
     }
 }

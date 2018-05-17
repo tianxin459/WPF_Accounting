@@ -367,5 +367,10 @@ namespace Accounting
         {
             System.Windows.Application.Current.Shutdown();
         }
+
+        private void ColorZone_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            (this.Parent as Window).DragMove();
+        }
     }
 }
