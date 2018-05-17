@@ -106,7 +106,7 @@ namespace Accounting
 
         private void buildControlBinding()
         {
-            this.comboGender.ItemsSource = Enum.GetValues(typeof(Gender));
+            //this.comboGender.ItemsSource = Enum.GetValues(typeof(Gender));
             this.comboSupervisor.IsReadOnly = true;
 
             this.comboSupervisor.ItemsSource = ItemsSupervisor;

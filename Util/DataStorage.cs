@@ -178,6 +178,8 @@ namespace Accounting.Util
                 var jsonData = JsonConvert.SerializeObject(data);
                 byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
                 fs.Write(buffer, 0, buffer.Length);
+                fs.Flush();
+                fs.Close();
             }
             catch (Exception e)
             {
@@ -205,6 +207,7 @@ namespace Accounting.Util
                 byte[] buffer = Encoding.UTF8.GetBytes(text);
                 fs.Write(buffer, 0, buffer.Length);
                 fs.Flush();
+                fs.Close();
             }
             catch (Exception e)
             {

@@ -100,6 +100,7 @@
     <Compile Include="Contorl\UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\GenderConverter.cs" />
     <Compile Include="Dialog\DialogComfirm.xaml.cs">
       <DependentUpon>DialogComfirm.xaml</DependentUpon>
     </Compile>

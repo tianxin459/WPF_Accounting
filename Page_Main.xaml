@@ -6,6 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Accounting"
       xmlns:localModel="clr-namespace:Accounting.Model"
+      xmlns:localConverter="clr-namespace:Accounting.Converter"
       xmlns:localControl="clr-namespace:Accounting.Contorl"
       mc:Ignorable="d" 
       Title="Page_Main" Loaded="Page_Loaded" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -81,12 +82,17 @@
                     </Canvas>
                 </StackPanel>
                 <DataGrid Grid.Row="1" Name="dgStaff" MaxHeight="330"  Width="Auto" HorizontalAlignment="Stretch" IsReadOnly="True" AutoGenerateColumns="False"  VerticalAlignment="Stretch"  Margin="10,0,10,0" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDown="dgStaff_MouseDown" MouseDoubleClick="dgStaff_MouseDoubleClick" SelectionChanged="dgStaff_SelectionChanged">
+                    <DataGrid.Resources>
+                        <localConverter:GenderConverter x:Key="genderConverter"></localConverter:GenderConverter>
+                    </DataGrid.Resources>
                     <DataGrid.Columns>
                         <!--<DataGridTextColumn  Header="ID" Width="80" Binding="{Binding ID}" ClipboardContentBinding="{x:Null}"/>-->
                         <DataGridTextColumn  Header="姓名" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
                         <!--<DataGridTextColumn  Header="Age" Width="10" Binding="{Binding Age}" ClipboardContentBinding="{x:Null}"/>-->
                         <DataGridTextColumn  Header="身份证号" Width="200" Binding="{Binding IDNumber}" ClipboardContentBinding="{x:Null}"/>
-                        <DataGridTextColumn  Header="性别" Width="80" Binding="{Binding Gender}" ClipboardContentBinding="{x:Null}"/>
+                        <DataGridTextColumn  Header="性别" Width="80" Binding="{Binding Gender, Converter={StaticResource genderConverter}}" ClipboardContentBinding="{x:Null}"/>
+                        <!--<DataGridComboBoxColumn  Header="性别2" Width="80" SelectedValueBinding="{Binding Gender}" SelectedValuePath="Tag" ClipboardContentBinding="{x:Null}">
+                        </DataGridComboBoxColumn>-->
                         <!--<DataGridComboBoxColumn ClipboardContentBinding="{x:Null}" SelectedValueBinding="{x:Null}" SelectedItemBinding="{x:Null}" TextBinding="{x:Null}"/>-->
                         <DataGridTextColumn  Header="银行" Width="100" Binding="{Binding Bank}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn  Header="账号" Width="200" Binding="{Binding Account}" ClipboardContentBinding="{x:Null}"/>

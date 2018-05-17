@@ -26,7 +26,7 @@
     </Page.Resources>
     <materialDesign:DialogHost HorizontalAlignment="Stretch">
         <StackPanel Margin="0,0,0,10">
-            <materialDesign:ColorZone Grid.ColumnSpan="10" Mode="PrimaryDark" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+            <materialDesign:ColorZone Grid.ColumnSpan="10" Mode="PrimaryDark" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" MouseDown="ColorZone_MouseDown">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal">
 
@@ -106,9 +106,10 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" >
                             <!--<Label Content="姓别"></Label>-->
-                            <ComboBox Name="comboGender"  materialDesign:HintAssist.Hint="姓别" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                <!--<ComboBoxItem>男</ComboBoxItem>
-                            <ComboBoxItem>女</ComboBoxItem>-->
+                            <ComboBox Name="comboGender"  materialDesign:HintAssist.Hint="姓别" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedValuePath="Tag">
+                                <ComboBoxItem Content="" Tag="None"></ComboBoxItem>
+                                <ComboBoxItem Content="男" Tag="Male"></ComboBoxItem>
+                                <ComboBoxItem Content="女" Tag="Female"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
 

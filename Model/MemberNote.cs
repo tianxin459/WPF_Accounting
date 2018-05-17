@@ -13,6 +13,7 @@ namespace Accounting.Model
         public string Name { get; set; }
         public string Remark { get; set; }
         public string ColorStr { get; set; } = "White";
+        public string FontColor { get; set; } = "DarkMagena";
 
         public List<MemberNote> Children { get; set; } = new List<MemberNote>();
     }

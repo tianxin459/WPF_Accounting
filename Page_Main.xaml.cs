@@ -103,13 +103,30 @@ namespace Accounting
             this.NavigationService.RemoveBackEntry();
         }
 
+        public void GenerateTestData()
+        {
+            for (int i = 1; i < 120; i++)
+            {
+                App.Members.Add(new Member() {
+                    ID = i.ToString(),
+                    Name = "Name" + i,
+                    Account = "Account" + i,
+                    Phone = "123"+i,
+                });
+            }
+        }
+
 
         public List<Member> LoadData()
         {
             App.Members = DataStorage.LoadData();
 
             App.Members.ForEach(x => x.CalcuateBonusInMemberTree(App.Members));
-            
+
+#if DEBUG
+            //GenerateTestData();
+#endif
+
             return App.Members;
         }
 
@@ -118,6 +135,8 @@ namespace Accounting
         {
 
             var note = BuildChildNodes(m);
+            note.ColorStr = "Bisque";
+            note.FontColor = "white";
             note = BuildParentNodes(m, note);
             return note;
         }
@@ -149,7 +168,8 @@ namespace Accounting
                 Name = parentMember.Name,
                 ID = parentMember.ID,
                 Remark = $"{parentMember.Name} 奖金：{parentMember.Bonus}",
-                ColorStr = "lavender"
+                //ColorStr = "lavender",
+                //FontColor = "DarkMagena"
                 //IsExpanded = true
             };
 
@@ -171,7 +191,6 @@ namespace Accounting
                 Name = m.Name,
                 ID = m.ID,
                 Remark = m.Bonus == 0 ? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus} --" + m.calText,
-
                 //IsExpanded = true
             };
 
