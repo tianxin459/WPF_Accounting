@@ -390,5 +390,23 @@ namespace Accounting
         {
             (this.Parent as Window).DragMove();
         }
+
+        private void btnBonusConfig_Click(object sender, RoutedEventArgs e)
+        {
+
+            var dialogBonusConfig = new BonusConfigDialog();
+            //dialogSuccess.ComfirmButton.Click += DialogComfirmButton_Click;
+            dialogBonusConfig.SaveButton.Click += BonusDialogSaveButton_Click;
+            DialogHost.Show(dialogBonusConfig);
+        }
+
+        private void BonusDialogSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Members.ForEach(x => x.CalcuateBonusInMemberTree(App.Members));
+
+            DataGridCollection = CollectionViewSource.GetDefaultView(this.Members);
+            DataGridCollection.Filter = new Predicate<object>(Filter);
+            this.dgStaff.ItemsSource = DataGridCollection;
+        }
     }
 }

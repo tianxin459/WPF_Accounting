@@ -131,5 +131,35 @@ namespace Accounting
                 throw ex;
             }
         }
+
+        private void btnChangePasswordCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.cardFliper.IsFlipped = !this.cardFliper.IsFlipped;
+        }
+
+        private void cardFliper_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                try
+                {
+                    if (ValidatePassword(this.txtPassword.Password.Trim()))
+                    {
+                        this.Hide();
+                        var window = new Window1();
+                        window.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        this.txtMsg.Text = "密码错误";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

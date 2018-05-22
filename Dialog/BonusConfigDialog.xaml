@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Accounting.Dialog.BonusConfigDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Accounting.Dialog"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="500" Loaded="UserControl_Loaded">
+    <Grid Width="600" Height="500">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox Name="txtBonusConfig" Grid.Row="1"></TextBox>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Name="btnSave" Content="保存" Click="btnSave_Click" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></Button>
+            <Button Name="btnCancel" Content="取消" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></Button>
+        </StackPanel>
+    </Grid>
+
+</UserControl>

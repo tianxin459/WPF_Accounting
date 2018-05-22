@@ -41,6 +41,8 @@ namespace Accounting.Model
 
         public decimal CalcuateBonusInMemberTree(List<Member> memberTree)
         {
+            this.calText = new StringBuilder();
+
             decimal bonus = 0;
             List<CalItem> sumChildren = new List<CalItem>();
             var m = memberTree

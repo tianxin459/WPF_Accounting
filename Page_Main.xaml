@@ -43,26 +43,23 @@
                             <Button Name="btnPrint" Content="打印" HorizontalAlignment="Right"   Width="90" Grid.Column="1" Click="btnPrint_Click"/>
                             <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right"   Width="90" Grid.Column="1" Click="btnBackup_Click"/>
                             <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right"  Width="90" Grid.Column="1" Click="btnRestore_Click"/>
-                            <!--<Button Name="btnConfig" Content="配置层级奖金" HorizontalAlignment="Right"  Width="90" Grid.Column="1" Click="btnRestore_Click"/>-->
+                            <Button Name="btnConfig" Content="配置奖金" HorizontalAlignment="Right"  Width="90" Grid.Column="1" Click="btnBonusConfig_Click"/>
                         </StackPanel>
                         
                     </StackPanel>
-                    <!--<materialDesign:Flipper HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="cardFliper" Style="{StaticResource MaterialDesignCardFlipper}" >
+                    <!--<materialDesign:Flipper HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="cardFliper" Style="{StaticResource MaterialDesignCardFlipper}">
                         <materialDesign:Flipper.FrontContent>
                             <Button
                               Command="{x:Static materialDesign:Flipper.FlipCommand}"
                                 Content="配置奖金"
-                              Margin="8"
                               Width="192">
                             </Button>
                         </materialDesign:Flipper.FrontContent>
                         <materialDesign:Flipper.BackContent>
-                            <Button
-                              Style="{StaticResource MaterialDesignFlatButton}"
-                              Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                              Margin="8"
-                              Width="Auto">
-                            </Button>
+                            <StackPanel Orientation="Horizontal" Margin="0">
+                                <TextBox  Name="txtBonusConfig" Width="600"></TextBox>
+                                <Button Name="btnBonusConfig" Content="保存"></Button>
+                            </StackPanel>
                         </materialDesign:Flipper.BackContent>
                     </materialDesign:Flipper>-->
                     <Button Name="btnClose" HorizontalAlignment="Right" Background="Red" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" ToolTip="MaterialDesignFloatingActionMiniDarkButton" Click="btnClose_Click">

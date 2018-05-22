@@ -101,6 +101,9 @@
       <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\GenderConverter.cs" />
+    <Compile Include="Dialog\BonusConfigDialog.xaml.cs">
+      <DependentUpon>BonusConfigDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\DialogComfirm.xaml.cs">
       <DependentUpon>DialogComfirm.xaml</DependentUpon>
     </Compile>
@@ -134,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Contorl\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\BonusConfigDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

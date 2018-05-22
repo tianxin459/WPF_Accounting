@@ -88,3 +88,5 @@ D:\Git\WPF_Accounting\obj\Debug\Login.g.cs
 D:\Git\WPF_Accounting\obj\Debug\Contorl\HeaderMenu.baml
 D:\Git\WPF_Accounting\obj\Debug\Contorl\UserControl1.baml
 D:\Git\WPF_Accounting\obj\Debug\Login.baml
+C:\Git\Accounting\Accounting\obj\Debug\Dialog\BonusConfigDialog.g.cs
+C:\Git\Accounting\Accounting\obj\Debug\Dialog\BonusConfigDialog.baml
