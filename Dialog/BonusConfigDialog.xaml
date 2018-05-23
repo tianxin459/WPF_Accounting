@@ -7,14 +7,21 @@
              xmlns:local="clr-namespace:Accounting.Dialog"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="500" Loaded="UserControl_Loaded">
-    <Grid Width="600" Height="500">
+    <Grid Width="600" Height="300">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Name="txtBonusConfig" Grid.Row="1"></TextBox>
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
+        <TextBox Name="txtBonusConfig" Grid.Row="1" Style="{StaticResource MaterialDesignTextAreaTextBox}"
+                Margin="5"
+                VerticalAlignment="Stretch"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Auto" 
+                materialDesign:HintAssist.Hint="奖金配置(从左到右等级提升)"></TextBox>
+        <!--<ListBox Name="lstBonusConfig" Grid.Row="1"></ListBox>-->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
             <Button Name="btnSave" Content="保存" Click="btnSave_Click" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></Button>
             <Button Name="btnCancel" Content="取消" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></Button>
         </StackPanel>

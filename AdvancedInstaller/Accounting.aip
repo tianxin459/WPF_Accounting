@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DOCUMENT Type="Advanced Installer" CreateVersion="14.8" version="14.8" Modules="simple" RootPath="." Language="en" Id="{E54326E5-3E85-4366-BE74-0D6D1913D737}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="AppXAppDetailsComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION"/>
@@ -52,6 +55,8 @@
     <ROW File="Accounting.exe" Component_="Accounting.exe" FileName="ACCOUN~1.EXE|Accounting.exe" Attributes="0" SourcePath="..\bin\Release\Accounting.exe" SelfReg="false" NextFile="Accounting.exe.config" DigSign="true"/>
     <ROW File="Accounting.exe.config" Component_="Accounting.exe.config" FileName="ACCOUN~1.CON|Accounting.exe.config" Attributes="0" SourcePath="..\bin\Release\Accounting.exe.config" SelfReg="false" NextFile="Accounting.pdb"/>
     <ROW File="Accounting.pdb" Component_="Accounting.exe" FileName="ACCOUN~1.PDB|Accounting.pdb" Attributes="0" SourcePath="..\bin\Release\Accounting.pdb" SelfReg="false" NextFile="Data.data"/>
+    <ROW File="App.init" Component_="Accounting.exe.config" FileName="APP~1.INI|App.init" Attributes="0" SourcePath="..\bin\Release\App.init" SelfReg="false" NextFile="Config.json"/>
+    <ROW File="Config.json" Component_="Accounting.exe.config" FileName="CONFIG~1.JSO|Config.json" Attributes="0" SourcePath="..\bin\Release\Config.json" SelfReg="false"/>
     <ROW File="Data.data" Component_="Data.data" FileName="DATA~1.DAT|Data.data" Attributes="0" SourcePath="..\bin\Release\Data\Data.data" SelfReg="false" NextFile="application.png"/>
     <ROW File="MaterialDesignColors.dll" Component_="MaterialDesignColors.dll" FileName="MATERI~1.DLL|MaterialDesignColors.dll" Attributes="0" SourcePath="..\bin\Release\MaterialDesignColors.dll" SelfReg="false" NextFile="MaterialDesignColors.pdb"/>
     <ROW File="MaterialDesignColors.pdb" Component_="MaterialDesignColors.dll" FileName="MATERI~1.PDB|MaterialDesignColors.pdb" Attributes="0" SourcePath="..\bin\Release\MaterialDesignColors.pdb" SelfReg="false" NextFile="MaterialDesignThemes.Wpf.dll"/>
@@ -60,7 +65,7 @@
     <ROW File="MaterialDesignThemes.Wpf.xml" Component_="Accounting.exe.config" FileName="MATERI~1.XML|MaterialDesignThemes.Wpf.xml" Attributes="0" SourcePath="..\bin\Release\MaterialDesignThemes.Wpf.xml" SelfReg="false" NextFile="Newtonsoft.Json.dll"/>
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\bin\Release\Newtonsoft.Json.dll" SelfReg="false" NextFile="Newtonsoft.Json.xml"/>
     <ROW File="Newtonsoft.Json.xml" Component_="Accounting.exe.config" FileName="NEWTON~1.XML|Newtonsoft.Json.xml" Attributes="0" SourcePath="..\bin\Release\Newtonsoft.Json.xml" SelfReg="false" NextFile="PrintCopy.html"/>
-    <ROW File="Print.html" Component_="PrintCopy.html" FileName="PRINT~1.HTM|Print.html" Attributes="0" SourcePath="..\bin\Release\Print\Print.html" SelfReg="false"/>
+    <ROW File="Print.html" Component_="PrintCopy.html" FileName="PRINT~1.HTM|Print.html" Attributes="0" SourcePath="..\bin\Release\Print\Print.html" SelfReg="false" NextFile="App.init"/>
     <ROW File="PrintCopy.html" Component_="PrintCopy.html" FileName="PRINT-~1.HTM|Print - Copy.html" Attributes="0" SourcePath="..\bin\Release\Print\Print - Copy.html" SelfReg="false" NextFile="Print.html"/>
     <ROW File="application.png" Component_="application.png" FileName="APPLIC~1.PNG|application.png" Attributes="0" SourcePath="..\bin\Release\Icon\application.png" SelfReg="false" NextFile="log4net.dll"/>
     <ROW File="log4net.dll" Component_="log4net.dll" FileName="log4net.dll" Attributes="0" SourcePath="..\bin\Release\log4net.dll" SelfReg="false" NextFile="log4net.xml"/>
