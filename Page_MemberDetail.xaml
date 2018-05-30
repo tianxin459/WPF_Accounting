@@ -221,14 +221,20 @@
                     </Canvas>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Right" Grid.Row="7" Grid.Column="3">
+                <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Right" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3">
                     <Button x:Name="button"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="保存更改" d:LayoutOverrides="Height" Click="button_Click" Margin="5,0">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ContentSave" />
                             <TextBlock Margin="5,0,0,0">保存</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnDelete"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="删除" d:LayoutOverrides="Height" Click="btnDelete_Click" Margin="5,0">
+                    <Button x:Name="btnCancel"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="White" Foreground="Black" Width="100" ToolTip="删除" d:LayoutOverrides="Height" Click="btnCancel_Click" Margin="5,0">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="StepBackward" />
+                            <TextBlock Margin="5,0,0,0">返回</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnDelete"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="Red" Width="100" ToolTip="删除" d:LayoutOverrides="Height" Click="btnDelete_Click" Margin="5,0">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountRemove" />
                             <TextBlock Margin="5,0,0,0">删除</TextBlock>

@@ -91,3 +91,10 @@ C:\Git\Accounting\Accounting\obj\Debug\Dialog\BonusConfigDialog.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\BonusConfigDialog.baml
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.csprojAssemblyReference.cache
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.csproj.CopyComplete
+C:\Git\Accounting\Accounting\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Git\Accounting\Accounting\bin\Debug\NPOI.dll
+C:\Git\Accounting\Accounting\bin\Debug\NPOI.OOXML.dll
+C:\Git\Accounting\Accounting\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Git\Accounting\Accounting\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Git\Accounting\Accounting\bin\Debug\NPOI.xml
+C:\Git\Accounting\Accounting\bin\Debug\NPOI.CSS.dll

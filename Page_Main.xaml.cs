@@ -351,14 +351,21 @@ namespace Accounting
         private void btnBackup_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Data file (*.data)|*.data";
+            saveFileDialog.Filter = "Data file (*.data)|*.data|Excel (*.xlsx)|*.xlsx";
             saveFileDialog.DefaultExt = "data";
             saveFileDialog.AddExtension = true;
             saveFileDialog.RestoreDirectory = true;
             if (saveFileDialog.ShowDialog() == true)
             {
                 var path = saveFileDialog.FileName;
-                DataStorage.ExportData(path, App.Members);
+                if (path.EndsWith(".xlsx"))
+                {
+                    ExcelUtil.ExportToExcel(path, App.Members);
+                }
+                else
+                {
+                    DataStorage.ExportData(path, App.Members);
+                }
                 DialogHost.Show(new DialogSuccess("导出成功"));
             }
         }
