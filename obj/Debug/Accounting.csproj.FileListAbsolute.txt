@@ -1,7 +1,6 @@
 C:\Git\Accounting\Accounting\bin\Debug\Accounting.exe.config
 C:\Git\Accounting\Accounting\bin\Debug\Accounting.exe
 C:\Git\Accounting\Accounting\bin\Debug\Accounting.pdb
-C:\Git\Accounting\Accounting\obj\Debug\Accounting.csprojResolveAssemblyReference.cache
 C:\Git\Accounting\Accounting\obj\Debug\App.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Accounting_MarkupCompile.cache
 C:\Git\Accounting\Accounting\obj\Debug\Accounting_MarkupCompile.lref
@@ -90,3 +89,5 @@ D:\Git\WPF_Accounting\obj\Debug\Contorl\UserControl1.baml
 D:\Git\WPF_Accounting\obj\Debug\Login.baml
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\BonusConfigDialog.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\BonusConfigDialog.baml
+C:\Git\Accounting\Accounting\obj\Debug\Accounting.csprojAssemblyReference.cache
+C:\Git\Accounting\Accounting\obj\Debug\Accounting.csproj.CopyComplete
