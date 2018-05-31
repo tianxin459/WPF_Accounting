@@ -48,7 +48,6 @@ C:\Git\Accounting\Accounting\obj\Debug\Page_MemberDetail.baml
 C:\Git\Accounting\Accounting\obj\Debug\Window1.baml
 C:\Git\Accounting\Accounting\obj\Debug\Window2.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Window2.baml
-C:\Git\Accounting\Accounting\bin\Debug\Data\Data.data
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\DialogSuccess.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\DialogSuccess.baml
 D:\Git\WPF_Accounting\bin\Debug\Data\Data.data
@@ -98,3 +97,6 @@ C:\Git\Accounting\Accounting\bin\Debug\NPOI.OpenXml4Net.dll
 C:\Git\Accounting\Accounting\bin\Debug\NPOI.OpenXmlFormats.dll
 C:\Git\Accounting\Accounting\bin\Debug\NPOI.xml
 C:\Git\Accounting\Accounting\bin\Debug\NPOI.CSS.dll
+C:\Git\Accounting\Accounting\bin\Debug\Data\Data3.data
+C:\Git\Accounting\Accounting\bin\Debug\Data\Data.data
+C:\Git\Accounting\Accounting\bin\Debug\Data\Data2.data

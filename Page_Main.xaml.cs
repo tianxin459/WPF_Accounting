@@ -189,7 +189,7 @@ namespace Accounting
                 //ID = m.ID,
                 Name = m.Name,
                 ID = m.ID,
-                Remark = m.Bonus == 0 ? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus} --" + m.calText,
+                Remark = m.Bonus == 0 ? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus} (" + m.calText+")",
                 //IsExpanded = true
             };
 

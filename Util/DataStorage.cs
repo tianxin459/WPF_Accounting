@@ -26,35 +26,6 @@ namespace Accounting.Util
         }
 
 
-        public void SaveData(string text)
-        {
-            try
-            {
-                EnsureDataPath();
-                //var file = new FileInfo(DataFile);
-                var fs = File.OpenWrite(DataFile);
-                byte[] buffer = Encoding.UTF8.GetBytes(text);
-                fs.Write(buffer, 0, buffer.Length);
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public string ReadData()
-        {
-            try
-            {
-                EnsureDataPath();
-                var text = File.ReadAllText(DataFile);
-                return text;
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }
-        }
 
         public static void EnsureDataPath()
         {
@@ -86,7 +57,9 @@ namespace Accounting.Util
             try
             {
                 EnsureDataPath();
-                var jsonData = File.ReadAllText(DataFile);
+                var encryptedData = File.ReadAllBytes(DataFile);
+                var jsonData = EncryptionUtil.AESDecryptToString(encryptedData);
+                //var jsonData = File.ReadAllText(DataFile);
                 List<Member> data = JsonConvert.DeserializeObject<List<Member>>(jsonData);
                 return data;
             }
@@ -124,9 +97,11 @@ namespace Accounting.Util
                 fsTruncate.Close();
 
                 var jsonData = JsonConvert.SerializeObject(data);
+                var encryptedData = EncryptionUtil.AESEncrypt(jsonData);
                 var fs = File.OpenWrite(DataFile);
-                byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
-                fs.Write(buffer, 0, buffer.Length);
+                fs.Write(encryptedData, 0, encryptedData.Length);
+                //byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
+                //fs.Write(buffer, 0, buffer.Length);
             }
             catch (Exception e)
             {

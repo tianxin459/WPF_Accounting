@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="Util\Caculation.cs" />
     <Compile Include="Util\DataStorage.cs" />
+    <Compile Include="Util\EncryptionUtil.cs" />
     <Compile Include="Util\ExcelUtil.cs" />
     <Compile Include="Util\RequiredFiedValidationRule.cs" />
     <Compile Include="Util\ValidationRules.cs" />
@@ -220,6 +221,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Data.data">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Data3.data">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Data2.data">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
