@@ -73,7 +73,7 @@
                 </Grid.RowDefinitions>
 
                 
-                <ComboBox Name="comboSupervisor"  Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" MinWidth="160" SelectionChanged="comboSupervisor_SelectionChanged" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBox Name="comboSupervisor"  Grid.Row="0" Grid.Column="1" Margin="0,5,0,0"  HorizontalAlignment="Stretch" MinWidth="160" SelectionChanged="comboSupervisor_SelectionChanged" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     <materialDesign:HintAssist.Hint>
                         <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
                             <materialDesign:PackIcon Kind="Account" />
@@ -81,6 +81,16 @@
                         </StackPanel>
                     </materialDesign:HintAssist.Hint>
                 </ComboBox>
+
+
+                <TextBox Name="txtMID" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" MinWidth="80" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="Account" />
+                            <TextBlock>编号</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
 
                 <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
                     <Grid>

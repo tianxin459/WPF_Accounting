@@ -115,11 +115,16 @@ namespace Accounting
 
             this.tbTitle.Text = string.IsNullOrEmpty(this.Member.Name) ? "新建人员" : "编辑人员信息";
 
-            
+            var MIDBinding = new Binding("MID") { Source = this.Member, Mode = BindingMode.TwoWay };
+            MIDBinding.ValidationRules.Add(new NotEmptyValidationRule());
+            this.txtMID.SetBinding(TextBox.TextProperty, MIDBinding);
+
             this.txtIDNumber.SetBinding(TextBox.TextProperty, new Binding("IDNumber") { Source = this.Member, Mode = BindingMode.TwoWay });
+
             var nameBinding = new Binding("Name") { Source = this.Member, Mode = BindingMode.TwoWay };
             nameBinding.ValidationRules.Add(new NotEmptyValidationRule());
             this.txtName.SetBinding(TextBox.TextProperty, nameBinding);
+
             this.comboGender.SetBinding(ComboBox.SelectedValueProperty, new Binding("Gender") { Source = this.Member, Mode = BindingMode.TwoWay });
             this.comboSupervisor.SetBinding(ComboBox.SelectedValueProperty, new Binding("Parent.ID") { Source = this.Member, Mode = BindingMode.TwoWay });
             this.txtAge.SetBinding(TextBox.TextProperty, new Binding("Age") { Source = this.Member, Mode = BindingMode.TwoWay });

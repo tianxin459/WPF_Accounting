@@ -15,7 +15,8 @@ namespace Accounting.Model
         public static List<decimal> BonusBase = new List<decimal>() { 0, 228, 190, 152, 114, 76, 38 };
 
         public string ID { get; set; }
-        public string Name { get; set; }
+        public string MID { get; set; } = "";
+        public string Name { get; set; } = "";
         public string IDNumber { get; set; }
         public Gender Gender { get; set; }
         public string Age { get; set; }

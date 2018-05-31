@@ -90,7 +90,7 @@
                             <materialDesign:HintAssist.Hint>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="-2 0 0 0">
                                     <materialDesign:PackIcon Kind="SearchWeb" />
-                                    <TextBlock >姓名检索</TextBlock>
+                                    <TextBlock >编号/姓名检索</TextBlock>
                                 </StackPanel>
                             </materialDesign:HintAssist.Hint>
                         </TextBox>
@@ -102,7 +102,7 @@
                         <localConverter:GenderConverter x:Key="genderConverter"></localConverter:GenderConverter>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn  Header="ID" Width="80" Binding="{Binding ID}" ClipboardContentBinding="{x:Null}"/>-->
+                        <DataGridTextColumn  Header="编号" Width="80" Binding="{Binding MID}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn  Header="姓名" Width="80" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
                         <!--<DataGridTextColumn  Header="Age" Width="10" Binding="{Binding Age}" ClipboardContentBinding="{x:Null}"/>-->
                         <DataGridTextColumn  Header="身份证号" Width="200" Binding="{Binding IDNumber}" ClipboardContentBinding="{x:Null}"/>

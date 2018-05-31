@@ -66,7 +66,7 @@ namespace Accounting
             {
                 if (!string.IsNullOrEmpty(_filterString))
                 {
-                    return data.Name.Contains(_filterString);
+                    return (data.Name?.Contains(_filterString) ?? false)||(data.MID?.Contains(_filterString)??false);
                 }
                 return true;
             }

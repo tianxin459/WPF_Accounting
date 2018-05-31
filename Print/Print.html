@@ -50,6 +50,7 @@
     <div class="container">
         <table id="tblData">
             <thead>
+            <th style="width:6%">编号</th>
             <th style="width:6%">姓名</th>
             <th style="width:15%">身份证号</th>
             <th style="width:2%"><!--性别--></th>
@@ -77,6 +78,11 @@
     var tr, td, row, cell;
     for (row = 0; row < data.length; row++) {
         tr = document.createElement('tr');
+
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.className = "name";
+        td.innerHTML = data[row].MID;
 
         td = document.createElement('td');
         tr.appendChild(td);
