@@ -17,15 +17,15 @@ namespace Accounting.Model
         public string ID { get; set; }
         public string MID { get; set; } = "";
         public string Name { get; set; } = "";
-        public string IDNumber { get; set; }
+        public string IDNumber { get; set; } = "";
         public Gender Gender { get; set; }
-        public string Age { get; set; }
-        public string Bank { get; set; }
-        public string Account { get; set; }
-        public string Phone { get; set; }
+        public string Age { get; set; } = "";
+        public string Bank { get; set; } = "";
+        public string Account { get; set; } = "";
+        public string Phone { get; set; } = "";
         public decimal Fee { get; set; }
         public decimal Bonus { get; set; }
-        public string JoinDate { get; set; }
+        public string JoinDate { get; set; } = "";
 
         public RefMember Parent { get; set; }
         public List<RefMember> Children { get; set; } = new List<RefMember>();
@@ -84,10 +84,10 @@ namespace Accounting.Model
 
             if (sumChildren.Count > 0 && lvl > BonusBase.Count) // if 6 gen exceed, then have plus share of 2% of 38w;
             {
-                if (App.Members.Where(x => DateTime.Parse(x.JoinDate).Year == DateTime.Now.Year).Count() > 100)
+                if (App.Members.Where(x => !string.IsNullOrEmpty(x.JoinDate) && DateTime.Parse(x.JoinDate).Year == DateTime.Now.Year).Count() > 100)
                 {
                     var extBonus = (decimal)(380000 * 0.02);
-                    this.calText.Append(string.Format(" (6级后奖励金:{0})", extBonus));
+                    this.calText.Append(string.Format(" ({1}级后奖励金:{0})", extBonus, (BonusBase.Count-1)));
                 }
                     
             }
@@ -136,9 +136,13 @@ namespace Accounting.Model
                     sumReturn.Sum += s.Sum;
 
                     var sl = BonusBase[s.Level];
-                    sb.Append(string.Format("{1}:{0}", sl,m.Name));
+                    sb.Append(string.Format("{1}:{0}", sl, m.Name));
                     sb.Append("+");
                     sumReturn.Sum += sl;
+                }
+                else
+                {
+                    sumReturn.Sum += s.Sum;
                 }
             }
             sumReturn.Level = sumChildren.Select(x => x.Level).Max();
@@ -163,8 +167,8 @@ namespace Accounting.Model
 
     public class RefMember
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
+        public string ID { get; set; } = "";
+        public string Name { get; set; } = "";
 
         public RefMember(string id="", string name = "")
         {

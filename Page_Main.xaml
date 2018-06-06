@@ -40,10 +40,11 @@
                             <Button Name="btnMain" Content="主页" HorizontalAlignment="Left" Width="90"/>
                         </StackPanel>
                         <StackPanel  Orientation="Horizontal" Margin="10,0,10,0" Height="50">
-                            <Button Name="btnPrint" Content="打印" HorizontalAlignment="Right"   Width="90" Grid.Column="1" Click="btnPrint_Click"/>
-                            <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right"   Width="90" Grid.Column="1" Click="btnBackup_Click"/>
-                            <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right"  Width="90" Grid.Column="1" Click="btnRestore_Click"/>
-                            <Button Name="btnConfig" Content="配置奖金" HorizontalAlignment="Right"  Width="90" Grid.Column="1" Click="btnBonusConfig_Click"/>
+                            <Button Name="btnPrint" Content="打印" HorizontalAlignment="Right"   Width="100" Grid.Column="1" Click="btnPrint_Click"/>
+                            <Button Name="btnBackup" Content="备份导出" HorizontalAlignment="Right"   Width="100" Grid.Column="1" Click="btnBackup_Click"/>
+                            <Button Name="btnExcel" Content="Excel导出" HorizontalAlignment="Right"   Width="100" Grid.Column="1" Click="btnExcel_Click"/>
+                            <Button Name="btnRestore" Content="恢复备份" HorizontalAlignment="Right"  Width="100" Grid.Column="1" Click="btnRestore_Click"/>
+                            <Button Name="btnConfig" Content="配置奖金" HorizontalAlignment="Right"  Width="100" Grid.Column="1" Click="btnBonusConfig_Click"/>
                         </StackPanel>
                         
                     </StackPanel>
@@ -116,8 +117,9 @@
                         <DataGridTextColumn  Header="缴费" Width="60" Binding="{Binding Fee}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn  Header="奖金" Width="60" Binding="{Binding Bonus}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn  Header="主管" Width="80" Binding="{Binding Parent.Name}" ClipboardContentBinding="{x:Null}"/>
-                        <DataGridTextColumn  Header="下属1" Width="80" Binding="{Binding Children[0].Name}" ClipboardContentBinding="{x:Null}"/>
-                        <DataGridTextColumn  Header="下属2" Width="80" Binding="{Binding Children[1].Name}" ClipboardContentBinding="{x:Null}"/>
+                        <!--<DataGridTextColumn  Header="下属1" Width="80" Binding="{Binding Children[0].Name}" ClipboardContentBinding="{x:Null}"/>-->
+                        <!--<DataGridTextColumn  Header="下属2" Width="80" Binding="{Binding Children[1].Name}" ClipboardContentBinding="{x:Null}"/>-->
+                        <DataGridTextColumn  Header="下属数量" Width="80" Binding="{Binding Children.Count}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn  Header="加入日期" Width="80" Binding="{Binding JoinDate}" ClipboardContentBinding="{x:Null}"/>
                     </DataGrid.Columns>
                 </DataGrid>

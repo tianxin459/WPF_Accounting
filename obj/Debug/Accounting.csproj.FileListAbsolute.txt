@@ -120,3 +120,4 @@ D:\Git\WPF_Accounting\bin\Debug\MaterialDesignThemes.Wpf.xml
 D:\Git\WPF_Accounting\bin\Debug\Newtonsoft.Json.xml
 D:\Git\WPF_Accounting\bin\Debug\NPOI.xml
 D:\Git\WPF_Accounting\obj\Debug\Dialog\BonusConfigDialog.baml
+D:\Git\WPF_Accounting\bin\Debug\Print\jquery-3.3.1.slim.min.js

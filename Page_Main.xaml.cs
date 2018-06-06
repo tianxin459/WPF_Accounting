@@ -415,5 +415,27 @@ namespace Accounting
             DataGridCollection.Filter = new Predicate<object>(Filter);
             this.dgStaff.ItemsSource = DataGridCollection;
         }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel (*.xlsx)|*.xlsx";
+            saveFileDialog.DefaultExt = "data";
+            saveFileDialog.AddExtension = true;
+            saveFileDialog.RestoreDirectory = true;
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                var path = saveFileDialog.FileName;
+                if (path.EndsWith(".xlsx"))
+                {
+                    ExcelUtil.ExportToExcel(path, App.Members);
+                }
+                else
+                {
+                    DataStorage.ExportData(path, App.Members);
+                }
+                DialogHost.Show(new DialogSuccess("导出成功"));
+            }
+        }
     }
 }

@@ -279,6 +279,9 @@
     <None Include="Config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="Print\jquery-3.3.1.slim.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Print\Print - Copy.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

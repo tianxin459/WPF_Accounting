@@ -227,10 +227,10 @@ namespace Accounting
             this.panelSubordinate.Children.Add(panel1);
             this._childPanels.Add(panel1);
 
-            if(i==1)
-            {
-                this.btnPopup.Visibility = Visibility.Hidden;
-            }
+            //if(i==1)
+            //{
+            //    this.btnPopup.Visibility = Visibility.Hidden;
+            //}
         }
 
         private void BuildSubordinateCombo()
@@ -268,9 +268,6 @@ namespace Accounting
 
                 var strI = (sender as Button).Name.Replace("delbtn_", string.Empty);
                 var i = int.Parse(strI);
-                //this.UnregisterName("tbPhone" + strI);
-                //this.UnregisterName("tbFee" + strI);
-                //this.UnregisterName("tbIDNumber" + strI);
                 
                 var removeMember = this.Member.Children[i];
                 var relatedChildren = this.Members.Where(x => x.ID ==removeMember.ID && x.Parent?.ID == this.Member.ID).ToList();
@@ -294,15 +291,6 @@ namespace Accounting
             //set supervisor for selected child
             this.Members.Where(x => x.ID == selectID.ToString())
                 .FirstOrDefault().Parent = new RefMember(this.Member.ID, this.Member.Name);
-
-            //var seqI = (sender as ComboBox).Name.Replace("comboSub", string.Empty);
-            //var oldID = this.Member.Subordinate[int.Parse(seqI)].ID;
-            //var newID = selectID.ToString();
-            //clear supervisor for old id
-            //this.Members
-            //    .Where(x => x.ID == oldID)
-            //    .ToList()
-            //    .ForEach(x => x.Supervisor = null);
 
             #region label display
             var subMember = this.Members
@@ -387,7 +375,75 @@ namespace Accounting
         }
 
 
+        private void AddMemberAndSaveData()
+        {
+            try
+            {
+
+                this.Member.Children
+                    .ForEach(x => x.Name = this.Members.Where(m1 => m1.ID == x.ID).FirstOrDefault()?.Name);
+
+                UpdateTreeCollection(this.Member, this.Members);
+
+                ReCaculateBonus();
+
+                //var m = this.Member;
+                if (this.Members.Exists(x => x.ID == this.Member.ID))
+                {
+                    var i = this.Members.FindIndex(x => x.ID == this.Member.ID);
+                    this.Members[i] = this.Member;
+                }
+                else
+                {
+                    this.Members.Add(this.Member);
+                }
+                DataStorage.SaveData(this.Members);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         private void ReCaculateBonus() {
+        }
+
+        private void DeleteMember()
+        {
+            try
+            {
+                //clear subordinate
+                this.Members
+                    .Where(x => x.Children.Exists(s => s.ID == this.Member.ID))
+                    .ToList()
+                    .ForEach(x => x.Children = x.Children.Where(s => s.ID != this.Member.ID).ToList());
+
+                //clear supervisor
+                this.Members
+                    .Where(x => x.Parent?.ID == this.Member.ID)
+                    .ToList()
+                    .ForEach(x => x.Parent = null);
+
+                for (var i = this.Members.Count - 1; i >= 0; i--)
+                {
+                    if (this.Members[i].ID == this.Member.ID)
+                    {
+                        this.Members.RemoveAt(i);
+                        break;
+                    }
+                }
+
+                DataStorage.SaveData(this.Members);
+
+                var dialogSuccess = new DialogSuccess("删除成功");
+                dialogSuccess.ComfirmButton.Click += DialogComfirmButton_Click;
+                DialogHost.Show(dialogSuccess);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -415,6 +471,7 @@ namespace Accounting
             this.Member.Children.Add(new RefMember() { ID = mid });
             App.SelectedMemberStack.Push(this.Member);
             App.SelectedMember = newMember;
+            AddMemberAndSaveData();
 
             this.NavigationService.Navigate(new Page_MemberDetail(newMember));
         }
@@ -426,32 +483,7 @@ namespace Accounting
         /// <param name="e"></param>
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-
-                this.Member.Children
-                    .ForEach(x => x.Name = this.Members.Where(m1 => m1.ID == x.ID).FirstOrDefault().Name);
-
-                UpdateTreeCollection(this.Member, this.Members);
-
-                ReCaculateBonus();
-
-                //var m = this.Member;
-                if (this.Members.Exists(x => x.ID == this.Member.ID))
-                {
-                    var i = this.Members.FindIndex(x => x.ID == this.Member.ID);
-                    this.Members[i] = this.Member;
-                }
-                else
-                {
-                    this.Members.Add(this.Member);
-                }
-                DataStorage.SaveData(this.Members);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            AddMemberAndSaveData();
 
             var dialogSuccess = new DialogSuccess("保存成功");
             dialogSuccess.ComfirmButton.Click += DialogComfirmButton_Click;
@@ -459,6 +491,7 @@ namespace Accounting
             //this.NavigationService.GoBack();
 
         }
+
 
         private void DialogComfirmButton_Click(object sender, RoutedEventArgs e)
         {
@@ -505,41 +538,15 @@ namespace Accounting
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (MessageBox.Show("删除该成员?", "确认删除", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
-                //clear subordinate
-                this.Members
-                    .Where(x => x.Children.Exists(s => s.ID == this.Member.ID))
-                    .ToList()
-                    .ForEach(x => x.Children = x.Children.Where(s => s.ID != this.Member.ID).ToList());
-
-                //clear supervisor
-                this.Members
-                    .Where(x => x.Parent?.ID == this.Member.ID)
-                    .ToList()
-                    .ForEach(x => x.Parent = null);
-
-                for (var i = this.Members.Count - 1; i >= 0; i--)
-                {
-                    if (this.Members[i].ID == this.Member.ID)
-                    {
-                        this.Members.RemoveAt(i);
-                        break;
-                    }
-                }
-
-                DataStorage.SaveData(this.Members);
-
-                var dialogSuccess = new DialogSuccess("删除成功");
-                dialogSuccess.ComfirmButton.Click += DialogComfirmButton_Click;
-                DialogHost.Show(dialogSuccess);
+                DeleteMember();
             }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+        }
 
-
+        private void DeleteComfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteMember();
         }
 
         #endregion
