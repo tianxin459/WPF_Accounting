@@ -87,7 +87,7 @@ namespace Accounting.Model
                 if (App.Members.Where(x => !string.IsNullOrEmpty(x.JoinDate) && DateTime.Parse(x.JoinDate).Year == DateTime.Now.Year).Count() > 100)
                 {
                     var extBonus = (decimal)(380000 * 0.02);
-                    this.calText.Append(string.Format(" ({1}级后奖励金:{0})", extBonus, (BonusBase.Count-1)));
+                    this.calText.Append(string.Format(" ({1}级后奖励金:{0})", extBonus, (BonusBase.Count - 1)));
                 }
                     
             }

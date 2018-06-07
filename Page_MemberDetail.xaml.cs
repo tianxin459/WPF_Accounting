@@ -244,6 +244,8 @@ namespace Accounting
             subbuttonI = i;
         }
 
+      
+
         private void BtnDelete2_MouseUp1(object sender, MouseButtonEventArgs e)
         {
             try

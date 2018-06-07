@@ -10,8 +10,6 @@ C:\Git\Accounting\Accounting\obj\Debug\Accounting.csproj.GenerateResource.Cache
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.csproj.CoreCompileInputs.cache
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.exe
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.pdb
-C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignColors.dll
-C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Git\Accounting\Accounting\obj\Debug\App.baml
@@ -38,8 +36,6 @@ C:\Git\Accounting\Accounting\obj\Debug\Page_Main.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Page_MemberDetail.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Window1.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Git\Accounting\Accounting\bin\Debug\log4net.dll
-C:\Git\Accounting\Accounting\bin\Debug\Newtonsoft.Json.dll
 C:\Git\Accounting\Accounting\bin\Debug\log4net.xml
 C:\Git\Accounting\Accounting\bin\Debug\MaterialDesignColors.pdb
 C:\Git\Accounting\Accounting\bin\Debug\Newtonsoft.Json.xml
@@ -90,11 +86,6 @@ C:\Git\Accounting\Accounting\obj\Debug\Dialog\BonusConfigDialog.g.cs
 C:\Git\Accounting\Accounting\obj\Debug\Dialog\BonusConfigDialog.baml
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.csprojAssemblyReference.cache
 C:\Git\Accounting\Accounting\obj\Debug\Accounting.csproj.CopyComplete
-C:\Git\Accounting\Accounting\bin\Debug\ICSharpCode.SharpZipLib.dll
-C:\Git\Accounting\Accounting\bin\Debug\NPOI.dll
-C:\Git\Accounting\Accounting\bin\Debug\NPOI.OOXML.dll
-C:\Git\Accounting\Accounting\bin\Debug\NPOI.OpenXml4Net.dll
-C:\Git\Accounting\Accounting\bin\Debug\NPOI.OpenXmlFormats.dll
 C:\Git\Accounting\Accounting\bin\Debug\NPOI.xml
 C:\Git\Accounting\Accounting\bin\Debug\NPOI.CSS.dll
 C:\Git\Accounting\Accounting\bin\Debug\Data\Data3.data
@@ -121,3 +112,4 @@ D:\Git\WPF_Accounting\bin\Debug\Newtonsoft.Json.xml
 D:\Git\WPF_Accounting\bin\Debug\NPOI.xml
 D:\Git\WPF_Accounting\obj\Debug\Dialog\BonusConfigDialog.baml
 D:\Git\WPF_Accounting\bin\Debug\Print\jquery-3.3.1.slim.min.js
+C:\Git\Accounting\Accounting\bin\Debug\Print\jquery-3.3.1.slim.min.js
