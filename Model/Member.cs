@@ -31,6 +31,7 @@ namespace Accounting.Model
         public List<RefMember> Children { get; set; } = new List<RefMember>();
 
         public RefMember Ref { get { return new RefMember(this.ID,this.Name); } }
+        public string ChildrenText { get; set; }
 
         public Member() { }
         public Member(string ID) {
@@ -38,18 +39,24 @@ namespace Accounting.Model
         }
 
         [JsonIgnore]
-        public StringBuilder calText { get; set; } = new StringBuilder();
+        public string CalTextBuilder { get {
+                return String.Join(" + ", this.ChildrenList.Select(x=>x.Split('|')[0]));
+            } }
+        [JsonIgnore]
+        public List<string> ChildrenList { get; set; } = new List<string>();
+        [JsonIgnore]
+        public List<string> ChildrenIDList { get; set; } = new List<string>();
 
         public decimal CalcuateBonusInMemberTree(List<Member> memberTree)
         {
-            this.calText = new StringBuilder();
+            //this.CalTextBuilder = new StringBuilder();
+            List<string> ChildrenList = new List<string>();
 
             decimal bonus = 0;
             List<CalItem> sumChildren = new List<CalItem>();
             var m = memberTree
                 .Where(x => x.ID == this.ID)
                 .FirstOrDefault();
-
 
             if(m==null || m.Children.Count==0)
             {
@@ -61,10 +68,11 @@ namespace Accounting.Model
             
             foreach (var sm in m.Children)
             {
-                var sumChild = SumChildrenBonus(sm.ID, memberTree, this.calText);
+                var sumChild = SumChildrenBonus(sm.ID, memberTree, this.ChildrenList,(BonusBase.Count - 1));
                 sumChild.Level++;
                 sumChildren.Add(sumChild);
             }
+
             foreach (var s in sumChildren)
             {
                 var sl = new decimal();
@@ -73,26 +81,34 @@ namespace Accounting.Model
                 {
                     sl = BonusBase[s.Level];
 
-                    this.calText.Append(string.Format("Lv{1}:{0}", sl, s.Level));
-                    this.calText.Append("+");
+                    this.ChildrenList.Add(string.Format("Lv{1}:{0}", sl, s.Level));
+                    //this.CalTextBuilder.Append("+");
                     bonus += sl;
                 }
             }
             
             var lvl = sumChildren.Select(x => x.Level).Max();
-            this.calText.Append(string.Format("|MaxLv:{0}", lvl));
+            this.ChildrenList.Add(string.Format("|MaxLv:{0}", lvl));
+            decimal extBonus = 0 ;
 
-            if (sumChildren.Count > 0 && lvl > BonusBase.Count) // if 6 gen exceed, then have plus share of 2% of 38w;
+            if (sumChildren.Any(x=>x.ExtractBonusBool))
             {
                 if (App.Members.Where(x => !string.IsNullOrEmpty(x.JoinDate) && DateTime.Parse(x.JoinDate).Year == DateTime.Now.Year).Count() > 100)
                 {
-                    var extBonus = (decimal)(380000 * 0.02);
-                    this.calText.Append(string.Format(" ({1}级后奖励金:{0})", extBonus, (BonusBase.Count - 1)));
+                    extBonus = (decimal)(380000 * 0.02);
+                    this.ChildrenList.Add(string.Format(" ({1}级后奖励金:{0})", extBonus, (BonusBase.Count - 1)));
                 }
-                    
             }
 
-            this.Bonus = bonus;
+            this.Bonus = bonus + extBonus;
+
+            //fill up with children ids
+            this.ChildrenIDList.Clear();
+            FillChildrenIDs(this, this.ChildrenIDList, memberTree);
+
+            //fill up the children text;
+            this.ChildrenText = String.Join("\n", App.Members.Where(x => this.Children.Exists(c => c.ID == x.ID)).Select(s => s.MID + " - " + s.Name).ToArray());
+
             return bonus;
         }
 
@@ -103,7 +119,7 @@ namespace Accounting.Model
         /// <param name="memberTree"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public CalItem SumChildrenBonus(string id, List<Member> memberTree, StringBuilder sb)
+        public CalItem SumChildrenBonus(string id, List<Member> memberTree, List<string> sb,int remainLevel)
         {
             CalItem sumReturn = new CalItem();
             List<CalItem> sumChildren = new List<CalItem>();
@@ -112,10 +128,14 @@ namespace Accounting.Model
                 .Where(x => x.ID == id)
                 .FirstOrDefault();
 
-            if (m==null||m.Children.Count == 0)
+            if (m==null||m.Children.Count == 0||remainLevel==0)
             {
                 sumReturn.Level = 0;
                 sumReturn.Sum = 0;
+                if (m.Children.Count > 0)
+                {
+                    sumReturn.ExtractBonusBool = true;
+                }
                 return sumReturn;
             }
 
@@ -124,7 +144,7 @@ namespace Accounting.Model
             foreach (var sm in m.Children)
             {
                 var sumChild = new CalItem();
-                sumChild = SumChildrenBonus(sm.ID, memberTree, sb);
+                sumChild = SumChildrenBonus(sm.ID, memberTree, sb,(remainLevel-1));
                 sumChild.Level++;
                 sumChildren.Add(sumChild);
             }
@@ -136,8 +156,8 @@ namespace Accounting.Model
                     sumReturn.Sum += s.Sum;
 
                     var sl = BonusBase[s.Level];
-                    sb.Append(string.Format("{1}:{0}", sl, m.Name));
-                    sb.Append("+");
+                    sb.Add(string.Format("{1}:{0}", sl, m.Name));
+                    //sb.Append("+");
                     sumReturn.Sum += sl;
                 }
                 else
@@ -146,6 +166,7 @@ namespace Accounting.Model
                 }
             }
             sumReturn.Level = sumChildren.Select(x => x.Level).Max();
+            sumReturn.ExtractBonusBool = sumChildren.Any(x => x.ExtractBonusBool == true);
             return sumReturn;
         }
 
@@ -153,6 +174,18 @@ namespace Accounting.Model
             return DateTime.Now.ToString("yyyyMMddHHmmssms");
         }
 
+
+        public static void FillChildrenIDs(Member m, List<string> idList,List<Member> memberTree)
+        {
+            foreach (var c in m.Children)
+            {
+                idList.Add(c.ID);
+                var mc = memberTree.Where(x => x.ID == c.ID).FirstOrDefault();
+                if (mc == null)
+                    continue;
+                FillChildrenIDs(mc, idList, memberTree);
+            }
+        }
     }
 
     public enum Gender

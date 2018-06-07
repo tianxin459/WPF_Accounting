@@ -89,7 +89,7 @@ namespace Accounting
 
             this.Member.CalcuateBonusInMemberTree(this.Members);
             this.ItemsSubordinate = this.Members
-                    .Where(x => x.Children.Count <= 2 && (x.Parent == null || x.Parent?.ID !=this.Member.ID) && x.ID != this.Member.ID && x.ID != this._oldParentID && !this._oldChildrenID.Contains(x.Parent?.ID))
+                    .Where(x => !x.ChildrenIDList.Contains(this.Member.ID) && (x.Parent == null || x.Parent?.ID !=this.Member.ID) && x.ID != this.Member.ID && x.ID != this._oldParentID && !this._oldChildrenID.Contains(x.Parent?.ID))
                     .Select(x => new ComboItem() { Name = x.Name, ID = x.ID }).ToList();
 
 
@@ -301,19 +301,25 @@ namespace Accounting
 
             //(parent.Children[1] as TextBlock).Text = $"{subMember.Phone} {subMember.IDNumber} {subMember.Fee}";
 
-            var i = parent.Name.Replace("panelSub_", string.Empty);
+            //var i = parent.Name.Replace("panelSub_", string.Empty);
 
-            var tbPhone = parent.FindName("tbPhone" + i);
-            if(tbPhone!=null)
-                (tbPhone as TextBox).Text = subMember.Phone;
-            
-            var tbIDNumber= parent.FindName("tbIDNumber" + i);
-            if (tbIDNumber != null)
-                (tbIDNumber as TextBox).Text = subMember.IDNumber;
+            //var tbPhone = parent.FindName("tbPhone" + i);
+            //if(tbPhone!=null)
+            //    (tbPhone as TextBox).Text = subMember.Phone;
+            //var tbIDNumber = parent.FindName("tbIDNumber" + i);
+            //if (tbIDNumber != null)
+            //    (tbIDNumber as TextBox).Text = subMember.IDNumber;
 
-            var tbFee = parent.FindName("tbFee" + i);
-            if (tbFee != null)
-                (tbFee as TextBox).Text = subMember.Fee.ToString();
+            //var tbFee = parent.FindName("tbFee" + i);
+            //if (tbFee != null)
+            //    (tbFee as TextBox).Text = subMember.Fee.ToString();
+
+            //phone
+            (parent.Children[1] as TextBox).Text = subMember.Phone;
+            //IDNumber
+            (parent.Children[2] as TextBox).Text = subMember.IDNumber;
+            //Fee
+            (parent.Children[3] as TextBox).Text = subMember.Fee.ToString();
             #endregion
         }
 

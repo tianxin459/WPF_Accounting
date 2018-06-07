@@ -281,8 +281,7 @@
                     <th style="width:5%">奖金</th>
                     <th style="width:7%">加入时间</th>
                     <th style="width:5%">上司</th>
-                    <th style="width:5%">下属1</th>
-                    <th style="width:5%">下属2</th>
+                    <th style="width:5%;white-space:pre">下属</th>
                 </tr>
             </thead>
             <tbody id="tblData_tbody"></tbody>
@@ -389,13 +388,7 @@
         tr.appendChild(td);
         td.className = "child";
         if (data[row].Children[0])
-            td.innerHTML = data[row].Children[0].Name;
-
-        td = document.createElement('td');
-        tr.appendChild(td);
-        td.className = "child";
-        if (data[row].Children[1])
-            td.innerHTML = data[row].Children[1].Name;
+            td.innerHTML = data[row].ChildrenText.replace('\n','<br />');
 
         tableBody.appendChild(tr);
     }

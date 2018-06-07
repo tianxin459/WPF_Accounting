@@ -32,11 +32,11 @@ namespace Accounting.Util
                 row.CreateCell(7).SetCellValue("缴费");
                 row.CreateCell(8).SetCellValue("奖金");
                 row.CreateCell(9).SetCellValue("主管");
-                row.CreateCell(10).SetCellValue("下属1");
-                row.CreateCell(11).SetCellValue("下属2");
-                row.CreateCell(12).SetCellValue("加入日期");
+                row.CreateCell(10).SetCellValue("下属");
+                //row.CreateCell(11).SetCellValue("下属2");
+                row.CreateCell(11).SetCellValue("加入日期");
                 row.Cells.ForEach(c => c.CSS("color:black;font-weight:bold;background-color:orange;border-type:thin"));
-
+                
                 for (int i = 0; i < members.Count; i++)
                 {
                     NPOI.SS.UserModel.IRow row2 = sheet.CreateRow(i + 1);
@@ -50,25 +50,35 @@ namespace Accounting.Util
                     row2.CreateCell(7).SetCellValue(Convert.ToString(members[i].Fee));
                     row2.CreateCell(8).SetCellValue(Convert.ToString(members[i].Bonus));
                     row2.CreateCell(9).SetCellValue(Convert.ToString(members[i].Parent?.Name));
+                    row2.CreateCell(10).SetCellValue(Convert.ToString(members[i].ChildrenText));
 
-                    if (members[i].Children.Count > 0)
-                        row2.CreateCell(10).SetCellValue(Convert.ToString(members[i].Children[0]?.Name));
-                    else
-                        row2.CreateCell(10).SetCellValue(string.Empty);
+                    //if (members[i].Children.Count > 0)
+                    //    row2.CreateCell(10).SetCellValue(Convert.ToString(members[i].Children[0]?.Name));
+                    //else
+                    //    row2.CreateCell(10).SetCellValue(string.Empty);
 
-                    if (members[i].Children.Count > 1)
-                        row2.CreateCell(11).SetCellValue(Convert.ToString(members[i].Children[1]?.Name));
-                    else
-                        row2.CreateCell(11).SetCellValue(string.Empty);
+                    //if (members[i].Children.Count > 1)
+                    //    row2.CreateCell(11).SetCellValue(Convert.ToString(members[i].Children[1]?.Name));
+                    //else
+                    //    row2.CreateCell(11).SetCellValue(string.Empty);
 
                     if (string.IsNullOrEmpty(members[i].JoinDate))
-                        row2.CreateCell(12).SetCellValue("");
+                        row2.CreateCell(11).SetCellValue("");
                     else
-                        row2.CreateCell(12).SetCellValue(Convert.ToDateTime(members[i].JoinDate).ToString("yyyy-MM-dd"));
+                        row2.CreateCell(11).SetCellValue(Convert.ToDateTime(members[i].JoinDate).ToString("yyyy-MM-dd"));
 
                     row2.Cells.ForEach(c => c.CSS("color:black;border-type:thin"));
+                    row2.Cells.ForEach(c => c.CellStyle.WrapText = true);
+                    //row.Cells.ForEach(c => c.CellStyle.DataFormat);
                 }
 
+                //auto resize column
+                int numberOfColumns = row.PhysicalNumberOfCells;
+                for (int i = 1; i <= numberOfColumns; i++)
+                {
+                    sheet.AutoSizeColumn(i);
+                    GC.Collect(); // Add this line
+                }
 
                 // export to file
                 using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
@@ -82,7 +92,8 @@ namespace Accounting.Util
                     }
                     book = null;
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

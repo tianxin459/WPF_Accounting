@@ -189,7 +189,7 @@ namespace Accounting
                 //ID = m.ID,
                 Name = m.Name,
                 ID = m.ID,
-                Remark = m.Bonus == 0 ? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus} (" + m.calText+")",
+                Remark = m.Bonus == 0 ? $"{m.Name}" : $"{m.Name} 奖金：{m.Bonus} (" + m.CalTextBuilder+")",
                 //IsExpanded = true
             };
 
@@ -426,14 +426,7 @@ namespace Accounting
             if (saveFileDialog.ShowDialog() == true)
             {
                 var path = saveFileDialog.FileName;
-                if (path.EndsWith(".xlsx"))
-                {
-                    ExcelUtil.ExportToExcel(path, App.Members);
-                }
-                else
-                {
-                    DataStorage.ExportData(path, App.Members);
-                }
+                ExcelUtil.ExportToExcel(path, App.Members);
                 DialogHost.Show(new DialogSuccess("导出成功"));
             }
         }

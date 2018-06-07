@@ -11,5 +11,6 @@ namespace Accounting.Model
         public decimal Sum { get; set; }
         public int Level { get; set; }
         public decimal ExtractBonus { get; set; }
+        public bool ExtractBonusBool { get; set; }
     }
 }

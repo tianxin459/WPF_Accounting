@@ -70,21 +70,6 @@ namespace Accounting.Util
         }
 
 
-        public static List<Member> ReadData(string path)
-        {
-            try
-            {
-                var jsonData = File.ReadAllText(path);
-
-                List<Member> data = JsonConvert.DeserializeObject<List<Member>>(jsonData);
-                return data;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
 
         public static void SaveData(List<Member> data)
         {
@@ -109,6 +94,7 @@ namespace Accounting.Util
             }
         }
 
+        //config file export
         public static void ExportText(string path, string text)
         {
             try
@@ -134,7 +120,27 @@ namespace Accounting.Util
             }
         }
 
+        //restore data
+        public static List<Member> ReadData(string path)
+        {
+            try
+            {
+                //var jsonData = File.ReadAllText(path);
 
+                var encryptedData = File.ReadAllBytes(path);
+                var jsonData = EncryptionUtil.AESDecryptToString(encryptedData);
+
+                List<Member> data = JsonConvert.DeserializeObject<List<Member>>(jsonData);
+                return data;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+        //export file
         public static void ExportData(string path,List<Member> data)
         {
             try
@@ -150,9 +156,14 @@ namespace Accounting.Util
                     fs = File.Create(path);
                 }
 
+                //var jsonData = JsonConvert.SerializeObject(data);
+                //byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
+                //fs.Write(buffer, 0, buffer.Length);
+
                 var jsonData = JsonConvert.SerializeObject(data);
-                byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
-                fs.Write(buffer, 0, buffer.Length);
+                var encryptedData = EncryptionUtil.AESEncrypt(jsonData);
+                fs.Write(encryptedData, 0, encryptedData.Length);
+
                 fs.Flush();
                 fs.Close();
             }

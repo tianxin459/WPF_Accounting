@@ -94,6 +94,11 @@ namespace Accounting
         public static Member SelectedMember { get; set; } = new Member();
         public static List<Member> Members { get; set; } = new List<Member>();
         public static ConcurrentStack<Member> SelectedMemberStack { get; set; } = new ConcurrentStack<Member>();
+
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message+"\n"+e.Exception.StackTrace,"错误信息请发送截图至：onlyheart@qq.com");
+        }
     }
 
 }
